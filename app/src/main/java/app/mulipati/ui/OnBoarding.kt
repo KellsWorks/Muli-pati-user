@@ -7,6 +7,7 @@ import app.mulipati.R
 import app.mulipati.adapters.PagerAdapter
 import app.mulipati.databinding.ActivityOnBoardingBinding
 import app.mulipati.ui.onboard.FirstSlider
+import app.mulipati.ui.onboard.SecondSlider
 
 class OnBoarding : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class OnBoarding : AppCompatActivity() {
         val adapter = PagerAdapter(supportFragmentManager)
 
         adapter.addFragment(FirstSlider() , " One ")
+        adapter.addFragment(SecondSlider() , " two ")
 
         onBoardingBinding.onBoardPager.adapter = adapter
 
