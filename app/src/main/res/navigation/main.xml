@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_profileFragment_to_notificationsFragment"
             app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_supportFragment"
+            app:destination="@id/supportFragment" />
     </fragment>
     <fragment
         android:id="@+id/tripFragment"
@@ -31,4 +34,9 @@
         android:id="@+id/notificationsFragment"
         android:name="app.mulipati.ui.notifications.NotificationsFragment"
         android:label="NotificationsFragment" />
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="app.mulipati.ui.support.SupportFragment"
+        android:label="fragment_support"
+        tools:layout="@layout/fragment_support" />
 </navigation>

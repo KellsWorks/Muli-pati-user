@@ -33,5 +33,9 @@ class ProfileFragment : Fragment() {
         profileBinding.notifictions.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_notificationsFragment)
         }
+
+        profileBinding.toSupport.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_supportFragment)
+        }
     }
 }
