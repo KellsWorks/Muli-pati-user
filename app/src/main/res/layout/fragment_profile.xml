@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    >
+    <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
@@ -14,12 +17,13 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:id="@+id/notifictions"
          >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_bell_ring"
-            />
+            app:tint="#969696" />
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
@@ -405,5 +409,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

@@ -18,10 +18,18 @@
         <item name="subtitleTextColor">#D81B60</item>
         <item name="tabIndicatorColor">#D81B60</item>
 
+
     </style>
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">#FB8C00</item>
-        <item name="colorControlActivated">#ECECEC</item>
+        <item name="colorControlActivated">#F4511E</item>
     </style>
+
+
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>
