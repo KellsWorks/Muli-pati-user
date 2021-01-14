@@ -12,8 +12,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         android:text="Dashboard"
         android:textSize="30sp"
@@ -25,7 +25,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="75dp"
-        android:layout_marginLeft="26dp"
+        android:layout_marginLeft="20dp"
         android:id="@+id/tabLike"
         >
 
@@ -48,8 +48,8 @@
         android:layout_below="@+id/tabLike"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/dashboardBanner"
@@ -90,6 +90,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/searchBanner"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_below="@+id/dashboardBanner"
@@ -124,6 +125,56 @@
             android:background="?colorSurface"
             android:hint="Search for trips..."
             android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_primary"
+        android:src="@drawable/ic_map_plus"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="54dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/searchBanner"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trips near you"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/recentTripsRecycler"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View more"
+            android:textSize="13sp"
+            android:textColor="?colorPrimary"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_stroked"
+            android:padding="3dp"
             />
     </LinearLayout>
 

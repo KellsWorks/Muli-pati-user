@@ -62,4 +62,8 @@ dependencies {
 
     //Dots
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+
+    //Epoxy
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 }
