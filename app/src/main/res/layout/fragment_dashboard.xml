@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.dashboard.DashboardFragment">
 
     <TextView
@@ -51,6 +52,7 @@
         android:layout_marginLeft="26dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
+        android:id="@+id/dashboardBanner"
         android:background="@drawable/rounded_primary"
         android:orientation="vertical"
         android:layout_marginRight="20dp">
@@ -85,6 +87,44 @@
                 android:layout_margin="10dp"
                 />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_below="@+id/dashboardBanner"
+        android:background="@drawable/rectangle_stroked"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clipboard_text_search_outline"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:background="#ECECEC"
+            />
+        <EditText
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?colorSurface"
+            android:hint="Search for trips..."
+            android:layout_marginLeft="10dp"
+            />
     </LinearLayout>
 
 </RelativeLayout>
