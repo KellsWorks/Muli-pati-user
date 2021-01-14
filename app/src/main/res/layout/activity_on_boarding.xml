@@ -47,6 +47,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:id="@+id/onBoardBack"
                 android:src="@drawable/ic_left"
                 android:contentDescription="@string/icon" />
 
@@ -59,6 +60,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
+                android:id="@+id/onBoardNext"
                 android:src="@drawable/ic_right"
                 android:contentDescription="@string/icon" />
 
