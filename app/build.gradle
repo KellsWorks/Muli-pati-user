@@ -57,6 +57,7 @@ dependencies {
 
     //Circular image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //slider
     implementation 'com.codemybrainsout.onboarding:onboarder:1.0.4'

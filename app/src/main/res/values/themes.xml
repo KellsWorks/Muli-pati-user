@@ -6,8 +6,8 @@
         <item name="colorPrimaryVariant">#CF2765</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#A19C9C</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">#D81B60</item>
+        <item name="colorSecondaryVariant">#D81B60</item>
         <item name="colorOnSecondary">@color/black</item>
         <item name="buttonTint">#D81B60</item>
         <!-- Status bar color. -->
@@ -18,5 +18,10 @@
         <item name="subtitleTextColor">#D81B60</item>
         <item name="tabIndicatorColor">#D81B60</item>
 
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#FB8C00</item>
+        <item name="colorControlActivated">#ECECEC</item>
     </style>
 </resources>
