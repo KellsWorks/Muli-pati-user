@@ -11,6 +11,7 @@ import app.mulipati.databinding.ActivityOnBoardingBinding
 import app.mulipati.ui.onboard.FirstSlider
 import app.mulipati.ui.onboard.SecondSlider
 import app.mulipati.ui.onboard.ThirdSlider
+import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 
 
 class OnBoarding : AppCompatActivity() {
@@ -39,6 +40,8 @@ class OnBoarding : AppCompatActivity() {
         adapter.addFragment(ThirdSlider(), "Three")
 
         onBoardingBinding.onBoardPager.adapter = adapter
+
+        onBoardingBinding.dotsIndicator.setViewPager(onBoardingBinding.onBoardPager)
 
         onBoardingBinding.onBoardPager.addOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}

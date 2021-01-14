@@ -13,4 +13,6 @@
     <string name="book_transportation_ahead_of_your_journey">Book transportation ahead of your journey</string>
     <string name="sign_in">Sign in</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="phone_number">Phone number</string>
+    <string name="muli_pati">Muli pati?</string>
 </resources>

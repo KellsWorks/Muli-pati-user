@@ -12,6 +12,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_connection"
+            android:id="@+id/secondImage"
             android:layout_marginTop="200dp"
             android:layout_gravity="center"
             android:layout_marginBottom="100dp"

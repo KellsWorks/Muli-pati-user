@@ -59,4 +59,7 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    //Dots
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
 }

@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -46,18 +47,46 @@
             />
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/signInText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="160dp"
-        android:text="Create Account"
-        android:textSize="32sp"
-        android:textStyle="bold"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:background="@drawable/button"
+                />
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/circle_primary"
+                android:layout_marginLeft="5dp"
+                />
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/circle_primary"
+                android:layout_marginLeft="5dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

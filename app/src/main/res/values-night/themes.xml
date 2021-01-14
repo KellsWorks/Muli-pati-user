@@ -16,5 +16,6 @@
         <item name="boxBackgroundColor">#121212</item>
         <item name="buttonTint">#59172F</item>
         <item name="subtitleTextColor">#D81B60</item>
+        <item name="tabIndicatorColor">@color/white</item>
     </style>
 </resources>
