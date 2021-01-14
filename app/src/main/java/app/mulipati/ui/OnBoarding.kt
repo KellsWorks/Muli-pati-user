@@ -46,14 +46,7 @@ class OnBoarding : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                when(position){
-                    0 -> {
-                        onBoardingBinding.onBoardBack.visibility = View.INVISIBLE
-                    }
-                    2 -> {
-                        onBoardingBinding.onBoardNext.visibility = View.INVISIBLE
-                    }
-                }
+               
             }
         })
 
