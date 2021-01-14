@@ -15,4 +15,6 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="phone_number">Phone number</string>
     <string name="muli_pati">Muli pati?</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="profile">Profile</string>
 </resources>
