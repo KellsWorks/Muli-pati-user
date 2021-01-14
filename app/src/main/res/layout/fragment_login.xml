@@ -117,6 +117,7 @@
                 android:text="@string/forgot_password"
                 android:layout_gravity="end"
                 android:textStyle="bold"
+                android:id="@+id/forgotPassword"
                 android:textColor="?subtitleTextColor"
                 android:layout_marginTop="10dp"
                 />
@@ -137,6 +138,7 @@
                 android:layout_marginLeft="28dp"
                 android:layout_marginRight="28dp"
                 android:text="@string/sign_in"
+                android:id="@+id/SignInButton"
                 android:textSize="17sp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
