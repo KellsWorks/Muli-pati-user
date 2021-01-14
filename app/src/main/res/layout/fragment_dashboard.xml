@@ -25,6 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="75dp"
         android:layout_marginLeft="26dp"
+        android:id="@+id/tabLike"
         >
 
         <ImageView
@@ -38,6 +39,52 @@
             android:layout_marginLeft="5dp"
             android:background="@drawable/circle_primary" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/tabLike"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_primary"
+        android:orientation="vertical"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="Where would you want to go today?" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_office_building_marker"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blantyre"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
