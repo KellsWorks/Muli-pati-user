@@ -23,7 +23,11 @@ class OnBoarding : AppCompatActivity() {
     private fun setupViewPager() {
 
         val adapter = PagerAdapter(supportFragmentManager)
+
+        adapter.addFragment(FirstSlider() , " One ")
+
         onBoardingBinding.onBoardPager.adapter = adapter
+
 
 
     }
