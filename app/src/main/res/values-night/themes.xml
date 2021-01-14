@@ -12,5 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="boxBackgroundColor">#121212</item>
+        <item name="buttonTint">#59172F</item>
+        <item name="subtitleTextColor">#D81B60</item>
     </style>
 </resources>
