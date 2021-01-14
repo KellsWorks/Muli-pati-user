@@ -2,6 +2,7 @@ package app.mulipati.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -25,10 +26,6 @@ class OnBoarding : AppCompatActivity() {
 
         setupViewPager()
 
-        onBoardingBinding.skip.setOnClickListener {
-            startActivity(Intent(this, AuthenticationActivity::class.java))
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-        }
     }
 
     private fun setupViewPager() {
@@ -56,7 +53,6 @@ class OnBoarding : AppCompatActivity() {
 
             }
         })
-
 
 
     }

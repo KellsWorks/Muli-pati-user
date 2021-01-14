@@ -95,14 +95,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jerome Msampha"
                     android:layout_marginTop="10dp"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    />
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jerome Msampha"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        />
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -139,14 +146,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Personal information"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:layout_margin="10dp"
-                />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Personal information"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="end"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_circle_edit_outline"
+                        android:background="@drawable/circle_primary"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -351,6 +378,32 @@
             </RelativeLayout>
         </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_white"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_cellphone_cog"
+                android:layout_gravity="center"
+                />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="App settings"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="10dp"
+                        />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
