@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:id="@+id/tripMain"
     android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="200dp"
         android:layout_height="150dp"
         android:src="@drawable/mazda_demio"
+        android:id="@+id/tripImage"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kelvin's trip"
+            android:id="@+id/tripTitle"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
@@ -36,7 +39,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kelvin's trip"
+                android:text="LL - MW"
+                android:id="@+id/tripRoute"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 />
@@ -57,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1 February - 10:00AM"
+                android:id="@+id/tripDateTime"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 />
