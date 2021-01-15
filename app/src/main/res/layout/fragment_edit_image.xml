@@ -44,6 +44,7 @@
             android:layout_marginEnd="17dp"
             android:layout_marginRight="17dp"
             android:textStyle="bold"
+            android:id="@+id/skipEditIcon"
             android:text="Skip" />
 
         <RelativeLayout
@@ -93,6 +94,7 @@
             android:background="@drawable/button"
             android:layout_alignParentBottom="true"
             android:text="Continue"
+            android:id="@+id/toEditPersonal"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:textStyle="bold"

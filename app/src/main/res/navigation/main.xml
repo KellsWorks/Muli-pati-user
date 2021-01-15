@@ -85,5 +85,17 @@
     <fragment
         android:id="@+id/editImageFragment2"
         android:name="app.mulipati.ui.profile.edit.EditImageFragment"
-        android:label="EditImageFragment" />
+        android:label="EditImageFragment" >
+        <action
+            android:id="@+id/action_editImageFragment2_to_personalEditFragment"
+            app:destination="@id/personalEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalEditFragment"
+        android:name="app.mulipati.ui.profile.edit.PersonalEditFragment"
+        android:label="PersonalEditFragment" >
+        <action
+            android:id="@+id/action_personalEditFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

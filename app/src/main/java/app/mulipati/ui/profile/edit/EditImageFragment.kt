@@ -5,16 +5,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import app.mulipati.R
+import app.mulipati.databinding.FragmentEditImageBinding
 
 
 class EditImageFragment : Fragment() {
+
+    private lateinit var editImageBinding: FragmentEditImageBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_image, container, false)
+
+        editImageBinding = FragmentEditImageBinding.inflate(inflater, container, false)
+        editImageBinding.lifecycleOwner = this
+
+        return editImageBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        editImageBinding.toEditPersonal.setOnClickListener {
+            findNavController().navigate(R.id.action_editImageFragment2_to_personalEditFragment)
+        }
+
+        editImageBinding.iconEditBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        editImageBinding.skipEditIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_editImageFragment2_to_personalEditFragment)
+        }
     }
 }
