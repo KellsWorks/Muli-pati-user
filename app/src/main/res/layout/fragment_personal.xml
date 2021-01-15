@@ -109,8 +109,9 @@
                         </LinearLayout>
                         <View
                             android:layout_width="1dp"
-                            android:layout_height="100dp"
+                            android:layout_height="50dp"
                             android:background="@color/grey"
+                            android:layout_marginTop="15dp"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentEnd="true" />
                     </RelativeLayout>
@@ -152,8 +153,9 @@
                         </LinearLayout>
                         <View
                             android:layout_width="1dp"
-                            android:layout_height="100dp"
+                            android:layout_height="50dp"
                             android:background="@color/grey"
+                            android:layout_marginTop="15dp"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentEnd="true" />
                     </RelativeLayout>
@@ -336,7 +338,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/permanently_delete_this_account"
-                        android:textColor="?colorPrimary"
+                        android:textColor="@color/red"
                         android:textSize="14sp"
                         android:layout_marginTop="3dp"
                         android:layout_marginLeft="10dp"

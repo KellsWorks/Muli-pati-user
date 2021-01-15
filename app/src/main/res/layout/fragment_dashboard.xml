@@ -67,7 +67,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="10dp"
-            android:background="@drawable/button"
+            android:background="@drawable/slide_primary"
             android:contentDescription="@string/image" />
 
         <ImageView

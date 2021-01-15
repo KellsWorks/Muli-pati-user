@@ -53,6 +53,7 @@
     <string name="contact_and_support">Contact and support</string>
     <string name="log_out">Log out</string>
     <string name="app_settings">App settings</string>
+    <string name="contact_support"><![CDATA[Contact & support]]></string>
 
 
     <string-array name="districts">

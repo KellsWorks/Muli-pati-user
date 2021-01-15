@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
     <RelativeLayout
@@ -28,7 +29,7 @@
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
         android:layout_marginTop="13dp"
-        android:background="@drawable/circle_primary"
+        android:background="@drawable/circle_secondary"
 
         >
 
@@ -37,7 +38,7 @@
             android:layout_height="50dp"
             android:src="@drawable/ic_support"
             android:padding="5dp"
-            />
+             />
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
@@ -56,7 +57,7 @@
         android:layout_marginStart="124dp"
         android:layout_marginLeft="124dp"
         android:layout_marginTop="20dp"
-        android:text="Support"
+        android:text="@string/contact_support"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -106,7 +107,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/circle_primary"
+                android:background="@drawable/circle_secondary"
                 android:layout_marginStart="20dp">
 
                 <ImageView
