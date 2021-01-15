@@ -30,9 +30,9 @@
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_police"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_asset_three"
             android:layout_marginTop="200dp"
             android:layout_gravity="center"
             android:layout_marginBottom="100dp"

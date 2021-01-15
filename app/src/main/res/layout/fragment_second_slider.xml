@@ -9,9 +9,9 @@
         tools:context=".ui.onboard.SecondSlider">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_connection"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_asset_two"
             android:id="@+id/secondImage"
             android:layout_marginTop="200dp"
             android:layout_gravity="center"
