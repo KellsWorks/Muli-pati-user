@@ -46,6 +46,13 @@
     <string name="jmsapha_mulipati_com">jmsapha@mulipati.com</string>
     <string name="permanently_delete_this_account">Permanently delete this account</string>
     <string name="account_deactivation">Account deactivation</string>
+    <string name="phone_no">+265 999 67 99 75</string>
+    <string name="general">General</string>
+    <string name="currents_trips_trip_history">Currents trips, trip history</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="contact_and_support">Contact and support</string>
+    <string name="log_out">Log out</string>
+    <string name="app_settings">App settings</string>
 
 
     <string-array name="districts">

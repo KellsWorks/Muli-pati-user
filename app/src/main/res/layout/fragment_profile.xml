@@ -23,12 +23,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_bell_ring"
-            app:tint="#969696" />
+            app:tint="#969696"
+            android:contentDescription="@string/icon" />
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:src="@drawable/circle_primary"
-            />
+            android:contentDescription="@string/dots" />
     </RelativeLayout>
 
     <TextView
@@ -40,7 +41,7 @@
         android:layout_marginStart="26dp"
         android:layout_marginLeft="26dp"
         android:layout_marginTop="28dp"
-        android:text="Profile"
+        android:text="@string/profile"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -51,19 +52,23 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="75dp"
             android:layout_marginLeft="26dp"
-            >
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="26dp">
 
 
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="10dp"
-                android:background="@drawable/circle_primary" />
+                android:background="@drawable/circle_primary"
+                android:contentDescription="@string/image" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="10dp"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/button" />
+                android:background="@drawable/button"
+                android:layout_marginStart="5dp"
+                android:contentDescription="@string/image" />
         </LinearLayout>
 
 
@@ -107,7 +112,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jerome Msampha"
+                        android:text="@string/jerome_msampha"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         />
@@ -117,16 +122,17 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    tools:ignore="UseCompoundDrawables">
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_phone"
-                        />
+                        android:contentDescription="@string/image" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+265 999 67 99 75"
+                        android:text="@string/phone_no"
                         android:layout_marginLeft="10dp"
                         android:textColor="?tabIndicatorColor"
                         android:layout_marginStart="10dp" />
@@ -158,7 +164,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Personal information"
+                    android:text="@string/personal_info"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     />
@@ -174,7 +180,8 @@
                         android:layout_gravity="end"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/ic_file_document_edit"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="@string/image" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -190,7 +197,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    android:layout_marginStart="10dp" />
+                    android:layout_marginStart="10dp"
+                    tools:ignore="RelativeOverlap" />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -198,7 +206,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="20dp"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/icon" />
             </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
@@ -224,7 +233,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="General"
+                android:text="@string/general"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_margin="10dp"
@@ -244,16 +253,18 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="19dp"
-                    android:src="@drawable/ic_car_plus" />
+                    android:src="@drawable/ic_car_plus"
+                    android:contentDescription="@string/icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Currents trips, trip history"
+                    android:text="@string/currents_trips_trip_history"
                     android:layout_marginLeft="50dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    />
+                    android:layout_marginStart="50dp"
+                    tools:ignore="RelativeOverlap" />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -261,7 +272,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="20dp"
-                    />
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/icon" />
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -284,16 +296,18 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="19dp"
-                    android:src="@drawable/ic_lock" />
+                    android:src="@drawable/ic_lock"
+                    android:contentDescription="@string/icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Terms and conditions"
+                    android:text="@string/terms_and_conditions"
                     android:layout_marginLeft="50dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    />
+                    android:layout_marginStart="50dp"
+                    tools:ignore="RelativeOverlap" />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -301,7 +315,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="20dp"
-                    />
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/image" />
             </RelativeLayout>
 
             <View
@@ -327,16 +342,18 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="19dp"
-                    android:src="@drawable/ic_headset" />
+                    android:src="@drawable/ic_headset"
+                    android:contentDescription="@string/icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact and support"
+                    android:text="@string/contact_and_support"
                     android:layout_marginLeft="50dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    />
+                    android:layout_marginStart="50dp"
+                    tools:ignore="RelativeOverlap" />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -344,7 +361,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="20dp"
-                    />
+                    android:contentDescription="@string/image"
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
 
             <View
@@ -370,17 +388,18 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="19dp"
-                    android:src="@drawable/ic_logout" />
+                    android:src="@drawable/ic_logout"
+                    android:contentDescription="@string/icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Log out"
+                    android:text="@string/log_out"
                     android:textColor="?tabIndicatorColor"
                     android:layout_marginLeft="50dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    />
+                    android:layout_marginStart="50dp" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -399,16 +418,16 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_cellphone_cog"
                 android:layout_gravity="center"
-                />
+                android:contentDescription="@string/image" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="App settings"
+                        android:text="@string/app_settings"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:layout_marginLeft="10dp"
-                        />
+                        android:layout_marginStart="10dp" />
 
         </LinearLayout>
 

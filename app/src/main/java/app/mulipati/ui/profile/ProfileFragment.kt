@@ -44,5 +44,9 @@ class ProfileFragment : Fragment() {
         profileBinding.toSettings.setOnClickListener{
             findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
         }
+
+        profileBinding.toPersonal.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_personalFragment)
+        }
     }
 }
