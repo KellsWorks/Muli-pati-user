@@ -54,6 +54,7 @@
     <string name="log_out">Log out</string>
     <string name="app_settings">App settings</string>
     <string name="contact_support"><![CDATA[Contact & support]]></string>
+    <string name="terms_conditions"><![CDATA[Terms & conditions]]></string>
 
 
     <string-array name="districts">
