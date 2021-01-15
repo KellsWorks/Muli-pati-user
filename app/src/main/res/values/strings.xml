@@ -17,4 +17,6 @@
     <string name="muli_pati">Muli pati?</string>
     <string name="dashboard">Dashboard</string>
     <string name="profile">Profile</string>
+    <string name="no_upcoming_rides">No upcoming rides</string>
+    <string name="get_started">Get started</string>
 </resources>

@@ -57,7 +57,11 @@
                 android:layout_height="wrap_content"
                 app:tabIndicatorColor="?colorPrimary"
                 app:tabSelectedTextColor="?colorPrimary"
-                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+                app:tabIndicator="@drawable/button"
+                app:tabIndicatorHeight="10dp"
+                app:tabIndicatorGravity="bottom"
+                app:tabIndicatorFullWidth="false"
+                app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.DialogWindowTitle" />
         </androidx.viewpager.widget.ViewPager>
 
     </RelativeLayout>

@@ -6,17 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.mulipati.R
+import app.mulipati.databinding.FragmentUpcomingBinding
 
 
 class UpcomingFragment : Fragment() {
 
+    private lateinit var upcomingBinding: FragmentUpcomingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_upcoming, container, false)
+        upcomingBinding = FragmentUpcomingBinding.inflate(inflater, container, false)
+        upcomingBinding.lifecycleOwner = this
+
+        return upcomingBinding.root
     }
 
 }
