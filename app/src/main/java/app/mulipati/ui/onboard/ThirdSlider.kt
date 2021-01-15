@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import app.mulipati.R
 import app.mulipati.activities.AuthenticationActivity
 import app.mulipati.databinding.FragmentThirdSliderBinding
 
@@ -32,5 +35,10 @@ class ThirdSlider : Fragment() {
             startActivity(Intent(requireActivity(), AuthenticationActivity::class.java))
             requireActivity().overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         }
+
+        val rotate: Animation = AnimationUtils.loadAnimation(requireContext().applicationContext,
+            R.anim.rotate_clockwise
+        )
+        thirdSliderBinding.sliderImage.startAnimation(rotate)
     }
 }
