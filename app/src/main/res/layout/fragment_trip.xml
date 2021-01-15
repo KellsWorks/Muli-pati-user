@@ -20,6 +20,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_margin="20dp"
+            android:id="@+id/tripBack"
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
