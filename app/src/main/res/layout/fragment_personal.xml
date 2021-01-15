@@ -39,14 +39,6 @@
             android:orientation="vertical"
             android:layout_marginTop="75dp"
             >
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ECECEC"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="5dp"
-                />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="80dp"

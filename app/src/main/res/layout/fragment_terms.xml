@@ -67,14 +67,16 @@
                 android:text="About"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="20dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt ab nihil soluta, doloribus suscipit vero maxime praesentium vel asperiores necessitatibus, a alias sed cupiditate odit unde ipsa dolorem aliquam."
+                android:text="Muli pati mobile transport service is a malawian transportation system. It offers users transport from trips going on around their area of proximity."
                 android:textSize="13sp"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
                 />
 
             <TextView
@@ -83,16 +85,99 @@
                 android:text="Terms of service"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="20dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore incidunt ab nihil soluta, doloribus suscipit vero maxime praesentium vel asperiores necessitatibus, a alias sed cupiditate odit unde ipsa dolorem aliquam."
+                android:text="By creating an account, you agree to all the terms and conditions of Muli pati mobile transportation service.
+                 Drivers should register to our service using the Muli pati driver app."
                 android:textSize="13sp"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
                 />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_store"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Store"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User app"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="5dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                >
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_playstore"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google PlayStore"
+                    android:textSize="22sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:textColor="#039BE5"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Driver app"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_playstore"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google PlayStore"
+                    android:textSize="22sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:textColor="#039BE5"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>

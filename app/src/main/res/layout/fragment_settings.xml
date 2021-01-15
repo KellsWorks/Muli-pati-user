@@ -18,7 +18,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="28dp"
             android:id="@+id/settingsBack"
-            android:src="@drawable/ic_arrow_back" />
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="@string/icon" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
             android:layout_marginStart="67dp"
             android:layout_marginLeft="67dp"
             android:layout_marginTop="18dp"
-            android:text="App settings"
+            android:text="@string/app_settings"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -51,17 +52,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                >
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_bell_ring"
                     android:layout_margin="10dp"
-                    app:tint="#969696" />
+                    app:tint="#969696"
+                    android:contentDescription="@string/icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notifications"
+                    android:text="@string/notifications"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
@@ -71,7 +73,7 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Allow phone to receive notifications"
+                android:text="@string/allow_phone_to_receive_notifications"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/toggleNotifications"
@@ -81,17 +83,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                >
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_theme_light_dark"
                     android:layout_margin="10dp"
-                    app:tint="#969696" />
+                    app:tint="#969696"
+                    android:contentDescription="@string/icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Theme"
+                    android:text="@string/theme"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
@@ -101,7 +104,7 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Toggle dark theme"
+                android:text="@string/toggle_dark_theme"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/toggleTheme"

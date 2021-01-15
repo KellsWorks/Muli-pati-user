@@ -55,6 +55,16 @@
     <string name="app_settings">App settings</string>
     <string name="contact_support"><![CDATA[Contact & support]]></string>
     <string name="terms_conditions"><![CDATA[Terms & conditions]]></string>
+    <string name="recent">RECENT</string>
+    <string name="notifications">Notifications</string>
+    <string name="viewed">VIEWED</string>
+    <string name="trips_catalogue">Trips catalogue</string>
+    <string name="allow_phone_to_receive_notifications">Allow phone to receive notifications</string>
+    <string name="theme">Theme</string>
+    <string name="toggle_dark_theme">Toggle dark theme</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="hello_can_we_help_you">Hello can we help you?</string>
+    <string name="well_you_see_l_was_supposed_to">well, you see, l was supposed to...</string>
 
 
     <string-array name="districts">
