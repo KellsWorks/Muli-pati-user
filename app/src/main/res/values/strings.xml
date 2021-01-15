@@ -19,4 +19,9 @@
     <string name="profile">Profile</string>
     <string name="no_upcoming_rides">No upcoming rides</string>
     <string name="get_started">Get started</string>
+    <string name="today_10_30_am">Today, 10:30 AM</string>
+    <string name="kanjedza_limbe">Kanjedza - Limbe</string>
+    <string name="jerome_msapha">Jerome Msapha</string>
+    <string name="price">Price</string>
+    <string name="mk5_000">MK5,000</string>
 </resources>
