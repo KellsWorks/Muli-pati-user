@@ -6,17 +6,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.mulipati.R
+import app.mulipati.data.Completed
+import app.mulipati.databinding.FragmentCompletedBinding
+import app.mulipati.epoxy.completed.CompletedEpoxyController
 
 
 class CompletedFragment : Fragment() {
 
+    private lateinit var completedBinding: FragmentCompletedBinding
+    private lateinit var controller: CompletedEpoxyController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_completed, container, false)
+        completedBinding = FragmentCompletedBinding.inflate(inflater, container, false)
+        completedBinding.lifecycleOwner = this
+
+        return completedBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val completed = ArrayList<Completed>()
+
+        completed.add(Completed("Today, 10:20 AM", R.drawable.mazda_demio, "Blantyre - Zomba", R.drawable.avatar04, "Jerome Msapha"))
+        completed.add(Completed("Yesterday, 19:10 AM", R.drawable.mazda_demio, "Blantyre - Kanjedza", R.drawable.avatar04, "Jerome Msapha"))
+
+        controller = CompletedEpoxyController()
+        controller.setData(true, completed)
+
+        completedBinding.completedRecycler.setController(controller)
+    }
 }
