@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_bell_sleep"
-        android:background="@drawable/circle_primary"
+        android:background="@drawable/circle_secondary"
         android:padding="5dp"
         android:id="@+id/notificationIcon"
         android:layout_margin="10dp"

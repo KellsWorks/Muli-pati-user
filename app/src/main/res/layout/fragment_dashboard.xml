@@ -17,9 +17,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
-        android:text="Dashboard"
+        android:text="@string/dashboard"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="Active trips"
+                android:text="@string/active_trips"
                 android:layout_gravity="center"
                 android:padding="4dp"
                 />
@@ -44,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="#039BE5"
-                android:text="0"
+                android:text="@string/_0"
                 android:gravity="center"
                 android:padding="3dp"
                 android:background="@drawable/button_stroked_blue"
@@ -60,18 +61,22 @@
         android:layout_marginTop="75dp"
         android:layout_marginLeft="20dp"
         android:id="@+id/tabLike"
-        >
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="10dp"
-            android:background="@drawable/button" />
+            android:background="@drawable/button"
+            android:contentDescription="@string/image" />
 
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_primary" />
+            android:background="@drawable/circle_primary"
+            android:contentDescription="@string/dots"
+            android:layout_marginStart="5dp" />
 
     </LinearLayout>
 
@@ -98,7 +103,8 @@
             android:textColor="@color/white"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:text="Where would you want to go today?" />
+            android:text="@string/where_would_you_want_to_go_today"
+            android:layout_marginStart="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,17 +116,17 @@
                 android:src="@drawable/ic_office_building_marker"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/icon" />
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:foregroundTint="@color/white"
                 android:id="@+id/districtSelect"
                 android:textAllCaps="true"
                 android:backgroundTint="@color/white"
                 android:layout_margin="10dp"
                 style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
-                />
+                tools:targetApi="lollipop" />
 
         </LinearLayout>
     </LinearLayout>
@@ -147,21 +153,22 @@
             android:src="@drawable/ic_clipboard_text_search_outline"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            />
+            android:contentDescription="@string/icon"
+            android:layout_marginStart="10dp" />
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:background="#ECECEC"
-            />
+            android:layout_marginStart="5dp" />
         <EditText
             android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?colorSurface"
-            android:hint="Search for trips..."
+            android:hint="@string/search_for_trips"
             android:layout_marginLeft="10dp"
-            />
+            android:layout_marginStart="10dp" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -178,20 +185,24 @@
         android:contentDescription="@string/image" />
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@+id/searchBanner"
         android:layout_marginTop="10dp"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Trips near you"
+            android:text="@string/trips_near_you"
             android:layout_marginLeft="20dp"
             android:textStyle="bold"
-            />
+            android:layout_marginStart="20dp" />
 
         <com.airbnb.epoxy.EpoxyRecyclerView
             android:layout_width="match_parent"
@@ -207,7 +218,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View more"
+            android:text="@string/view_more"
             android:textSize="13sp"
             android:textColor="@color/white"
             android:layout_marginLeft="20dp"
@@ -215,7 +226,8 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/button"
             android:padding="3dp"
-            />
-    </LinearLayout>
+            android:layout_marginStart="20dp" />
+        </LinearLayout>
+    </ScrollView>
     </RelativeLayout>
 </layout>

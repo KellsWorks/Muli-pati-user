@@ -20,7 +20,6 @@
         <item name="tabIndicatorColor">#D81B60</item>
         <item name="buttonStyle">@color/white</item>
 
-
     </style>
 
     <style name="RatingBar" parent="Theme.AppCompat">

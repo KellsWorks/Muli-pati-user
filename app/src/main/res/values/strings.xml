@@ -27,6 +27,13 @@
     <string name="blantyre_lilongwe">Blantyre - Lilongwe</string>
     <string name="_1_february_2020_11_21_am">1 February, 2020 - 11:21 AM</string>
     <string name="your_location_email_address_accounts">Your location, email address, accounts</string>
+    <string name="active_trips">Active trips</string>
+    <string name="_0">0</string>
+    <string name="dots">dots</string>
+    <string name="where_would_you_want_to_go_today">Where would you want to go today?</string>
+    <string name="search_for_trips">Search for trips...</string>
+    <string name="trips_near_you">Trips near you</string>
+    <string name="view_more">View more</string>
 
 
     <string-array name="districts">

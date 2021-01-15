@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_close_box_multiple"
             android:layout_margin="10dp"
-            app:tint="?colorPrimary"
+            app:tint="?tabIndicatorColor"
             android:contentDescription="@string/image" />
         <LinearLayout
             android:layout_width="wrap_content"
