@@ -27,4 +27,11 @@
     <string name="blantyre_lilongwe">Blantyre - Lilongwe</string>
     <string name="_1_february_2020_11_21_am">1 February, 2020 - 11:21 AM</string>
     <string name="your_location_email_address_accounts">Your location, email address, accounts</string>
+
+
+    <string-array name="districts">
+        <item>BLANTYRE</item>
+        <item>LILONGWE</item>
+        <item>MZUZU</item>
+    </string-array>
 </resources>

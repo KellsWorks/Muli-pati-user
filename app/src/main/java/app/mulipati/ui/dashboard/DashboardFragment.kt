@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import app.mulipati.R
 import app.mulipati.data.RecentTrips
 import app.mulipati.databinding.FragmentDashboardBinding
@@ -24,6 +25,18 @@ class DashboardFragment : Fragment() {
         dashboardBinding.lifecycleOwner = this
 
         return dashboardBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.districts,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(R.layout.spinner_item)
+        dashboardBinding.districtSelect.adapter = adapter
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
