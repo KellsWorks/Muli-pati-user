@@ -1,13 +1,18 @@
 package app.mulipati.ui.settings
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
@@ -41,8 +46,23 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val permission = ContextCompat.checkSelfPermission(requireActivity(),
+            Manifest.permission.ACCESS_NOTIFICATION_POLICY)
+
+        if (permission == PackageManager.PERMISSION_GRANTED) {
+            settingsBinding.toggleNotifications.isActivated = true
+            settingsBinding.toggleNotifications.isChecked = true
+        }
+        else{
+            if (permission == PackageManager.PERMISSION_GRANTED) {
+                settingsBinding.toggleNotifications.isActivated = true
+                settingsBinding.toggleNotifications.isChecked = true
+            }
+        }
 
         val nightModeFlags = requireContext().resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK
