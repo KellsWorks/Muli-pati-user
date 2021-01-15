@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_profileFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_personalFragment"
+            app:destination="@id/personalFragment" />
     </fragment>
     <fragment
         android:id="@+id/tripFragment"
@@ -57,4 +60,9 @@
         android:name="app.mulipati.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/personalFragment"
+        android:name="app.mulipati.ui.personal.PersonalFragment"
+        android:label="fragment_personal"
+        tools:layout="@layout/fragment_personal" />
 </navigation>

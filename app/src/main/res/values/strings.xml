@@ -34,6 +34,18 @@
     <string name="search_for_trips">Search for trips...</string>
     <string name="trips_near_you">Trips near you</string>
     <string name="view_more">View more</string>
+    <string name="personal_info">Personal info</string>
+    <string name="jerome_msampha">Jerome Msampha</string>
+    <string name="upcoming_trips">Upcoming</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="_15">15</string>
+    <string name="_3">3</string>
+    <string name="completed">Completed</string>
+    <string name="user_details">User details</string>
+    <string name="email_address">Email address</string>
+    <string name="jmsapha_mulipati_com">jmsapha@mulipati.com</string>
+    <string name="permanently_delete_this_account">Permanently delete this account</string>
+    <string name="account_deactivation">Account deactivation</string>
 
 
     <string-array name="districts">
