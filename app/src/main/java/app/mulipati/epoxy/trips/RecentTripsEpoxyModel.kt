@@ -1,4 +1,4 @@
-package app.mulipati.epoxy
+package app.mulipati.epoxy.trips
 
 import android.view.View
 import android.widget.ImageView

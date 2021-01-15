@@ -1,8 +1,9 @@
-package app.mulipati.epoxy
+package app.mulipati.epoxy.trips
 
 import androidx.navigation.findNavController
 import app.mulipati.R
 import app.mulipati.data.RecentTrips
+import app.mulipati.epoxy.trips.RecentTripsEpoxyModel_
 import com.airbnb.epoxy.Typed2EpoxyController
 
 class RecentTripsEpoxyController: Typed2EpoxyController<Boolean?, List<RecentTrips>>() {

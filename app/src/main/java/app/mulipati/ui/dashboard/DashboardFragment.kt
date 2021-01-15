@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import app.mulipati.R
 import app.mulipati.data.RecentTrips
 import app.mulipati.databinding.FragmentDashboardBinding
-import app.mulipati.epoxy.RecentTripsEpoxyController
+import app.mulipati.epoxy.trips.RecentTripsEpoxyController
 
 class DashboardFragment : Fragment() {
 
