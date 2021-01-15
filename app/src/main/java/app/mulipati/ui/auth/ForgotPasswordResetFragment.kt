@@ -31,5 +31,9 @@ class ForgotPasswordResetFragment : Fragment() {
         forgotPasswordBinding.confirmSMS.setOnClickListener {
             findNavController().navigate(R.id.action_forgotPasswordResetFragment_to_resetPasswordFragment)
         }
+
+        forgotPasswordBinding.forgotPasswordReset.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

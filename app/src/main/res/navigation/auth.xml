@@ -33,7 +33,11 @@
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="app.mulipati.ui.auth.ResetPasswordFragment"
-        android:label="ResetPasswordFragment" />
+        android:label="ResetPasswordFragment" >
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="app.mulipati.ui.auth.RegisterFragment"

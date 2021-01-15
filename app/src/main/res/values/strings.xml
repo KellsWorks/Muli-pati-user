@@ -66,6 +66,10 @@
     <string name="hello_can_we_help_you">Hello can we help you?</string>
     <string name="well_you_see_l_was_supposed_to">well, you see, l was supposed to...</string>
     <string name="update_your_user_avatar">Update your user avatar</string>
+    <string name="reset_password">Reset password</string>
+    <string name="reset_password">Reset password</string>
+    <string name="enter_your_phone_number_below_we_will_send_you_an_sms_with_a_pin_code_to_confirm_your_identity">Enter your phone number below. We will send you an SMS with a pin code to confirm your identity.</string>
+    <string name="re_enter_password">Re-enter Password</string>
 
 
     <string-array name="districts">
