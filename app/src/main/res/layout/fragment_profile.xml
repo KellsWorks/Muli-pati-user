@@ -43,7 +43,8 @@
         android:layout_marginTop="28dp"
         android:text="@string/profile"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -97,6 +98,8 @@
                 android:layout_height="50dp"
                 android:src="@drawable/avatar04"
                 android:layout_margin="10dp"
+                app:civ_border_color="@color/red"
+                app:civ_border_width="4dp"
                 />
 
             <LinearLayout

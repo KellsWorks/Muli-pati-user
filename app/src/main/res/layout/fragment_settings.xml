@@ -38,15 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="60dp"
             >
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#969696"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                />
 
             <LinearLayout
                 android:layout_width="match_parent"
