@@ -65,6 +65,7 @@
     <string name="yesterday">Yesterday</string>
     <string name="hello_can_we_help_you">Hello can we help you?</string>
     <string name="well_you_see_l_was_supposed_to">well, you see, l was supposed to...</string>
+    <string name="update_your_user_avatar">Update your user avatar</string>
 
 
     <string-array name="districts">

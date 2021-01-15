@@ -52,5 +52,9 @@ class ProfileFragment : Fragment() {
         profileBinding.toTerms.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_termsFragment)
         }
+
+        profileBinding.editProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editImageFragment2)
+        }
     }
 }
