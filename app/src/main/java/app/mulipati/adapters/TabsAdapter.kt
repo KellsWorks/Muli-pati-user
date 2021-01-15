@@ -10,6 +10,7 @@ import app.mulipati.ui.trips.completed.CompletedFragment
 import app.mulipati.ui.trips.upcoming.UpcomingFragment
 
 
+@Suppress("DEPRECATION")
 @SuppressLint("Deprecated")
 class TabsAdapter(fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {
 

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import app.mulipati.R
 import app.mulipati.databinding.FragmentRegisterBinding
 
@@ -27,7 +28,11 @@ class RegisterFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         registerBinding.RegisterButton.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
 
+        registerBinding.toSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
 }
