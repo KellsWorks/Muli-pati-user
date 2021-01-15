@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import app.mulipati.R
 import app.mulipati.databinding.FragmentSettingsBinding
 
 
@@ -33,6 +34,10 @@ class SettingsFragment : Fragment() {
 
         settingsBinding.settingsBack.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        settingsBinding.toggleNotifications.setOnClickListener {
+            findNavController().navigate(R.id.action_settingsFragment_to_settingNotificationFragment)
         }
     }
 

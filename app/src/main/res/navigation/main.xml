@@ -68,7 +68,11 @@
         android:id="@+id/settingsFragment"
         android:name="app.mulipati.ui.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_settingNotificationFragment"
+            app:destination="@id/settingNotificationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/personalFragment"
         android:name="app.mulipati.ui.personal.PersonalFragment"
@@ -98,4 +102,8 @@
             android:id="@+id/action_personalEditFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingNotificationFragment"
+        android:name="app.mulipati.ui.settings.SettingNotificationFragment"
+        android:label="SettingNotificationFragment" />
 </navigation>

@@ -71,6 +71,10 @@
     <string name="re_enter_password">Re-enter Password</string>
     <string name="_12_32_pm">12:32 PM</string>
     <string name="enter_your_message_here">Enter your message here</string>
+    <string name="access_your_location">ACCESS YOUR LOCATION</string>
+    <string name="the_golden_rule_of_super_ants_is_location_please_enable_location_to_get_your_services">The golden rule of super ants is location. Please enable location to get your services.</string>
+    <string name="do_not_allow">Do not allow</string>
+    <string name="enable_location_service">Enable location service</string>
 
 
     <string-array name="districts">
