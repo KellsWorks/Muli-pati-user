@@ -12,13 +12,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="100dp"
-        >
+        tools:ignore="UselessParent">
         <pl.droidsonroids.gif.GifImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/success"
             android:layout_gravity="center"
-            android:tint="@color/red"
             android:layout_margin="20dp"
             android:contentDescription="@string/icon" />
         <TextView
@@ -51,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/blantyre_zomba"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp" />
 
         </LinearLayout>

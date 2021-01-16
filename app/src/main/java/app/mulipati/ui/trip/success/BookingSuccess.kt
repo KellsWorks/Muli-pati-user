@@ -1,5 +1,6 @@
 package app.mulipati.ui.trip.success
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import app.mulipati.R
 import app.mulipati.databinding.FragmentBookingSuccessBinding
 
 @Suppress("DEPRECATION")
@@ -26,6 +28,9 @@ class BookingSuccess : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val mediaPlayer = MediaPlayer.create(requireContext(), R.raw.success)
+        mediaPlayer.start()
 
         Handler().postDelayed({
             findNavController().navigateUp()
