@@ -75,6 +75,9 @@
     <string name="the_golden_rule_of_super_ants_is_location_please_enable_location_to_get_your_services">The golden rule of super ants is location. Please enable location to get your services.</string>
     <string name="do_not_allow">Do not allow</string>
     <string name="enable_location_service">Enable location service</string>
+    <string name="_3_february_2021_12_05_pm">3 February 2021 - 12:05 PM</string>
+    <string name="blantyre_zomba">Blantyre - Zomba</string>
+    <string name="you_have_successfully_booked_this_trip">You have successfully booked this trip!</string>
 
 
     <string-array name="districts">

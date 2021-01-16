@@ -72,4 +72,7 @@ dependencies {
     //Epoxy
     implementation "com.airbnb.android:epoxy:$epoxyVersion"
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
+    //Gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 }

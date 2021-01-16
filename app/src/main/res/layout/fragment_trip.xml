@@ -261,6 +261,7 @@
             android:layout_height="50dp"
             android:background="@drawable/button"
             android:text="Book this trip"
+            android:id="@+id/bookTrip"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"

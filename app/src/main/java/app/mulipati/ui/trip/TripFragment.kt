@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import app.mulipati.R
 import app.mulipati.databinding.FragmentTripBinding
 
 
@@ -29,6 +30,10 @@ class TripFragment : Fragment() {
 
         tripBinding.tripBack.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        tripBinding.bookTrip.setOnClickListener {
+            findNavController().navigate(R.id.action_tripFragment_to_bookingSuccess)
         }
     }
 }
