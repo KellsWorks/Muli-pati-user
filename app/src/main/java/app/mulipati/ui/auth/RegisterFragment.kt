@@ -1,14 +1,16 @@
 package app.mulipati.ui.auth
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
-import app.mulipati.data.auth.Register
+import app.mulipati.data.auth.RegisterResponse
 import app.mulipati.databinding.FragmentRegisterBinding
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
@@ -39,12 +41,19 @@ class RegisterFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         registerBinding.RegisterButton.setOnClickListener {
+
             if (validate()){
                 registerUser(
                     registerBinding.registerUsername.text.toString(),
                     registerBinding.registerPhone.text.toString(),
                     registerBinding.registerConfirmPassword.text.toString()
                 )
+            }else{
+                Toast.makeText(
+                    requireContext(),
+                    "Error, check your input",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -58,19 +67,19 @@ class RegisterFragment : Fragment() {
         if (registerBinding.registerUsername.text.toString().isEmpty()){
             registerBinding.registerUsernameLayout.isErrorEnabled = true
             registerBinding.registerUsernameLayout.error = "This field is required"
-            v!!.vibrate(100)
+            v?.vibrate(100)
             return false
         }
         if (registerBinding.registerPhone.text!!.length != 10){
             registerBinding.registerPhoneLayout.isErrorEnabled = true
             registerBinding.registerPhoneLayout.error = "Enter a 10 digit Malawian number"
-            v!!.vibrate(100)
+            v?.vibrate(100)
             return false
         }
         if (registerBinding.registerPassword.text.toString() != registerBinding.registerConfirmPassword.text.toString() ){
             registerBinding.registerPasswordLayout.isErrorEnabled = true
             registerBinding.registerPasswordLayout.error = "Passwords do not match"
-            v!!.vibrate(100)
+            v?.vibrate(100)
             return false
         }
         return true
@@ -82,15 +91,38 @@ class RegisterFragment : Fragment() {
         user_pass: String
     ) {
 
+        val dialog = ProgressDialog(requireContext())
+        dialog.setMessage("Registering...")
+        dialog.setCancelable(false)
+
+        dialog.show()
+
+
         val api = ApiClient.client!!.create(Routes::class.java)
-        val register: Call<Register?>? = api.register(user_name, user_phone, user_pass)
-        register!!.enqueue(object : Callback<Register?>{
-            override fun onFailure(call: Call<Register?>, t: Throwable) {
-                Timber.e("Error")
+
+        val register: Call<RegisterResponse?>? = api.register(user_name, user_phone, user_pass)
+        register?.enqueue(object : Callback<RegisterResponse?>{
+            override fun onFailure(call: Call<RegisterResponse?>, t: Throwable) {
+                Toast.makeText(
+                    requireContext(),
+                    "A network error occurred...",
+                    Toast.LENGTH_SHORT
+                ).show()
+                dialog.dismiss()
             }
 
-            override fun onResponse(call: Call<Register?>, response: Response<Register?>) {
-                Timber.e(response.isSuccessful.toString())
+            override fun onResponse(call: Call<RegisterResponse?>, response: Response<RegisterResponse?>) {
+
+                Toast.makeText(
+                    requireContext(),
+                    "Registration successful!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                dialog.dismiss()
+
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+
+                dialog.dismiss()
             }
 
         })

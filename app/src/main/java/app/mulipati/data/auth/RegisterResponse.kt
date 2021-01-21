@@ -1,3 +1,8 @@
 package app.mulipati.data.auth
 
-data class RegisterResponse(var token: String)
+import com.google.gson.annotations.SerializedName
+
+data class RegisterResponse(
+    @SerializedName("message")
+    var token: String
+)

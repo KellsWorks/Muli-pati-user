@@ -1,13 +1,10 @@
 package app.mulipati.network
 
-import app.mulipati.data.auth.Register
+import app.mulipati.data.auth.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-
 import retrofit2.http.POST
-
-
 
 
 interface Routes {
@@ -15,9 +12,9 @@ interface Routes {
     @POST("v1/register")
     @FormUrlEncoded
     fun register(
-        @Field("username") username: String?,
-        @Field("email") email: String?,
+        @Field("name") name: String?,
+        @Field("phone") phone: String?,
         @Field("password") password: String?
-    ): Call<Register?>?
+    ): Call<RegisterResponse?>?
 
 }
