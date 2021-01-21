@@ -10,20 +10,18 @@ import android.os.Bundle
 import android.provider.MediaStore.Images.Media.getBitmap
 import android.util.Base64.DEFAULT
 import android.util.Base64.encodeToString
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import app.mulipati.MainActivity
 import app.mulipati.R
-import app.mulipati.data.User
 import app.mulipati.databinding.FragmentEditImageBinding
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.util.Constants
+import com.bumptech.glide.Glide
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,6 +35,7 @@ class EditImageFragment : Fragment() {
     private lateinit var bitmap: Bitmap
 
     private lateinit var editImageBinding: FragmentEditImageBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +52,16 @@ class EditImageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
+
         update()
+
+            Glide
+                .with(requireContext())
+                .load(Constants.PROFILE_URL+ userPreferences?.getString("photo", ""))
+                .centerCrop()
+                .into(editImageBinding.editedIcon)
+
     }
     private fun update(){
 
@@ -73,8 +81,9 @@ class EditImageFragment : Fragment() {
         dialog.show()
 
         val api = ApiClient.client!!.create(Routes::class.java)
+        val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
 
-        val upload: Call<app.mulipati.data.Response?>? = api.photoUpdate(8, imageToString(bitmap).toString())
+        val upload: Call<app.mulipati.data.Response?>? = api.photoUpdate(userPreferences?.getInt("profile_id", 0), imageToString(bitmap).toString())
         upload?.enqueue(object : Callback<app.mulipati.data.Response?> {
             override fun onFailure(call: Call<app.mulipati.data.Response?>, t: Throwable) {
                 Toast.makeText(
@@ -98,6 +107,7 @@ class EditImageFragment : Fragment() {
                 dialog.dismiss()
 
                 val user = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.edit()
+
                 user?.putString("photo", response.body()?.photo)
                 user?.apply()
 
@@ -114,6 +124,7 @@ class EditImageFragment : Fragment() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
+
         startActivityForResult(intent, Constants.IMG_REQUEST)
 
     }
@@ -125,7 +136,7 @@ class EditImageFragment : Fragment() {
             val path: Uri? = data.data
             try {
                 bitmap = getBitmap(requireContext().contentResolver, path)
-                editImageBinding.iconName.text = bitmap.toString()
+                editImageBinding.iconName.text = "${data.data?.path}"
 
                 editImageBinding.editedIcon.setImageBitmap(bitmap)
 

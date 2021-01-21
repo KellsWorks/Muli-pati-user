@@ -45,6 +45,7 @@
                 android:layout_height="80dp"
                 android:src="@drawable/avatar04"
                 app:civ_border_width="4dp"
+                android:id="@+id/personalIcon"
                 app:civ_border_color="@color/red"
                 app:civ_border_overlay="true"
                 android:layout_gravity="center"
@@ -55,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/jerome_msampha"
                 android:textSize="18sp"
+                android:id="@+id/personalName"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
@@ -225,10 +227,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/jmsapha_mulipati_com"
                         android:layout_marginTop="3dp"
+                        android:id="@+id/personalEmail"
                         android:textSize="14sp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -237,7 +238,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp">
@@ -261,6 +261,7 @@
                         android:layout_height="wrap_content"
                         android:text="+265 999 67 99 75"
                         android:textSize="14sp"
+                        android:id="@+id/personalPhone"
                         android:layout_marginTop="3dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp" />
@@ -295,6 +296,7 @@
                         android:layout_height="wrap_content"
                         android:text="Blantyre, Malawi"
                         android:textSize="14sp"
+                        android:id="@+id/personalLocation"
                         android:layout_marginTop="3dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp" />

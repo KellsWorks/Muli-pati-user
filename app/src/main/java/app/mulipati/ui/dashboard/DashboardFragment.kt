@@ -11,6 +11,8 @@ import app.mulipati.R
 import app.mulipati.data.RecentTrips
 import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
+import app.mulipati.util.Constants
+import com.bumptech.glide.Glide
 import timber.log.Timber
 
 class DashboardFragment : Fragment() {
@@ -33,8 +35,9 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bindLocation()
-        Timber.d("not m")
+
     }
+
 
     private fun bindLocation(){
         val locationPrefs = context?.getSharedPreferences("user", Context.MODE_PRIVATE)

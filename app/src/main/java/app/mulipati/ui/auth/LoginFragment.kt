@@ -100,6 +100,11 @@ class LoginFragment : Fragment() {
                 )?.edit()
 
                 response.body()?.id?.let { userPreferences?.putInt("id", it) }
+                response.body()?.profile?.get(0)?.id.let {
+                    if (it != null) {
+                        userPreferences?.putInt("profile_id", it)
+                    }
+                }
                 userPreferences?.putString("name", response.body()?.name)
                 userPreferences?.putString("phone", response.body()?.phone)
                 userPreferences?.putString("photo", response.body()?.profile?.get(0)?.photo)
