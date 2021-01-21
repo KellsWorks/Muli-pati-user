@@ -1,8 +1,14 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.ui.auth
 
 import android.app.ProgressDialog
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +30,6 @@ import timber.log.Timber
 class RegisterFragment : Fragment() {
 
     private lateinit var registerBinding: FragmentRegisterBinding
-    var v: Vibrator? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,22 +69,43 @@ class RegisterFragment : Fragment() {
 
     private fun validate(): Boolean{
 
+        val vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
+
         if (registerBinding.registerUsername.text.toString().isEmpty()){
             registerBinding.registerUsernameLayout.isErrorEnabled = true
             registerBinding.registerUsernameLayout.error = "This field is required"
-            v?.vibrate(100)
+
+            if (Build.VERSION.SDK_INT >= 26) {
+                vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                vibrator.vibrate(200)
+            }
+
             return false
         }
         if (registerBinding.registerPhone.text!!.length != 10){
             registerBinding.registerPhoneLayout.isErrorEnabled = true
             registerBinding.registerPhoneLayout.error = "Enter a 10 digit Malawian number"
-            v?.vibrate(100)
+
+            if (Build.VERSION.SDK_INT >= 26) {
+                vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                vibrator.vibrate(200)
+            }
+
             return false
         }
         if (registerBinding.registerPassword.text.toString() != registerBinding.registerConfirmPassword.text.toString() ){
             registerBinding.registerPasswordLayout.isErrorEnabled = true
             registerBinding.registerPasswordLayout.error = "Passwords do not match"
-            v?.vibrate(100)
+
+            if (Build.VERSION.SDK_INT >= 26) {
+                vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                vibrator.vibrate(200)
+            }
+
             return false
         }
         return true
@@ -112,6 +138,12 @@ class RegisterFragment : Fragment() {
             }
 
             override fun onResponse(call: Call<RegisterResponse?>, response: Response<RegisterResponse?>) {
+
+                val tokenEdit = requireActivity()
+                    .getSharedPreferences("remember_token", Context.MODE_PRIVATE)
+                    .edit()
+                tokenEdit.putString("token", response.body()?.token)
+                tokenEdit.apply()
 
                 Toast.makeText(
                     requireContext(),
