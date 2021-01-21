@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
 import app.mulipati.databinding.FragmentProfileBinding
+import app.mulipati.util.Constants
+import com.bumptech.glide.Glide
 
 
 class ProfileFragment : Fragment() {
@@ -38,6 +40,13 @@ class ProfileFragment : Fragment() {
         val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
 
         profileBinding.username.text = userPreferences?.getString("name", "")
+        profileBinding.userNumber.text = userPreferences?.getString("phone", "")
+
+        Glide
+            .with(requireContext())
+            .load(Constants.PROFILE_URL+userPreferences?.getString("photo", ""))
+            .centerCrop()
+            .into(profileBinding.userAvatar)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

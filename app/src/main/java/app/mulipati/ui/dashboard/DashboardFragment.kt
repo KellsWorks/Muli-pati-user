@@ -1,5 +1,6 @@
 package app.mulipati.ui.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,11 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        bindLocation()
+    }
+
+    private fun bindLocation(){
+        val locationPrefs = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.districts,
@@ -37,6 +43,8 @@ class DashboardFragment : Fragment() {
         )
         adapter.setDropDownViewResource(R.layout.spinner_item)
         dashboardBinding.districtSelect.adapter = adapter
+
+        dashboardBinding.districtSelect.setSelection(adapter.getPosition(locationPrefs?.getString("location", "")))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
