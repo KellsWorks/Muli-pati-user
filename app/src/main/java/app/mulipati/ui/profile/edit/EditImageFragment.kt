@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore.Images.Media.getBitmap
 import android.util.Base64.DEFAULT
 import android.util.Base64.encodeToString
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,13 +27,13 @@ import app.mulipati.util.Constants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 
 class EditImageFragment : Fragment() {
 
-    private val PERMISSION_ID = 42
     private lateinit var bitmap: Bitmap
 
     private lateinit var editImageBinding: FragmentEditImageBinding
@@ -61,10 +62,13 @@ class EditImageFragment : Fragment() {
         }
     }
 
-    private fun upload(){
+    private fun upload() {
         val dialog = ProgressDialog(requireContext())
-        dialog.setMessage("Signing in...")
+        dialog.setMessage("Updating...")
         dialog.setCancelable(false)
+
+        Toast.makeText(requireContext(), imageToString(bitmap).toString(), Toast.LENGTH_SHORT)
+                .show()
 
         dialog.show()
 
@@ -75,19 +79,20 @@ class EditImageFragment : Fragment() {
         upload?.enqueue(object : Callback<app.mulipati.data.Response?> {
             override fun onFailure(call: Call<app.mulipati.data.Response?>, t: Throwable) {
                 Toast.makeText(
-                    requireContext(),
-                    t.message,
-                    Toast.LENGTH_SHORT
+                        requireContext(),
+                        t.message,
+                        Toast.LENGTH_SHORT
                 ).show()
+                Timber.e("not m")
                 dialog.dismiss()
             }
 
             override fun onResponse(call: Call<app.mulipati.data.Response?>, response: Response<app.mulipati.data.Response?>) {
 
                 Toast.makeText(
-                    requireContext(),
-                    "Success",
-                    Toast.LENGTH_SHORT
+                        requireContext(),
+                        "Success",
+                        Toast.LENGTH_SHORT
                 ).show()
                 dialog.dismiss()
 
@@ -116,6 +121,8 @@ class EditImageFragment : Fragment() {
             try {
                 bitmap = getBitmap(requireContext().contentResolver, path)
                 editImageBinding.iconName.text = bitmap.toString()
+
+                editImageBinding.editedIcon.setImageBitmap(bitmap)
 
             }
             catch (e: IOException){

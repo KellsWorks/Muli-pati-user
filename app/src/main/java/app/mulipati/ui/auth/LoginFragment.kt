@@ -90,7 +90,7 @@ class LoginFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
                 dialog.dismiss()
-                
+
                 val editor = requireActivity().getSharedPreferences("onBoard", Context.MODE_PRIVATE).edit()
                 editor.putString("isFirstTime", "yes")
                 editor.apply()

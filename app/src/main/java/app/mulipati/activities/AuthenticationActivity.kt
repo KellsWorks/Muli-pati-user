@@ -24,7 +24,7 @@ class AuthenticationActivity : AppCompatActivity() {
             "remember_token", Context.MODE_PRIVATE
         )
 
-        if (sharedPreferences.getString("token", "") != null){
+        if (sharedPreferences.getString("token", "userToken")!!.length > 14){
             startActivity(
                 Intent(
                     this, MainActivity::class.java

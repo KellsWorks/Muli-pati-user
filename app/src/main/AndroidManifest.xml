@@ -13,6 +13,7 @@
         android:roundIcon="@string/icon"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
+        android:name=".MuliPati"
         android:theme="@style/Theme.MuliPati">
         <activity android:name=".EditProfile" />
         <activity android:name=".activities.AuthenticationActivity" />
