@@ -77,13 +77,14 @@
                     android:layout_height="wrap_content"
                     app:startIconDrawable="@drawable/ic_user_avatar"
                     app:boxBackgroundColor="?boxBackgroundColor"
+                    android:id="@+id/signInNameLayout"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:hint="Username"
                         android:textStyle="bold"
-
+                        android:id="@+id/signInName"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -99,13 +100,15 @@
                     app:passwordToggleEnabled="true"
                     app:boxBackgroundColor="?boxBackgroundColor"
                     app:startIconDrawable="@drawable/ic_lock_locked"
+                    android:id="@+id/signInNamePasswordLayout"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:hint="Password"
                         android:inputType="textPassword"
                         android:textStyle="bold"
+                        android:id="@+id/signInNamePassword"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 

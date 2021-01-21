@@ -1,5 +1,6 @@
 package app.mulipati.ui.profile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,19 @@ class ProfileFragment : Fragment() {
         profileBinding.lifecycleOwner = this
 
         return profileBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        bindUser()
+    }
+
+    private fun bindUser(){
+
+        val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
+
+        profileBinding.username.text = userPreferences?.getString("name", "")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

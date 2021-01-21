@@ -118,6 +118,7 @@
                         android:text="@string/jerome_msampha"
                         android:textStyle="bold"
                         android:textSize="18sp"
+                        android:id="@+id/username"
                         />
 
 

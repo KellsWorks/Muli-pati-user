@@ -1,5 +1,6 @@
 package app.mulipati.network
 
+import app.mulipati.data.User
 import app.mulipati.data.auth.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -16,5 +17,12 @@ interface Routes {
         @Field("phone") phone: String?,
         @Field("password") password: String?
     ): Call<RegisterResponse?>?
+
+    @POST("v1/login")
+    @FormUrlEncoded
+    fun login(
+        @Field("phone") phone: String?,
+        @Field("password") password: String?
+    ): Call<User?>?
 
 }
