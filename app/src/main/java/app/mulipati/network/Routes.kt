@@ -25,4 +25,11 @@ interface Routes {
         @Field("password") password: String?
     ): Call<User?>?
 
+    @POST("v1/update-photo")
+    @FormUrlEncoded
+    fun photoUpdate(
+        @Field("id") id: Int?,
+        @Field("photo") photo: String?
+    ): Call<app.mulipati.data.Response?>?
+
 }

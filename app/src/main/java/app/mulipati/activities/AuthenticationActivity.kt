@@ -35,5 +35,6 @@ class AuthenticationActivity : AppCompatActivity() {
                 android.R.anim.slide_in_left
             )
         }
+
     }
 }

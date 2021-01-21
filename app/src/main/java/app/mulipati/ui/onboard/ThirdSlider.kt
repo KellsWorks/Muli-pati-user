@@ -35,10 +35,6 @@ class ThirdSlider : Fragment() {
 
         thirdSliderBinding.skip.setOnClickListener {
 
-                val editor = requireActivity().getSharedPreferences("onBoard", Context.MODE_PRIVATE).edit()
-                editor.putString("isFirstTime", "yes")
-                editor.apply()
-
                 startActivity(Intent(requireActivity(), AuthenticationActivity::class.java))
                 requireActivity()
                     .overridePendingTransition(android.R.anim.slide_out_right, android.R.anim.slide_in_left)

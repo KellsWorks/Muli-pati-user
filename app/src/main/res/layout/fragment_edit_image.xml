@@ -62,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/avatar04"
+                android:id="@+id/editedIcon"
                 app:civ_border_color="@color/red"
                 app:civ_border_width="4dp" />
 
@@ -72,6 +73,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/circle_secondary"
+                android:id="@+id/selectImage"
                 android:padding="5dp"
                 app:tint="@color/white" />
         </RelativeLayout>
@@ -86,6 +88,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="Default avatar"
+            android:id="@+id/iconName"
             android:padding="15dp"
             />
         <Button

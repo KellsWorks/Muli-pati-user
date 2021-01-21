@@ -90,11 +90,16 @@ class LoginFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
                 dialog.dismiss()
+                
+                val editor = requireActivity().getSharedPreferences("onBoard", Context.MODE_PRIVATE).edit()
+                editor.putString("isFirstTime", "yes")
+                editor.apply()
 
                 val userPreferences = context?.getSharedPreferences(
                     "user", Context.MODE_PRIVATE
                 )?.edit()
 
+                response.body()?.id?.let { userPreferences?.putInt("id", it) }
                 userPreferences?.putString("name", response.body()?.name)
                 userPreferences?.putString("phone", response.body()?.phone)
                 userPreferences?.putString("photo", response.body()?.profile?.get(0)?.photo)
