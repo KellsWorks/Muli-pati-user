@@ -13,11 +13,14 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+
         applicationId "app.mulipati"
         minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,6 +47,10 @@ android {
 dependencies {
 
     def nav_version = "2.3.2"
+    def multidex_version = "2.0.1"
+
+    //multi dex
+    implementation "androidx.multidex:multidex:$multidex_version"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
@@ -86,5 +93,9 @@ dependencies {
 
     //timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    //multi-dex
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 }

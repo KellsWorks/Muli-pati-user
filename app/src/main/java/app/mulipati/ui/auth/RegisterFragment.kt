@@ -1,24 +1,21 @@
 package app.mulipati.ui.auth
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import app.mulipati.MainActivity
 import app.mulipati.R
 import app.mulipati.data.auth.Register
-import app.mulipati.data.auth.RegisterResponse
 import app.mulipati.databinding.FragmentRegisterBinding
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 
 @Suppress("DEPRECATION")
@@ -43,7 +40,11 @@ class RegisterFragment : Fragment() {
 
         registerBinding.RegisterButton.setOnClickListener {
             if (validate()){
-                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                registerUser(
+                    registerBinding.registerUsername.text.toString(),
+                    registerBinding.registerPhone.text.toString(),
+                    registerBinding.registerConfirmPassword.text.toString()
+                )
             }
         }
 
@@ -77,21 +78,19 @@ class RegisterFragment : Fragment() {
 
     private fun registerUser(
         user_name: String,
-        user_mail: String,
+        user_phone: String,
         user_pass: String
     ) {
 
         val api = ApiClient.client!!.create(Routes::class.java)
-        val register: Call<Register?>? = api.register(user_name, user_mail, user_pass)
+        val register: Call<Register?>? = api.register(user_name, user_phone, user_pass)
         register!!.enqueue(object : Callback<Register?>{
             override fun onFailure(call: Call<Register?>, t: Throwable) {
-                TODO("Not yet implemented")
+                Timber.e("Error")
             }
 
-            override fun onResponse(call: Call<Register?>, response: Response<RegisterResponse?>) {
-                if (response.body()!!.token != null){
-
-                }
+            override fun onResponse(call: Call<Register?>, response: Response<Register?>) {
+                Timber.e(response.isSuccessful.toString())
             }
 
         })
