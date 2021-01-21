@@ -28,11 +28,33 @@ class RegisterFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         registerBinding.RegisterButton.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            if (validate()){
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            }
         }
 
         registerBinding.toSignIn.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
+    }
+
+    private fun validate(): Boolean{
+
+        if (registerBinding.registerUsername.text.toString().isEmpty()){
+            registerBinding.registerUsernameLayout.isErrorEnabled = true
+            registerBinding.registerUsernameLayout.error = "This field is required"
+            return false
+        }
+        if (registerBinding.registerPhone.text!!.length != 10){
+            registerBinding.registerPhoneLayout.isErrorEnabled = true
+            registerBinding.registerPhoneLayout.error = "Enter a 10 digit Malawian number"
+            return false
+        }
+        if (registerBinding.registerPassword.text.toString() != registerBinding.registerConfirmPassword.text.toString() ){
+            registerBinding.registerPasswordLayout.isErrorEnabled = true
+            registerBinding.registerPasswordLayout.error = "Passwords do not match"
+            return false
+        }
+        return true
     }
 }

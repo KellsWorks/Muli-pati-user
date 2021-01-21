@@ -78,6 +78,9 @@
     <string name="_3_february_2021_12_05_pm">3 February 2021 - 12:05 PM</string>
     <string name="blantyre_zomba">Blantyre - Zomba</string>
     <string name="you_have_successfully_booked_this_trip">You have successfully booked this trip!</string>
+    <string name="create_account">Create Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 
 
     <string-array name="districts">
