@@ -12,7 +12,7 @@ import retrofit2.http.POST
 
 interface Routes {
 
-    @POST("register.php")
+    @POST("v1/register")
     @FormUrlEncoded
     fun register(
         @Field("username") username: String?,
