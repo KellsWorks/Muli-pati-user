@@ -11,6 +11,7 @@ import app.mulipati.R
 import app.mulipati.data.RecentTrips
 import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
+import timber.log.Timber
 
 class DashboardFragment : Fragment() {
 
@@ -32,6 +33,7 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bindLocation()
+        Timber.d("not m")
     }
 
     private fun bindLocation(){

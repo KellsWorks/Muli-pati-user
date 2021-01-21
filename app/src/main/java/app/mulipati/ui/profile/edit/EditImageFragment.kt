@@ -73,9 +73,8 @@ class EditImageFragment : Fragment() {
         dialog.show()
 
         val api = ApiClient.client!!.create(Routes::class.java)
-        val user = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
 
-        val upload: Call<app.mulipati.data.Response?>? = api.photoUpdate(user?.getInt("id", 0), imageToString(bitmap).toString())
+        val upload: Call<app.mulipati.data.Response?>? = api.photoUpdate(8, imageToString(bitmap).toString())
         upload?.enqueue(object : Callback<app.mulipati.data.Response?> {
             override fun onFailure(call: Call<app.mulipati.data.Response?>, t: Throwable) {
                 Toast.makeText(
@@ -83,7 +82,9 @@ class EditImageFragment : Fragment() {
                         t.message,
                         Toast.LENGTH_SHORT
                 ).show()
-                Timber.e("not m")
+
+                Timber.d(t)
+                Timber.e(imageToString(bitmap).toString())
                 dialog.dismiss()
             }
 
@@ -95,6 +96,10 @@ class EditImageFragment : Fragment() {
                         Toast.LENGTH_SHORT
                 ).show()
                 dialog.dismiss()
+
+                val user = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.edit()
+                user?.putString("photo", response.body()?.photo)
+                user?.apply()
 
                 findNavController().navigate(R.id.action_editImageFragment2_to_personalEditFragment)
 
