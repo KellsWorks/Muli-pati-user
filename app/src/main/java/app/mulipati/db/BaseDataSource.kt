@@ -1,5 +1,6 @@
 package app.mulipati.db
 
+import app.mulipati.util.Resource
 import retrofit2.Response
 import timber.log.Timber
 

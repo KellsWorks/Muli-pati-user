@@ -9,6 +9,6 @@ class TripRemoteDataSource @Inject constructor(
     private val tripService: TripsService
 ): BaseDataSource() {
 
-    suspend fun getCharacters() = getResult { tripService.getTrips() }
-    suspend fun getCharacter(id: Int) = getResult { tripService.getTrip(id) }
+    suspend fun getTrips() = getResult { tripService.getTrips() }
+    suspend fun getTripsByLocation(location: String) = getResult { tripService.getTripsByLocation(location) }
 }
