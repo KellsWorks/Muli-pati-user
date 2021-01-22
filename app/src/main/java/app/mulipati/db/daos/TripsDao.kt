@@ -17,10 +17,6 @@ interface TripsDao {
     fun getTrip(location: String): LiveData<Trip>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(characters: List<Trip>)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(trips: Trip)
-
+    suspend fun insertAll(trips: List<Trip>)
 
 }

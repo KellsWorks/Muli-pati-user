@@ -3,6 +3,8 @@ package app.mulipati.db.module
 import android.content.Context
 import app.mulipati.db.AppDatabase
 import app.mulipati.db.daos.TripsDao
+import app.mulipati.db.remote.TripRemoteDataSource
+import app.mulipati.db.repositories.TripsRepository
 import app.mulipati.network.services.TripsService
 import app.mulipati.util.Constants
 import com.google.gson.Gson
@@ -49,5 +51,5 @@ object AppModule {
     @Provides
     fun provideTripsRepository(remoteDataSource: TripRemoteDataSource,
                           localDataSource: TripsDao) =
-        CharacterRepository(remoteDataSource, localDataSource)
+        TripsRepository(remoteDataSource, localDataSource)
 }
