@@ -1,15 +1,12 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.ui.auth
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.os.*
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -19,9 +16,7 @@ import app.mulipati.data.User
 import app.mulipati.databinding.FragmentLoginBinding
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.*
 
 class LoginFragment : Fragment() {
 
@@ -36,6 +31,22 @@ class LoginFragment : Fragment() {
         loginBinding.lifecycleOwner = this
 
         return loginBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val token = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("token", "")
+
+        if (token != ""){
+            requireActivity().startActivity(Intent(
+                    requireActivity(), MainActivity::class.java
+            ))
+            requireActivity()
+                    .overridePendingTransition(
+                            android.R.anim.slide_out_right, android.R.anim.slide_in_left
+                    )
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -91,9 +102,6 @@ class LoginFragment : Fragment() {
                 ).show()
                 dialog.dismiss()
 
-                val editor = requireActivity().getSharedPreferences("onBoard", Context.MODE_PRIVATE).edit()
-                editor.putString("isFirstTime", "yes")
-                editor.apply()
 
                 val userPreferences = context?.getSharedPreferences(
                     "user", Context.MODE_PRIVATE
@@ -105,6 +113,7 @@ class LoginFragment : Fragment() {
                         userPreferences?.putInt("profile_id", it)
                     }
                 }
+                userPreferences?.putString("token", response.body()?.token)
                 userPreferences?.putString("name", response.body()?.name)
                 userPreferences?.putString("phone", response.body()?.phone)
                 userPreferences?.putString("photo", response.body()?.profile?.get(0)?.photo)

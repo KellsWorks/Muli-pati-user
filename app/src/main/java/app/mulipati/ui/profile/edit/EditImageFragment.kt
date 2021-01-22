@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.ui.profile.edit
 
 import android.app.Activity.RESULT_OK

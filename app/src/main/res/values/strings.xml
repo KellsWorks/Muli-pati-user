@@ -81,6 +81,10 @@
     <string name="create_account">Create Account</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="current_avatar">Current avatar</string>
+    <string name="continue_r">Continue</string>
+    <string name="_265_999_67_99_75">+265 999 67 99 75</string>
+    <string name="location">Location</string>
 
 
     <string-array name="districts">
