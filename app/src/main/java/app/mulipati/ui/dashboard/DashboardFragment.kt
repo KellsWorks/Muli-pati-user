@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import app.mulipati.R
 import app.mulipati.data.LocationResponse
@@ -17,7 +18,6 @@ import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import retrofit2.Call
 import retrofit2.Callback
-import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -102,13 +102,21 @@ class DashboardFragment : Fragment() {
     }
 
     private fun updateLocation(location: String){
+
         val api = ApiClient.client!!.create(Routes::class.java)
+
+        val user = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
         val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.edit()
 
-        val upload: Call<LocationResponse?>? = api.photoLocation(1, location)
+        val upload: Call<LocationResponse?>? = api.photoLocation(user?.getInt("profile_id", 0), location)
         upload?.enqueue(object : Callback<LocationResponse?> {
             override fun onFailure(call: Call<LocationResponse?>, t: Throwable) {
-                Timber.e(t)
+                Toast.makeText(
+                    requireContext(),
+                    "Error updating location",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
             }
 
             override fun onResponse(call: Call<LocationResponse?>, response: retrofit2.Response<LocationResponse?>) {
