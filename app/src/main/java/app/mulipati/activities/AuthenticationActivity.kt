@@ -13,27 +13,21 @@ import app.mulipati.databinding.ActivityAuthenticationBinding
 class AuthenticationActivity : AppCompatActivity() {
 
     private lateinit var authenticationBinding: ActivityAuthenticationBinding
-    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         authenticationBinding = DataBindingUtil.setContentView(this, R.layout.activity_authentication)
 
-        sharedPreferences = getSharedPreferences(
-            "remember_token", Context.MODE_PRIVATE
-        )
+        val token = getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("token", "")
 
-        if (sharedPreferences.getString("token", "userToken")!!.length > 14){
-            startActivity(
-                Intent(
+        if (token != ""){
+            startActivity(Intent(
                     this, MainActivity::class.java
-                )
-            )
-            overridePendingTransition(
-                android.R.anim.slide_out_right,
-                android.R.anim.slide_in_left
-            )
+            ))
+           overridePendingTransition(
+                            android.R.anim.slide_out_right, android.R.anim.slide_in_left
+                    )
         }
 
     }

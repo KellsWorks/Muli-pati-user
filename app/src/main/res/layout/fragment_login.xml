@@ -8,22 +8,12 @@
         android:layout_height="match_parent"
         tools:context=".ui.auth.LoginFragment">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/ic_arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/signInText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
             android:layout_marginTop="160dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign in"
+                android:text="@string/sign_in"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 />
@@ -43,18 +33,20 @@
                     android:layout_width="50dp"
                     android:layout_height="10dp"
                     android:background="@drawable/slide_primary"
+                    android:contentDescription="@string/icon" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/circle_primary"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/icon"
                     />
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:background="@drawable/circle_primary"
-                    android:layout_marginLeft="5dp"
-                    />
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:background="@drawable/circle_primary"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/icon"
                     />
             </LinearLayout>
         </LinearLayout>
@@ -75,14 +67,14 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:startIconDrawable="@drawable/ic_user_avatar"
+                    app:startIconDrawable="@drawable/ic_phone"
                     app:boxBackgroundColor="?boxBackgroundColor"
                     android:id="@+id/signInNameLayout"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Username"
+                        android:hint="@string/phone_number"
                         android:textStyle="bold"
                         android:id="@+id/signInName"
                         />
@@ -105,7 +97,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:textStyle="bold"
                         android:id="@+id/signInNamePassword"
@@ -140,7 +132,7 @@
                 android:background="@drawable/button"
                 android:layout_marginLeft="28dp"
                 android:layout_marginRight="28dp"
-                android:text="Continue to sign in"
+                android:text="@string/continue_to_sign_in"
                 android:id="@+id/SignInButton"
                 android:textSize="17sp"
                 android:textAllCaps="false"
@@ -158,25 +150,25 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_centerInParent="true"
-                    android:layout_marginLeft="130dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginStart="130dp"
+                    android:layout_marginEnd="30dp"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
-                    >
+                    tools:ignore="UselessParent">
                     <TextView
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Not registered yet?"
+                        android:text="@string/not_registered_yet"
                         />
                     <TextView
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" Create account."
+                        android:text="@string/create_account"
                         android:id="@+id/createAccount"
                         android:textStyle="bold"
                         android:textColor="?subtitleTextColor"

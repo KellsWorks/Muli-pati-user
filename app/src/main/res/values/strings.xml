@@ -85,6 +85,8 @@
     <string name="continue_r">Continue</string>
     <string name="_265_999_67_99_75">+265 999 67 99 75</string>
     <string name="location">Location</string>
+    <string name="continue_to_sign_in">Continue to sign in</string>
+    <string name="not_registered_yet">Not registered yet?</string>
 
 
     <string-array name="districts">

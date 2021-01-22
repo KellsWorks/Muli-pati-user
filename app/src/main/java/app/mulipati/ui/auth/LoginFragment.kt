@@ -33,21 +33,6 @@ class LoginFragment : Fragment() {
         return loginBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val token = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("token", "")
-
-        if (token != ""){
-            requireActivity().startActivity(Intent(
-                    requireActivity(), MainActivity::class.java
-            ))
-            requireActivity()
-                    .overridePendingTransition(
-                            android.R.anim.slide_out_right, android.R.anim.slide_in_left
-                    )
-        }
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

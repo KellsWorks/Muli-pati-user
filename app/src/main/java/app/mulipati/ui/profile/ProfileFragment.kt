@@ -1,13 +1,20 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.ui.profile
 
+import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
+import app.mulipati.activities.AuthenticationActivity
 import app.mulipati.databinding.FragmentProfileBinding
 import app.mulipati.util.Constants
 import com.bumptech.glide.Glide
@@ -79,5 +86,48 @@ class ProfileFragment : Fragment() {
         profileBinding.editProfile.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editImageFragment2)
         }
+
+        profileBinding.logOut.setOnClickListener {
+            logOut()
+        }
+    }
+
+    private fun logOut(){
+
+        val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.edit()
+        val dialog = ProgressDialog(requireContext())
+        dialog.setMessage("Logging out...")
+        dialog.setCancelable(false)
+
+        val dialogClickListener = DialogInterface.OnClickListener { _, which ->
+            when (which) {
+                DialogInterface.BUTTON_POSITIVE -> {
+
+                    dialog.show()
+
+                    userPreferences?.clear()
+                    userPreferences?.apply()
+
+                    startActivity(
+                            Intent(
+                                    requireActivity(), AuthenticationActivity::class.java
+                            )
+                    )
+
+                    dialog.dismiss()
+                }
+                DialogInterface.BUTTON_NEGATIVE -> {}
+                DialogInterface.BUTTON_NEUTRAL -> {}
+            }
+        }
+
+        val mBuilder = AlertDialog.Builder(requireContext())
+                .setTitle("Log out")
+                .setMessage("By logging out, all your account preferences will be lost. Do you wish to continue?")
+                .setIcon(R.drawable.ic_icon)
+                .setNegativeButton("No", dialogClickListener)
+                .setPositiveButton("Yes", dialogClickListener)
+
+        mBuilder.show()
     }
 }
