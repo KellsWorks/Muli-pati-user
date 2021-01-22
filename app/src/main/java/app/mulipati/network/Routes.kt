@@ -1,5 +1,6 @@
 package app.mulipati.network
 
+import app.mulipati.data.LocationResponse
 import app.mulipati.data.User
 import app.mulipati.data.auth.RegisterResponse
 import retrofit2.Call
@@ -31,5 +32,13 @@ interface Routes {
         @Field("id") id: Int?,
         @Field("photo") photo: String?
     ): Call<app.mulipati.data.Response?>?
+
+    @POST("v1/update-location")
+    @FormUrlEncoded
+    fun photoLocation(
+        @Field("id") id: Int?,
+        @Field("location") location: String?
+    ): Call<LocationResponse?>?
+
 
 }

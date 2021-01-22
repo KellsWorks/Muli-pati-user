@@ -5,12 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import app.mulipati.R
+import app.mulipati.data.LocationResponse
 import app.mulipati.data.RecentTrips
 import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
+import app.mulipati.network.ApiClient
+import app.mulipati.network.Routes
+import retrofit2.Call
+import retrofit2.Callback
+import timber.log.Timber
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DashboardFragment : Fragment() {
 
@@ -36,7 +45,8 @@ class DashboardFragment : Fragment() {
     }
 
 
-    private fun bindLocation(){
+    private fun bindLocation() {
+
         val locationPrefs = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
         val adapter = ArrayAdapter.createFromResource(
             requireContext(),
@@ -46,7 +56,32 @@ class DashboardFragment : Fragment() {
         adapter.setDropDownViewResource(R.layout.spinner_item)
         dashboardBinding.districtSelect.adapter = adapter
 
-        dashboardBinding.districtSelect.setSelection(adapter.getPosition(locationPrefs?.getString("location", "")))
+        val location = adapter.getPosition(
+            locationPrefs?.getString("location", "")?.toUpperCase(
+                Locale.ROOT
+            )
+        )
+
+//        Timber.e(location.toString())
+//        dashboardBinding.districtSelect.setPromptId(location)
+
+        dashboardBinding.districtSelect.setSelection(location)
+        dashboardBinding.districtSelect.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    updateLocation(dashboardBinding.districtSelect.selectedItem as String)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+
+                }
+            }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -64,6 +99,28 @@ class DashboardFragment : Fragment() {
         dashboardBinding.recentTripsRecycler
             .setController(controller)
 
+    }
+
+    private fun updateLocation(location: String){
+        val api = ApiClient.client!!.create(Routes::class.java)
+        val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.edit()
+
+        val upload: Call<LocationResponse?>? = api.photoLocation(1, location)
+        upload?.enqueue(object : Callback<LocationResponse?> {
+            override fun onFailure(call: Call<LocationResponse?>, t: Throwable) {
+                Timber.e(t)
+            }
+
+            override fun onResponse(call: Call<LocationResponse?>, response: retrofit2.Response<LocationResponse?>) {
+                when (response.code()){
+                    200 -> {
+                        userPreferences?.putString("location", location)
+                        userPreferences?.apply()
+                    }
+                }
+            }
+
+        })
     }
 
 }
