@@ -87,6 +87,7 @@
     <string name="location">Location</string>
     <string name="continue_to_sign_in">Continue to sign in</string>
     <string name="not_registered_yet">Not registered yet?</string>
+    <string name="skipper">Skip</string>
 
 
     <string-array name="districts">

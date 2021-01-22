@@ -61,6 +61,7 @@ class PersonalFragment : Fragment() {
         }
 
         personalBinding.personalPhone.text = userPreferences.getString("phone", "")
+        personalBinding.membership.text = "Member since: "+ userPreferences.getString("membership", "")
         personalBinding.personalLocation.text = userPreferences.getString("location", "") + ", Malawi"
 
         Glide
