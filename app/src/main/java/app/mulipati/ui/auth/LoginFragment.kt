@@ -88,44 +88,55 @@ class LoginFragment : Fragment() {
 
             override fun onResponse(call: Call<User?>, response: Response<User?>) {
 
-                Toast.makeText(
-                    requireContext(),
-                    "Success",
-                    Toast.LENGTH_SHORT
-                ).show()
-                dialog.dismiss()
+                if (response.code() == 422 ){
+                    Toast.makeText(
+                            requireContext(),
+                            "Error logging in",
+                            Toast.LENGTH_SHORT
+                    ).show()
+                    dialog.dismiss()
+                }else if (response.code() == 200){
+                    Toast.makeText(
+                            requireContext(),
+                            "Success",
+                            Toast.LENGTH_SHORT
+                    ).show()
 
+                    dialog.dismiss()
 
-                val userPreferences = context?.getSharedPreferences(
-                    "user", Context.MODE_PRIVATE
-                )?.edit()
+                    val userPreferences = context?.getSharedPreferences(
+                            "user", Context.MODE_PRIVATE
+                    )?.edit()
 
-                response.body()?.id?.let { userPreferences?.putInt("id", it) }
-                response.body()?.profile?.get(0)?.id.let {
-                    if (it != null) {
-                        userPreferences?.putInt("profile_id", it)
+                    response.body()?.id?.let { userPreferences?.putInt("id", it) }
+                    response.body()?.profile?.get(0)?.id.let {
+                        if (it != null) {
+                            userPreferences?.putInt("profile_id", it)
+                        }
                     }
+                    userPreferences?.putString("token", response.body()?.token)
+                    userPreferences?.putString("name", response.body()?.name)
+                    userPreferences?.putString("phone", response.body()?.phone)
+                    userPreferences?.putString("photo", response.body()?.profile?.get(0)?.photo)
+                    userPreferences?.putString("email", response.body()?.profile?.get(0)?.email)
+                    userPreferences?.putString("role", response.body()?.profile?.get(0)?.role)
+                    userPreferences?.putString("location", response.body()?.profile?.get(0)?.location)
+                    userPreferences?.putString("membership", response.body()?.membership)
+
+                    userPreferences?.apply()
+
+                    requireActivity().startActivity(Intent(
+                            requireActivity(), MainActivity::class.java
+                    ))
+                    requireActivity()
+                            .overridePendingTransition(
+                                    android.R.anim.slide_out_right, android.R.anim.slide_in_left
+                            )
+
+                    dialog.dismiss()
                 }
-                userPreferences?.putString("token", response.body()?.token)
-                userPreferences?.putString("name", response.body()?.name)
-                userPreferences?.putString("phone", response.body()?.phone)
-                userPreferences?.putString("photo", response.body()?.profile?.get(0)?.photo)
-                userPreferences?.putString("email", response.body()?.profile?.get(0)?.email)
-                userPreferences?.putString("role", response.body()?.profile?.get(0)?.role)
-                userPreferences?.putString("location", response.body()?.profile?.get(0)?.location)
-                userPreferences?.putString("membership", response.body()?.membership)
 
-                userPreferences?.apply()
 
-                requireActivity().startActivity(Intent(
-                    requireActivity(), MainActivity::class.java
-                ))
-                requireActivity()
-                    .overridePendingTransition(
-                        android.R.anim.slide_out_right, android.R.anim.slide_in_left
-                    )
-
-                dialog.dismiss()
             }
 
         })
