@@ -358,6 +358,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
+                android:id="@+id/logOut"
                 >
 
                 <ImageView
@@ -367,6 +368,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="19dp"
+                    android:id="@+id/logoutIcon"
                     android:src="@drawable/ic_logout"
                     android:contentDescription="@string/icon" />
 
@@ -375,7 +377,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/log_out"
                     android:textColor="@color/red"
-                    android:id="@+id/logOut"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="50dp" />

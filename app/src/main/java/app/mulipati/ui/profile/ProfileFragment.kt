@@ -7,9 +7,12 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -88,6 +91,18 @@ class ProfileFragment : Fragment() {
         }
 
         profileBinding.logOut.setOnClickListener {
+
+            val rotate: Animation = AnimationUtils.loadAnimation(requireContext().applicationContext,
+                    R.anim.rotate_clockwise
+            )
+
+            profileBinding.logoutIcon.setImageResource(R.drawable.ic_restore)
+            profileBinding.logoutIcon.startAnimation(rotate)
+
+            Handler().postDelayed({
+                profileBinding.logoutIcon.setImageResource(R.drawable.ic_logout)
+            }, 5000)
+
             logOut()
         }
     }
