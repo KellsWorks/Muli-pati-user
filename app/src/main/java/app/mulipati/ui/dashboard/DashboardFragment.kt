@@ -16,11 +16,14 @@ import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import java.util.*
 import kotlin.collections.ArrayList
 
+
+@AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardBinding: FragmentDashboardBinding
