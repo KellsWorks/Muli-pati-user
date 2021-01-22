@@ -9,6 +9,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import app.mulipati.R
 import app.mulipati.data.LocationResponse
 import app.mulipati.data.RecentTrips
@@ -16,9 +18,13 @@ import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
+import app.mulipati.network.responses.Trip
+import app.mulipati.util.Resource
+import app.mulipati.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
+import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,8 +32,10 @@ import kotlin.collections.ArrayList
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
-    private lateinit var dashboardBinding: FragmentDashboardBinding
+    private var dashboardBinding: FragmentDashboardBinding by autoCleared()
     private lateinit var controller: RecentTripsEpoxyController
+
+    private val viewModel: TripsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +50,26 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        arguments?.getString("location")?.let { viewModel.start(it) }
+        setupObservers()
         bindLocation()
+    }
 
+    private fun setupObservers() {
+        viewModel.character.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    Timber.e(it.toString())
+                }
+
+                Resource.Status.ERROR ->
+                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+
+                Resource.Status.LOADING -> {
+
+                }
+            }
+        })
     }
 
 

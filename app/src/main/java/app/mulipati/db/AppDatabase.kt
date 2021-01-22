@@ -19,7 +19,7 @@ abstract class AppDatabase : RoomDatabase() {
             instance ?: synchronized(this) { instance ?: buildDatabase(context).also { instance = it } }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "characters")
+            Room.databaseBuilder(appContext, AppDatabase::class.java, "MuliPati")
                 .fallbackToDestructiveMigration()
                 .build()
     }

@@ -111,6 +111,8 @@ dependencies {
     // Life cycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
