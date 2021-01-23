@@ -49,16 +49,25 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.getString("location")?.let { viewModel.start(it) }
+//        arguments?.getString("location")?.let {
+//            viewModel.start("Lilongwe") }
         setupObservers()
         bindLocation()
     }
 
     private fun setupObservers() {
         viewModel.trips.observe(viewLifecycleOwner, Observer {
+
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    Timber.e(it.toString())
+                    if (it.data?.get(0)?.user_id ==  2){
+
+                        for (trips in it.data){
+                            if (trips.location == "Blantyre") {
+                                Timber.e(trips.location)
+                            }
+                        }
+                    }
                 }
 
                 Resource.Status.ERROR ->

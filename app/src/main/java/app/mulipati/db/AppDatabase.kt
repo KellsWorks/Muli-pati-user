@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import app.mulipati.db.daos.TripsDao
 import app.mulipati.helpers.Converters
 import app.mulipati.network.responses.Trip
+import app.mulipati.util.Constants
 
 @Database(entities = [Trip::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
@@ -22,7 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
             instance ?: synchronized(this) { instance ?: buildDatabase(context).also { instance = it } }
 
         private fun buildDatabase(appContext: Context) =
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "MuliPati")
+            Room.databaseBuilder(appContext, AppDatabase::class.java, Constants.DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
     }
