@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import app.mulipati.R
 import app.mulipati.data.LocationResponse
-import app.mulipati.data.RecentTrips
 import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
 import app.mulipati.network.ApiClient
@@ -24,7 +23,6 @@ import app.mulipati.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
-import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -80,7 +78,16 @@ class DashboardFragment : Fragment() {
                                         trips.updated_at, trips.user_id
                                     )
                                 )
-                                Timber.e(tripsList.toString())
+
+                                dashboardBinding.recentTripsRecycler.visibility = View.VISIBLE
+                                dashboardBinding.noTrips.visibility = View.GONE
+                                dashboardBinding.tripsMore.visibility = View.VISIBLE
+
+                            }
+                            else{
+                                dashboardBinding.recentTripsRecycler.visibility = View.GONE
+                                dashboardBinding.noTrips.visibility = View.VISIBLE
+                                dashboardBinding.tripsMore.visibility = View.GONE
                             }
                         }
 
@@ -171,6 +178,8 @@ class DashboardFragment : Fragment() {
                     200 -> {
                         userPreferences?.putString("location", location)
                         userPreferences?.apply()
+
+                        setupObservers()
                     }
                 }
             }

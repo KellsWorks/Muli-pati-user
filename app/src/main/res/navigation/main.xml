@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_tripFragment_to_bookingSuccess"
             app:destination="@id/bookingSuccess" />
+        <action
+            android:id="@+id/action_tripFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationsFragment"

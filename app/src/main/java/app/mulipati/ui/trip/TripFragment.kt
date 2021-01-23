@@ -29,7 +29,7 @@ class TripFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         tripBinding.tripBack.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_tripFragment_to_dashboardFragment)
         }
 
         tripBinding.bookTrip.setOnClickListener {

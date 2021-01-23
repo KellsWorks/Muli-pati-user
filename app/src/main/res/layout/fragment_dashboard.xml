@@ -214,14 +214,25 @@
             android:layout_marginTop="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/recentTripsRecycler"
+
             />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@drawable/no_trips"
+                android:id="@+id/noTrips"
+                android:layout_marginTop="40dp"
+                android:visibility="gone"
+                />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/view_more"
             android:textSize="13sp"
+            android:id="@+id/tripsMore"
             android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/button"
