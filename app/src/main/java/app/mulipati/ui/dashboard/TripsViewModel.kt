@@ -18,8 +18,7 @@ class TripsViewModel @ViewModelInject constructor(
     private val _trips = _location.switchMap { location ->
         repository.getTripsByLocation(location)
     }
-    val character: LiveData<Resource<Trip>> = _trips
-
+    val trips: LiveData<Resource<Trip>> = _trips
 
     fun start(location: String) {
         _location.value = location

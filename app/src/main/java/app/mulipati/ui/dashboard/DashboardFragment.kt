@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import app.mulipati.R
 import app.mulipati.data.LocationResponse
 import app.mulipati.data.RecentTrips
@@ -18,7 +18,6 @@ import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
-import app.mulipati.network.responses.Trip
 import app.mulipati.util.Resource
 import app.mulipati.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +55,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.character.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        viewModel.trips.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     Timber.e(it.toString())
