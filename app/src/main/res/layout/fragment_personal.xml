@@ -37,17 +37,31 @@
             android:layout_marginTop="75dp"
             >
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <RelativeLayout
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/avatar04"
-                app:civ_border_width="4dp"
-                android:id="@+id/personalIcon"
-                app:civ_border_color="@color/red"
-                app:civ_border_overlay="true"
+
                 android:layout_gravity="center"
                 android:layout_margin="30dp"
-                />
+                >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/avatar04"
+                    app:civ_border_width="4dp"
+                    android:id="@+id/personalIcon"
+                    app:civ_border_color="@color/red"
+                    app:civ_border_overlay="true"
+                    />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/circle_online"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="5dp"
+                    android:contentDescription="@string/icon" />
+            </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
