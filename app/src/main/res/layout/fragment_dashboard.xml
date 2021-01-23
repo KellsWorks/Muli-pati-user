@@ -128,6 +128,15 @@
                 style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
                 tools:targetApi="lollipop" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy_date"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:id="@+id/pickDate"
+                />
+
         </LinearLayout>
     </LinearLayout>
 

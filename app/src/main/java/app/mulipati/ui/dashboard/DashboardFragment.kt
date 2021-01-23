@@ -1,5 +1,7 @@
 package app.mulipati.ui.dashboard
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,15 +23,17 @@ import app.mulipati.network.Routes
 import app.mulipati.network.responses.Trip
 import app.mulipati.util.Resource
 import app.mulipati.util.autoCleared
+import app.mulipati.util.convertDate
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
+import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private var dashboardBinding: FragmentDashboardBinding by autoCleared()
     private lateinit var controller: RecentTripsEpoxyController
@@ -55,7 +60,30 @@ class DashboardFragment : Fragment() {
         setupObservers()
         bindLocation()
 
+        dashboardBinding.pickDate.setOnClickListener {
+            setUpTripDate()
+        }
+
+        val formattedDate = context?.getSharedPreferences("date", Context.MODE_PRIVATE)?.getString("date", "")
+
+        if (formattedDate.isNullOrEmpty()){
+            dashboardBinding.pickDate.text = "Set date"
+        }else{
+            dashboardBinding.pickDate.text = formattedDate
+        }
     }
+
+    private fun setUpTripDate(){
+
+        val calendar = Calendar.getInstance()
+        val year = calendar[Calendar.YEAR]
+        val month = calendar[Calendar.MONTH]
+        val day = calendar[Calendar.DAY_OF_MONTH]
+
+        val datePickerDialog = DatePickerDialog(requireActivity(), this, year, month, day)
+        datePickerDialog.show()
+    }
+
 
     private fun setupObservers() {
         val locationPrefs = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
@@ -187,4 +215,17 @@ class DashboardFragment : Fragment() {
         })
     }
 
-}
+    @SuppressLint("SetTextI18n")
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        val m = month+1
+        val mothName = convertDate(m)
+        val formattedDate = "$dayOfMonth $mothName, $year"
+
+        dashboardBinding.pickDate.text = formattedDate
+
+        val date = context?.getSharedPreferences("date", Context.MODE_PRIVATE)?.edit()
+        date?.putString("date", formattedDate)
+        date?.apply()
+
+        }
+    }

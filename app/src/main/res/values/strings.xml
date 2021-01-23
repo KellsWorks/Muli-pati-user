@@ -30,7 +30,7 @@
     <string name="active_trips">Active trips</string>
     <string name="_0">0</string>
     <string name="dots">dots</string>
-    <string name="where_would_you_want_to_go_today">Where would you want to go today?</string>
+    <string name="where_would_you_want_to_go_today">Where would you want to go?</string>
     <string name="search_for_trips">Search for trips...</string>
     <string name="trips_near_you">Trips near you</string>
     <string name="view_more">View more</string>
@@ -88,11 +88,27 @@
     <string name="continue_to_sign_in">Continue to sign in</string>
     <string name="not_registered_yet">Not registered yet?</string>
     <string name="skipper">Skip</string>
+    <string name="dummy_date">23 January, 2021</string>
 
 
     <string-array name="districts">
         <item>BLANTYRE</item>
         <item>LILONGWE</item>
         <item>MZUZU</item>
+    </string-array>
+
+    <string-array name="month_names">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
     </string-array>
 </resources>
