@@ -18,6 +18,7 @@ import app.mulipati.databinding.FragmentDashboardBinding
 import app.mulipati.epoxy.trips.RecentTripsEpoxyController
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
+import app.mulipati.network.responses.Trip
 import app.mulipati.util.Resource
 import app.mulipati.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,8 @@ class DashboardFragment : Fragment() {
 
     private val viewModel: TripsViewModel by viewModels()
 
+    private lateinit var tripsList: ArrayList<Trip>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,20 +56,35 @@ class DashboardFragment : Fragment() {
 //            viewModel.start("Lilongwe") }
         setupObservers()
         bindLocation()
+
     }
 
     private fun setupObservers() {
+        val locationPrefs = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
         viewModel.trips.observe(viewLifecycleOwner, Observer {
 
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     if (it.data?.get(0)?.user_id ==  2){
-
+                        tripsList = ArrayList()
                         for (trips in it.data){
-                            if (trips.location == "Blantyre") {
-                                Timber.e(trips.location)
+                            if (trips.location == locationPrefs?.getString("location", "")?.toLowerCase(
+                                    Locale.ROOT
+                                )?.capitalize()
+                            ) {
+
+                                tripsList.add(
+                                    Trip(
+                                        trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
+                                        trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, trips.start_time, trips.status,
+                                        trips.updated_at, trips.user_id
+                                    )
+                                )
+                                Timber.e(tripsList.toString())
                             }
                         }
+
+                        setUpRecycler(tripsList)
                     }
                 }
 
@@ -120,17 +138,10 @@ class DashboardFragment : Fragment() {
             }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        val trips = ArrayList<RecentTrips>()
-
-        trips.add(RecentTrips(R.drawable.mazda_demio, "Banda's trip", "ZA - BT", "2 February - 10:00 PM"))
-        trips.add(RecentTrips(R.drawable.mazda_demio, "Banda's trip", "ZA - BT", "2 February - 10:00 PM"))
-        trips.add(RecentTrips(R.drawable.mazda_demio, "Banda's trip", "ZA - BT", "2 February - 10:00 PM"))
+    private fun setUpRecycler(data: List<Trip>) {
 
         controller = RecentTripsEpoxyController()
-        controller.setData(true, trips)
+        controller.setData(true, data)
 
         dashboardBinding.recentTripsRecycler
             .setController(controller)

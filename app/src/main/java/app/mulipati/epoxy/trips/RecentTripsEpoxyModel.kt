@@ -1,22 +1,25 @@
 package app.mulipati.epoxy.trips
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import app.mulipati.R
-import app.mulipati.data.RecentTrips
+import app.mulipati.network.responses.Trip
+import app.mulipati.util.Constants
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.bumptech.glide.Glide
 
 
 @EpoxyModelClass(layout = R.layout.model_trips)
 abstract class RecentTripsEpoxyModel : EpoxyModelWithHolder<RecentTripsEpoxyModel.RecentTripsEpoxyModelViewHolder>() {
 
     @EpoxyAttribute
-    var data: RecentTrips? = null
+    var data: Trip? = null
 
     @EpoxyAttribute
     var click: View.OnClickListener? = null
@@ -25,13 +28,19 @@ abstract class RecentTripsEpoxyModel : EpoxyModelWithHolder<RecentTripsEpoxyMode
         return RecentTripsEpoxyModelViewHolder()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun bind(holder: RecentTripsEpoxyModelViewHolder) {
         super.bind(holder)
 
-        holder.image!!.setImageResource(data!!.image)
-        holder.title!!.text = data!!.title
-        holder.route!!.text = data!!.routes
-        holder.datetime!!.text = data!!.datetime
+        Glide
+            .with(holder.image!!.context)
+            .load(Constants.CARS_URL + data!!.car_photo)
+            .centerCrop()
+            .into(holder.image!!)
+
+        holder.title!!.text = data!!.destination + " trip"
+        holder.route!!.text = data!!.start + " - " + data!!.destination
+        holder.datetime!!.text = data!!.start_time
 
 
         holder.mainHolder!!.setOnClickListener(click)
