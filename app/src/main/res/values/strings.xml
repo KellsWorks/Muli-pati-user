@@ -89,6 +89,12 @@
     <string name="not_registered_yet">Not registered yet?</string>
     <string name="skipper">Skip</string>
     <string name="dummy_date">23 January, 2021</string>
+    <string name="banda_s_trip">Banda\'s trip</string>
+    <string name="summary">Summary</string>
+    <string name="per_passenger">Per passenger</string>
+    <string name="trip_date">TRIP DATE</string>
+    <string name="pick_up_place">PICK UP PLACE</string>
+    <string name="book_this_trip">Book this trip</string>
 
 
     <string-array name="districts">

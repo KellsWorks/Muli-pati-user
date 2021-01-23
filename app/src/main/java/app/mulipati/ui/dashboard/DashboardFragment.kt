@@ -27,7 +27,6 @@ import app.mulipati.util.convertDate
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
-import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,6 +35,7 @@ import kotlin.collections.ArrayList
 class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private var dashboardBinding: FragmentDashboardBinding by autoCleared()
+
     private lateinit var controller: RecentTripsEpoxyController
 
     private val viewModel: TripsViewModel by viewModels()
@@ -55,8 +55,7 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        arguments?.getString("location")?.let {
-//            viewModel.start("Lilongwe") }
+
         setupObservers()
         bindLocation()
 
@@ -66,8 +65,15 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         val formattedDate = context?.getSharedPreferences("date", Context.MODE_PRIVATE)?.getString("date", "")
 
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val month = c.get(Calendar.MONTH)
+
+        val todayDate = "$day " + convertDate(month) + ", $year"
+
         if (formattedDate.isNullOrEmpty()){
-            dashboardBinding.pickDate.text = "Set date"
+            dashboardBinding.pickDate.text = todayDate
         }else{
             dashboardBinding.pickDate.text = formattedDate
         }
@@ -151,8 +157,6 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             )
         )
 
-//        Timber.e(location.toString())
-//        dashboardBinding.districtSelect.setPromptId(location)
 
         dashboardBinding.districtSelect.setSelection(location)
         dashboardBinding.districtSelect.onItemSelectedListener =

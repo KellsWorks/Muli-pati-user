@@ -11,28 +11,28 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:src="@drawable/mazda_demio"
+            android:id="@+id/tripCarPhoto"
             />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_margin="20dp"
             android:id="@+id/tripBack"
-            android:src="@drawable/ic_arrow_back" />
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="@string/icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:textColor="#969696"
             android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
             android:layout_marginTop="14dp"
-            android:text="Banda's trip"
+            android:id="@+id/tripTitleText"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -54,22 +54,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jerome Banda"
+                        android:text="@string/jerome_msampha"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="50 trips"
+                            android:text=""
                             />
                         <RatingBar
                             android:id="@+id/rating"
@@ -77,7 +77,7 @@
                             android:layout_height="wrap_content"
                             style="?android:attr/ratingBarStyleSmall"
                             android:numStars="5"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
                             android:stepSize="0.1"
                             android:layout_gravity="center"
                             android:isIndicator="true" />
@@ -86,23 +86,24 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:orientation="vertical"
-                    >
+                    tools:ignore="RelativeOverlap">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MK5,000"
+                        android:text=""
                         android:layout_marginTop="10dp"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:layout_marginRight="5dp"
+                        android:id="@+id/tripFare"
+                        android:layout_marginEnd="5dp"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Per ride"
-                        android:layout_marginRight="10dp"
+                        android:text="@string/per_passenger"
+                        android:layout_marginEnd="10dp"
                         android:layout_marginBottom="5dp"
                         android:textSize="13sp"
                         android:textStyle="bold"
@@ -127,8 +128,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TRIP DATE"
-                    android:layout_marginLeft="10dp"
+                    android:text="@string/trip_date"
+                    android:layout_marginStart="10dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     />
@@ -137,19 +138,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    >
+                    tools:ignore="UseCompoundDrawables">
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_calendar_clock"
                         android:layout_marginTop="5dp"
-                        />
+                        android:contentDescription="@string/icon" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1 February, 2021 - 10:00 AM"
+                        android:text=""
                         android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/tripStartTime"
                         />
                 </LinearLayout>
 
@@ -173,8 +175,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PICK UP PLACE"
-                    android:layout_marginLeft="10dp"
+                    android:text="@string/pick_up_place"
+                    android:layout_marginStart="10dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     />
@@ -183,19 +185,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    >
+                    tools:ignore="UseCompoundDrawables">
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_map_marker"
                         android:layout_marginTop="5dp"
-                        />
+                        android:contentDescription="@string/icon" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chichiri Roundabout"
+                        android:text=""
+                        android:id="@+id/pickUpPlace"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         />
                 </LinearLayout>
 
@@ -212,7 +215,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
-                    >
+                    tools:ignore="UseCompoundDrawables,UselessParent">
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -220,12 +223,13 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:layout_gravity="center"
-                        />
+                        android:contentDescription="@string/icon" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3 Seats | 1 Available"
-                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:id="@+id/tripSeats"
+                        android:layout_marginStart="10dp"
                         android:layout_marginBottom="10dp"
                         />
 
@@ -241,8 +245,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:layout_marginLeft="10dp"
+                    android:text="@string/summary"
+                    android:layout_marginStart="10dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     />
@@ -251,7 +255,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit sunt maxime reprehenderit natus non soluta, dolorem cumque, dolorum incidunt corrupti quidem rerum repudiandae delectus quos aut! In, harum? Praesentium?"
+                    android:text=""
+                    android:id="@+id/tripSummary"
                     />
             </LinearLayout>
         </LinearLayout>
@@ -260,13 +265,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/button"
-            android:text="Book this trip"
+            android:text="@string/book_this_trip"
             android:id="@+id/bookTrip"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="40dp"
-            android:textColor="?buttonStyle"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:textSize="18sp"
