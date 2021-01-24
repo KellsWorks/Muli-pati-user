@@ -144,6 +144,12 @@ class PersonalEditFragment : Fragment() {
                         userPref?.putString("email", response.body()?.profile?.email)
                         userPref?.apply()
 
+                        Toast.makeText(
+                                requireContext(),
+                                "Update success!",
+                                Toast.LENGTH_SHORT
+                        ).show()
+
                         dialog.dismiss()
 
                         findNavController().navigate(R.id.action_personalEditFragment_to_profileFragment)
