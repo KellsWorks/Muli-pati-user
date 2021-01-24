@@ -70,7 +70,11 @@
     <fragment
         android:id="@+id/tripsFragment"
         android:name="app.mulipati.ui.trips.TripsFragment"
-        android:label="TripsFragment" />
+        android:label="TripsFragment" >
+        <action
+            android:id="@+id/action_tripsFragment_to_tripChatFragment"
+            app:destination="@id/tripChatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="app.mulipati.ui.settings.SettingsFragment"
@@ -117,4 +121,8 @@
         android:id="@+id/bookingSuccess"
         android:name="app.mulipati.ui.trip.success.BookingSuccess"
         android:label="BookingSuccess" />
+    <fragment
+        android:id="@+id/tripChatFragment"
+        android:name="app.mulipati.ui.trip.TripChatFragment"
+        android:label="TripChatFragment" />
 </navigation>

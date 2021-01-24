@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/enterChat"
+        android:icon="@drawable/ic_wechat"
+        android:title="@string/enter_chat"
+        />
+    <item
+        android:title="@string/delete"
+        android:icon="@drawable/ic_delete"
+        android:id="@+id/delete"
+        />
+</menu>

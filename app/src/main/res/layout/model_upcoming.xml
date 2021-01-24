@@ -53,16 +53,6 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_wechat"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="40dp"
-        app:tint="#969696"
-        android:id="@+id/toChat"
-        android:contentDescription="@string/icon" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
