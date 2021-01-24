@@ -13,6 +13,8 @@ import retrofit2.http.POST
 
 interface Routes {
 
+    //User routes
+
     @POST("v1/register")
     @FormUrlEncoded
     fun register(
