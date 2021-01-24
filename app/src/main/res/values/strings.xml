@@ -98,6 +98,8 @@
     <string name="trip_chat">Trip chat</string>
     <string name="delete">Delete</string>
     <string name="enter_chat">Enter chat</string>
+    <string name="update_your_personal_details">Update your personal details</string>
+    <string name="finish">Finish</string>
 
 
     <string-array name="districts">

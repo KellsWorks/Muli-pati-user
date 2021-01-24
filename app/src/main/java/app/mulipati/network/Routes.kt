@@ -3,6 +3,7 @@ package app.mulipati.network
 import app.mulipati.data.LocationResponse
 import app.mulipati.data.User
 import app.mulipati.data.auth.RegisterResponse
+import app.mulipati.network.responses.account.AccountUpdateResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -39,6 +40,16 @@ interface Routes {
         @Field("id") id: Int?,
         @Field("location") location: String?
     ): Call<LocationResponse?>?
+
+    @POST("v1/update-account")
+    @FormUrlEncoded
+    fun accountUpdate(
+            @Field("id") id: Int?,
+            @Field("name") name: String?,
+            @Field("email") email: String?,
+           @Field("phone") phone: String?
+    ): Call<AccountUpdateResponse?>?
+
 
 
 }

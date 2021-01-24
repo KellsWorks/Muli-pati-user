@@ -1,12 +1,8 @@
 package app.mulipati.activities
 
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import app.mulipati.MainActivity
 import app.mulipati.R
 import app.mulipati.databinding.ActivityAuthenticationBinding
 
@@ -18,17 +14,6 @@ class AuthenticationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         authenticationBinding = DataBindingUtil.setContentView(this, R.layout.activity_authentication)
-
-        val token = getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("token", "")
-
-        if (token != ""){
-            startActivity(Intent(
-                    this, MainActivity::class.java
-            ))
-           overridePendingTransition(
-                            android.R.anim.slide_out_right, android.R.anim.slide_in_left
-                    )
-        }
 
     }
 }

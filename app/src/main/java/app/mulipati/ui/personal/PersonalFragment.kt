@@ -49,6 +49,8 @@ class PersonalFragment : Fragment() {
         personalBinding.personalBack.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        bindCounts()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -85,6 +87,18 @@ class PersonalFragment : Fragment() {
                 .into(personalBinding.personalIcon)
     }
 
+    private fun bindCounts(){
 
+        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)
+        val upcomingCount = tripsPreferences!!.getString("upcomingCount", "?")
+        val completedCount = tripsPreferences.getString("completedCount", "?")
+        val cancelledCount = tripsPreferences.getString("cancelledCount", "?")
+
+
+        personalBinding.upcomingCount.text = upcomingCount
+        personalBinding.completedCount.text = completedCount
+        personalBinding.cancelledCount.text = cancelledCount
+
+    }
 
 }

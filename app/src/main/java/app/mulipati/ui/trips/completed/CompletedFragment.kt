@@ -1,5 +1,6 @@
 package app.mulipati.ui.trips.completed
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -39,5 +40,11 @@ class CompletedFragment : Fragment() {
         controller.setData(true, completed)
 
         completedBinding.completedRecycler.setController(controller)
+
+        val completedCount = completed.count()
+        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
+
+        tripsPreferences?.putString("completedCount", completedCount.toString())
+        tripsPreferences?.apply()
     }
 }

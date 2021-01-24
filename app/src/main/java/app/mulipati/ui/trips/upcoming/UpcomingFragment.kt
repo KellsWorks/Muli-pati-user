@@ -1,5 +1,6 @@
 package app.mulipati.ui.trips.upcoming
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,5 +44,11 @@ class UpcomingFragment : Fragment() {
         controller.setData(true, cancelled)
 
         upcomingBinding.upcomingRecycler.setController(controller)
+
+        val upcomingCount = cancelled.count()
+        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
+
+        tripsPreferences?.putString("upcomingCount", upcomingCount.toString())
+        tripsPreferences?.apply()
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import app.mulipati.MainActivity
 import app.mulipati.activities.OnBoarding
 
 class SplashScreen : AppCompatActivity() {
@@ -20,6 +21,18 @@ class SplashScreen : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
-        startActivity(Intent(this, OnBoarding::class.java))
+        val token = getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("token", "")
+
+        if (token != ""){
+            startActivity(Intent(
+                    this, MainActivity::class.java
+            ))
+            overridePendingTransition(
+                    android.R.anim.slide_out_right, android.R.anim.slide_in_left
+            )
+        }else{
+            startActivity(Intent(this, OnBoarding::class.java))
+
+        }
     }
 }

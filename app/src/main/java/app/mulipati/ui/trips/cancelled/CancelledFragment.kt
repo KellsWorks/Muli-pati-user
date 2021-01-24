@@ -1,5 +1,6 @@
 package app.mulipati.ui.trips.cancelled
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,12 +35,16 @@ class CancelledFragment : Fragment() {
         cancelled.add(Cancelled("Blantyre - Zomba", "11 Feb, 2021 - 12:50 PM"))
         cancelled.add(Cancelled("Limbe - Ndata", "12 Feb, 2021 - 6:20 AM"))
         cancelled.add(Cancelled("Kanjedza - CFAO, Mandala", "15 Feb, 2021 - 8:11 AM"))
-        cancelled.add(Cancelled("Lunzu - Limbe", "18 Feb, 2021 - 15:09 PM"))
-        cancelled.add(Cancelled("Chichiri - Chirobwe", "20 Feb, 2021 - 21:00 PM"))
 
         controller = CancelledEpoxyController()
         controller.setData(true, cancelled)
 
         cancelledBinding.cancelledRecycler.setController(controller)
+
+        val cancelledCount = cancelled.count()
+        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
+
+        tripsPreferences?.putString("cancelledCount", cancelledCount.toString())
+        tripsPreferences?.apply()
     }
 }

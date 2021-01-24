@@ -56,7 +56,6 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupObservers()
         bindLocation()
 
         dashboardBinding.pickDate.setOnClickListener {
@@ -77,6 +76,12 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         }else{
             dashboardBinding.pickDate.text = formattedDate
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        setupObservers()
     }
 
     private fun setUpTripDate(){
