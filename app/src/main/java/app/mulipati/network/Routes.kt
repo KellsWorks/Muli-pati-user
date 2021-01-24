@@ -4,6 +4,7 @@ import app.mulipati.data.LocationResponse
 import app.mulipati.data.User
 import app.mulipati.data.auth.RegisterResponse
 import app.mulipati.network.responses.account.AccountUpdateResponse
+import app.mulipati.network.responses.account.Delete
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -49,6 +50,14 @@ interface Routes {
             @Field("email") email: String?,
            @Field("phone") phone: String?
     ): Call<AccountUpdateResponse?>?
+
+
+    @POST("v1/delete")
+    @FormUrlEncoded
+    fun accountDelete(
+            @Field("id") id: Int?
+    ): Call<Delete?>?
+
 
 
 
