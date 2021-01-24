@@ -47,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_more_vert"
-                android:layout_alignParentRight="true"
                 android:layout_margin="10dp"
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/image" />
@@ -60,7 +59,9 @@
         android:src="@drawable/ic_wechat"
         android:layout_marginTop="10dp"
         android:layout_marginStart="40dp"
-        app:tint="#969696" />
+        app:tint="#969696"
+        android:id="@+id/toChat"
+        android:contentDescription="@string/icon" />
 
     <View
         android:layout_width="match_parent"

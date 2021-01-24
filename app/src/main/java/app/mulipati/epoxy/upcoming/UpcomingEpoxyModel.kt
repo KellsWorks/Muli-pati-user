@@ -31,6 +31,7 @@ abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.Upco
         holder.datetime!!.text = data!!.datetime
 
         holder.menu!!.setOnClickListener(click)
+        holder.chat!!.setOnClickListener(click)
     }
 
     override fun getDefaultLayout(): Int {
@@ -41,7 +42,7 @@ abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.Upco
 
         var title: TextView? = null
         var datetime: TextView? = null
-
+        var chat: ImageView? = null
 
         var menu: ImageView? = null
 
@@ -51,6 +52,7 @@ abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.Upco
             datetime = itemView.findViewById(R.id.cancelledDate)
 
             menu = itemView.findViewById(R.id.cancelledMenu)
+            chat = itemView.findViewById(R.id.toChat)
 
         }
 

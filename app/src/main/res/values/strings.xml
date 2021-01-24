@@ -95,6 +95,7 @@
     <string name="trip_date">TRIP DATE</string>
     <string name="pick_up_place">PICK UP PLACE</string>
     <string name="book_this_trip">Book this trip</string>
+    <string name="trip_chat">Trip chat</string>
 
 
     <string-array name="districts">
