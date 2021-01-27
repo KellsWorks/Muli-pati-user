@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import app.mulipati.network.responses.Trip
+import app.mulipati.network.responses.trips.UserTrip
 
 @Dao
 interface TripsDao {
@@ -18,5 +19,13 @@ interface TripsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(trips: List<Trip>)
+
+    @Query("SELECT * FROM user_trips")
+    fun getUserTrips() : LiveData<List<UserTrip>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUserTrips(trips: List<UserTrip>)
+
+
 
 }

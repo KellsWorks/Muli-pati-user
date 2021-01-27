@@ -40,12 +40,12 @@ class TripFragment : Fragment() {
                 .centerCrop()
                 .into(tripBinding.tripCarPhoto)
 
-        tripBinding.tripSeats.text = "Total seats: " + details?.getString("number_of_passengers", "") + " |" + details?.getString("number_of_passengers", "") + " Available"
-        tripBinding.tripStartTime.text = details?.getString("start_time", "")
-        tripBinding.tripFare.text = "MK" + details?.getString("passenger_fare", "")
-        tripBinding.pickUpPlace.text  = details?.getString("pick_up_place", "")
-        tripBinding.tripSummary.text = "This trip is from Blantyre to Zomba. It will start at... to..."
-        tripBinding.tripTitleText.text = details?.getString("start", "") + " - " + details?.getString("destination", "") + " trip"
+            tripBinding.tripSeats.text = "Total seats: " + details?.getString("number_of_passengers", "") + " |" + details?.getString("number_of_passengers", "") + " Available"
+            tripBinding.tripStartTime.text = details?.getString("start_time", "")
+            tripBinding.tripFare.text = "MK" + details?.getString("passenger_fare", "")
+            tripBinding.pickUpPlace.text  = details?.getString("pick_up_place", "")
+            tripBinding.tripSummary.text = "This trip is from Blantyre to Zomba. It will start at... to..."
+            tripBinding.tripTitleText.text = details?.getString("start", "") + " - " + details?.getString("destination", "") + " trip"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

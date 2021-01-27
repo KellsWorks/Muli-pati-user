@@ -2,22 +2,37 @@ package app.mulipati.ui.trips.upcoming
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import app.mulipati.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import app.mulipati.data.Cancelled
 import app.mulipati.databinding.FragmentUpcomingBinding
-import app.mulipati.epoxy.cancelled.CancelledEpoxyController
 import app.mulipati.epoxy.upcoming.UpcomingEpoxyController
+import app.mulipati.network.responses.Trip
+import app.mulipati.ui.dashboard.TripsViewModel
+import app.mulipati.util.Resource
+import app.mulipati.util.autoCleared
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
-
+@AndroidEntryPoint
 class UpcomingFragment : Fragment() {
 
-    private lateinit var upcomingBinding: FragmentUpcomingBinding
+    private var upcomingBinding: FragmentUpcomingBinding by autoCleared()
 
     private lateinit var controller: UpcomingEpoxyController
+
+    private val viewModel: TripsViewModel by viewModels()
+
+    private val upcomingViewModel: UpcomingViewModel by viewModels()
+
+    private lateinit var tripsList: ArrayList<Cancelled>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,25 +45,89 @@ class UpcomingFragment : Fragment() {
         return upcomingBinding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        controller = UpcomingEpoxyController()
+        tripsList = ArrayList()
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val cancelled = ArrayList<Cancelled>()
-        cancelled.add(Cancelled("Blantyre - Zomba", "11 Feb, 2021 - 12:50 PM"))
-        cancelled.add(Cancelled("Limbe - Ndata", "12 Feb, 2021 - 6:20 AM"))
-        cancelled.add(Cancelled("Kanjedza - CFAO, Mandala", "15 Feb, 2021 - 8:11 AM"))
-        cancelled.add(Cancelled("Lunzu - Limbe", "18 Feb, 2021 - 15:09 PM"))
-        cancelled.add(Cancelled("Chichiri - Chirobwe", "20 Feb, 2021 - 21:00 PM"))
+        setUpObservers()
 
-        controller = UpcomingEpoxyController()
-        controller.setData(true, cancelled)
-
-        upcomingBinding.upcomingRecycler.setController(controller)
-
-        val upcomingCount = cancelled.count()
+        upcomingViewModel.upcomingCount = tripsList.count()
+        
         val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
 
-        tripsPreferences?.putString("upcomingCount", upcomingCount.toString())
+        tripsPreferences?.putString("upcomingCount", upcomingViewModel.upcomingCount.toString())
         tripsPreferences?.apply()
+
+    }
+
+    private fun setUpRecycler(data: List<Cancelled>){
+        controller.setData(true, data)
+        upcomingBinding.upcomingRecycler.setController(controller)
+        upcomingBinding.upcomingRecycler.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun setUpObservers(){
+            val id = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
+            viewModel.userTrips.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                when(it.status){
+                    Resource.Status.SUCCESS ->{
+                        if (it.data?.get(0)?.user_id == id && it.data?.get(0)?.status == "cancelled"){
+                            tripsList = ArrayList()
+                            val dataSet = id?.let { it1 -> getTripsData(it1) }
+                            if (dataSet != null) {
+                                for (trips in dataSet){
+                                    tripsList.add(Cancelled((trips.start + " - " + trips.destination), trips.start_time))
+                                }
+                            }
+                            setUpRecycler(tripsList)
+                        }
+                    }
+                    Resource.Status.ERROR ->
+                        Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+
+                    Resource.Status.LOADING -> {
+                        Timber.e("loading user trips")
+                    }
+                }
+            })
+    }
+
+    private fun getTripsData(tripId: Int): ArrayList<Trip>{
+        var tripList = ArrayList<Trip>()
+            viewModel.trips.observe(viewLifecycleOwner, Observer {
+                when(it.status){
+                    Resource.Status.SUCCESS -> {
+                        if (it.data?.get(0)?.user_id == 2) {
+                            tripList = ArrayList()
+                            for (trips in it.data) {
+                                if (trips.id == tripId) {
+                                    tripList.add(
+                                            Trip(
+                                                    trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
+                                                    trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, trips.start_time, trips.status,
+                                                    trips.updated_at, trips.user_id
+                                            )
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    Resource.Status.ERROR ->
+                        Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+
+                    Resource.Status.LOADING -> {
+
+                    }
+                }
+            })
+        return tripList
     }
 }

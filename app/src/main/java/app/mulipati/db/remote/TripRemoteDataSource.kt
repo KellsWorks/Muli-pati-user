@@ -11,4 +11,6 @@ class TripRemoteDataSource @Inject constructor(
 
     suspend fun getTrips() = getResult { tripService.getTrips() }
     suspend fun getTripsByLocation(location: String) = getResult { tripService.getTripsByLocation(location) }
+
+    suspend fun getUserTrips() = getResult { tripService.getUserTrips() }
 }

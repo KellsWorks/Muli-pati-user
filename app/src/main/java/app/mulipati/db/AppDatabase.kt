@@ -8,9 +8,10 @@ import androidx.room.TypeConverters
 import app.mulipati.db.daos.TripsDao
 import app.mulipati.helpers.Converters
 import app.mulipati.network.responses.Trip
+import app.mulipati.network.responses.trips.UserTrip
 import app.mulipati.util.Constants
 
-@Database(entities = [Trip::class], version = 1, exportSchema = false)
+@Database(entities = [Trip::class, UserTrip::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
