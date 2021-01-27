@@ -19,15 +19,8 @@ import timber.log.Timber
 class FirebaseMessagingService: FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        super.onMessageReceived(remoteMessage)
-
-        Timber.d("From: ${remoteMessage.from}")
-        remoteMessage.data.let {
-            Timber.d( "Message data payload: %s", remoteMessage.data)
-        }
-
+        Timber.e(remoteMessage.data.toString())
         remoteMessage.notification?.let {
-            Timber.e("Message Notification Body: ${it.body}")
             sendNotification(it.body!!, it.title)
         }
     }
