@@ -1,12 +1,17 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import app.mulipati.databinding.ActivityMainBinding
+import app.mulipati.network.BackgroundServices
+import com.google.firebase.iid.FirebaseInstanceId
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         setUpNavigation()
+
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
+            BackgroundServices().sendTokenToServer(instanceIdResult.token, 1)
+        }
+
     }
 
     private fun setUpNavigation(){

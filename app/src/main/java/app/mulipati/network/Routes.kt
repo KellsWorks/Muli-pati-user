@@ -3,6 +3,7 @@ package app.mulipati.network
 import app.mulipati.data.LocationResponse
 import app.mulipati.data.User
 import app.mulipati.data.auth.RegisterResponse
+import app.mulipati.firebase.receiver.SendToken
 import app.mulipati.network.responses.account.AccountUpdateResponse
 import app.mulipati.network.responses.account.Delete
 import retrofit2.Call
@@ -61,6 +62,13 @@ interface Routes {
     ): Call<Delete?>?
 
 
+
+    @POST("v1/fcm-token/save")
+    @FormUrlEncoded
+    fun sendToken(
+            @Field("id") id: Int?,
+            @Field("token") token: String?
+    ): Call<SendToken?>?
 
 
 }

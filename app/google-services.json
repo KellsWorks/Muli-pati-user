@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "146349501048",
+    "project_id": "muli-pati",
+    "storage_bucket": "muli-pati.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146349501048:android:29e567c1b17fd23b701b8d",
+        "android_client_info": {
+          "package_name": "app.mulipati"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146349501048-tbea5i8fbvqqkpvg3eft8i3nahebh4i2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjZWQjq_yNkxL7-baSMj4N-n8EQi3rfIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146349501048-tbea5i8fbvqqkpvg3eft8i3nahebh4i2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
