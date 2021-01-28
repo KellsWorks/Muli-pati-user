@@ -26,6 +26,7 @@ interface TripsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUserTrips(trips: List<UserTrip>)
 
-
+    @Query("DELETE FROM user_trips")
+    suspend fun deleteColleges()
 
 }

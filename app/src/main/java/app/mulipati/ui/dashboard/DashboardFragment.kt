@@ -27,6 +27,8 @@ import app.mulipati.util.convertDate
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
+import timber.log.Timber
+import java.lang.IndexOutOfBoundsException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -102,36 +104,40 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    if (it.data?.get(0)?.user_id ==  2){
-                        tripsList = ArrayList()
-                        for (trips in it.data){
-                            if (trips.location == locationPrefs?.getString("location", "")?.toLowerCase(
-                                    Locale.ROOT
-                                )?.capitalize()
-                            ) {
+                   try {
+                       if (it.data?.get(0)?.user_id ==  2){
+                           tripsList = ArrayList()
+                           for (trips in it.data){
+                               if (trips.location == locationPrefs?.getString("location", "")?.toLowerCase(
+                                               Locale.ROOT
+                                       )?.capitalize()
+                               ) {
 
-                                tripsList.add(
-                                    Trip(
-                                        trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
-                                        trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, trips.start_time, trips.status,
-                                        trips.updated_at, trips.user_id
-                                    )
-                                )
+                                   tripsList.add(
+                                           Trip(
+                                                   trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
+                                                   trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, trips.start_time, trips.status,
+                                                   trips.updated_at, trips.user_id
+                                           )
+                                   )
 
-                                dashboardBinding.recentTripsRecycler.visibility = View.VISIBLE
-                                dashboardBinding.noTrips.visibility = View.GONE
-                                dashboardBinding.tripsMore.visibility = View.VISIBLE
+                                   dashboardBinding.recentTripsRecycler.visibility = View.VISIBLE
+                                   dashboardBinding.noTrips.visibility = View.GONE
+                                   dashboardBinding.tripsMore.visibility = View.VISIBLE
 
-                            }
-                            else{
-                                dashboardBinding.recentTripsRecycler.visibility = View.GONE
-                                dashboardBinding.noTrips.visibility = View.VISIBLE
-                                dashboardBinding.tripsMore.visibility = View.GONE
-                            }
-                        }
+                               }
+                               else{
+                                   dashboardBinding.recentTripsRecycler.visibility = View.GONE
+                                   dashboardBinding.noTrips.visibility = View.VISIBLE
+                                   dashboardBinding.tripsMore.visibility = View.GONE
+                               }
+                           }
 
-                        setUpRecycler(tripsList)
-                    }
+                           setUpRecycler(tripsList)
+                       }
+                   }catch (e: IndexOutOfBoundsException){
+                       Timber.e(e)
+                   }
                 }
 
                 Resource.Status.ERROR ->

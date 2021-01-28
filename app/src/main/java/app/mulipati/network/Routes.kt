@@ -70,10 +70,10 @@ interface Routes {
             @Field("token") token: String?
     ): Call<SendToken?>?
 
-//    @POST("v1/trips/user-trips")
-//    @FormUrlEncoded
-//    fun userTrips(
-//            @Field("id") id: Int?
-//    ): Call<SendToken?>?
+    @POST("v1/trips/user-trips")
+    @FormUrlEncoded
+    fun userTrips(
+            @Field("id") id: Int?
+    ): Call<SendToken?>?
 
 }

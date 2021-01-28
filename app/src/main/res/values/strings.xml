@@ -101,6 +101,8 @@
     <string name="update_your_personal_details">Update your personal details</string>
     <string name="finish">Finish</string>
     <string name="default_notification_channel_id">Muli pati</string>
+    <string name="records_not_present">Records not present</string>
+    <string name="illustration">illustration</string>
 
 
     <string-array name="districts">
