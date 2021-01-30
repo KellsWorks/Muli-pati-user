@@ -1,10 +1,11 @@
 package app.mulipati.epoxy.upcoming
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import app.mulipati.R
-import app.mulipati.data.Cancelled
+import app.mulipati.network.responses.trips.UserTripX
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
@@ -15,7 +16,7 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.UpcomingEpoxyModelViewHolder>() {
 
     @EpoxyAttribute
-    var data: Cancelled? = null
+    var data: UserTripX? = null
 
     @EpoxyAttribute
     var click: View.OnClickListener? = null
@@ -24,11 +25,12 @@ abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.Upco
         return UpcomingEpoxyModelViewHolder()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun bind(holder: UpcomingEpoxyModelViewHolder) {
         super.bind(holder)
 
-        holder.title!!.text = data!!.title
-        holder.datetime!!.text = data!!.datetime
+        holder.title!!.text = data!!.start + " - " + data!!.destination
+        holder.datetime!!.text = data!!.start_time
 
         holder.menu!!.setOnClickListener(click)
 

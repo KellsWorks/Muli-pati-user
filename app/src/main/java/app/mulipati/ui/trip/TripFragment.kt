@@ -5,11 +5,13 @@ package app.mulipati.ui.trip
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
@@ -103,6 +105,26 @@ class TripFragment : Fragment() {
                 when (response.code()){
                     200 -> {
                         findNavController().navigate(R.id.action_tripFragment_to_bookingSuccess)
+                    }
+                    202 -> {
+                        val dialogClickListener = DialogInterface.OnClickListener { _, which ->
+                            when (which) {
+                                DialogInterface.BUTTON_NEGATIVE -> {
+
+                                }
+
+                            }
+                        }
+
+                        val alertDialog = AlertDialog.Builder(requireContext())
+                                .setTitle("Disclaimer")
+                                .setMessage(response.body()?.message)
+                                .setIcon(R.drawable.ic_warning)
+                                .setNegativeButton("Dismiss", dialogClickListener)
+                                alertDialog.show()
+
+                    }else-> { Toast.makeText(requireContext(),"You might have already booked this trip", Toast.LENGTH_SHORT)
+                        .show()
                     }
                 }
             }

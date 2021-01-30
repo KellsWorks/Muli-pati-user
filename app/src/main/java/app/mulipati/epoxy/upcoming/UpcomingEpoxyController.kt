@@ -5,15 +5,16 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import app.mulipati.R
 import app.mulipati.data.Cancelled
+import app.mulipati.network.responses.trips.UserTripX
 import com.airbnb.epoxy.Typed2EpoxyController
 import java.lang.reflect.Method
 
-class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<Cancelled>>() {
-    override fun buildModels(status: Boolean?, cancelled: List<Cancelled>?) {
+class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>() {
+    override fun buildModels(status: Boolean?, cancelled: List<UserTripX>?) {
         if (cancelled != null) {
             for (cancel in cancelled){
                 UpcomingEpoxyModel_()
-                        .id(cancel.title)
+                        .id(cancel.id)
                         .data(cancel)
                         .click { _, parentView, _, _ ->
                             val popupMenu = PopupMenu(parentView.menu!!.context, parentView.menu)
