@@ -1,17 +1,28 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.ui.trip
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
 import app.mulipati.databinding.FragmentTripBinding
+import app.mulipati.network.ApiClient
+import app.mulipati.network.Routes
+import app.mulipati.network.responses.trips.BookingResponse
 import app.mulipati.util.Constants
 import com.bumptech.glide.Glide
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
 
 class TripFragment : Fragment() {
@@ -53,12 +64,49 @@ class TripFragment : Fragment() {
 
         bindTripDetails()
 
+        val tripId = context?.getSharedPreferences("trip_details", Context.MODE_PRIVATE)!!.getInt("id", 0)
+        val userId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)!!.getInt("id", 0)
+
+
         tripBinding.tripBack.setOnClickListener {
             findNavController().navigate(R.id.action_tripFragment_to_dashboardFragment)
         }
 
         tripBinding.bookTrip.setOnClickListener {
-            findNavController().navigate(R.id.action_tripFragment_to_bookingSuccess)
+            bookTrip(
+                    tripId, userId
+            )
         }
+    }
+
+    private fun bookTrip(bookId: Int, tripId: Int){
+
+        val apiClient = ApiClient.client!!.create(Routes::class.java)
+        val book: Call<BookingResponse> = apiClient.bookTrip(bookId, tripId)
+
+        val dialog = ProgressDialog(requireContext())
+        dialog.setCancelable(false)
+        dialog.setMessage("Booking trip...")
+        dialog.show()
+
+        book.enqueue(object : Callback<BookingResponse?> {
+
+            override fun onFailure(call: Call<BookingResponse?>, t: Throwable) {
+                Timber.e(t)
+                dialog.dismiss()
+                Toast.makeText(requireContext(), "A network error occurred", Toast.LENGTH_SHORT)
+                        .show()
+            }
+
+            override fun onResponse(call: Call<BookingResponse?>, response: Response<BookingResponse?>) {
+                dialog.dismiss()
+                when (response.code()){
+                    200 -> {
+                        findNavController().navigate(R.id.action_tripFragment_to_bookingSuccess)
+                    }
+                }
+            }
+
+        })
     }
 }

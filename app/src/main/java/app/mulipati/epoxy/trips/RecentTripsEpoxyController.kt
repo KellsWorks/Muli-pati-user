@@ -17,7 +17,7 @@ class RecentTripsEpoxyController: Typed2EpoxyController<Boolean?, List<Trip>>() 
 
                         val tripDetails = parentView.image?.context?.getSharedPreferences("trip_details", Context.MODE_PRIVATE)
                                 ?.edit()
-
+                        tripDetails?.putInt("id", trip.id)
                         tripDetails?.putString("car_photo", trip.car_photo)
                         tripDetails?.putString("car_type", trip.car_type)
                         tripDetails?.putString("destination", trip.destination)
