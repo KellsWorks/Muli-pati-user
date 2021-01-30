@@ -1,12 +1,21 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.epoxy.upcoming
 
+import android.app.ProgressDialog
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.navigation.findNavController
 import app.mulipati.R
-import app.mulipati.data.Cancelled
+import app.mulipati.network.ApiClient
+import app.mulipati.network.Routes
+import app.mulipati.network.responses.trips.BookingResponse
 import app.mulipati.network.responses.trips.UserTripX
 import com.airbnb.epoxy.Typed2EpoxyController
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 import java.lang.reflect.Method
 
 class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>() {
@@ -16,7 +25,7 @@ class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>(
                 UpcomingEpoxyModel_()
                         .id(cancel.id)
                         .data(cancel)
-                        .click { _, parentView, _, _ ->
+                        .click { model, parentView, _, _ ->
                             val popupMenu = PopupMenu(parentView.menu!!.context, parentView.menu)
 
                             popupMenu.menuInflater.inflate(R.menu.upcoming, popupMenu.menu)
@@ -24,8 +33,30 @@ class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>(
                                 when(item.itemId) {
 
                                     R.id.delete -> {
-                                        Toast.makeText(parentView.datetime!!.context, "Deleted!", Toast.LENGTH_SHORT)
-                                                .show()
+                                        val dialog = ProgressDialog(parentView.title?.context)
+                                        dialog.setCancelable(false)
+                                        dialog.setMessage("Cancelling trip...")
+                                        dialog.show()
+                                        val api = ApiClient.client!!.create(Routes::class.java)
+                                        val action = api.cancelTrip(parentView.id)
+                                        Timber.e(parentView.id.toString())
+                                        action.enqueue(object : Callback<BookingResponse>{
+                                            override fun onFailure(call: Call<BookingResponse>, t: Throwable) {
+                                                Timber.e(t)
+                                                dialog.dismiss()
+                                            }
+
+                                            override fun onResponse(call: Call<BookingResponse>, response: Response<BookingResponse>) {
+                                                dialog.dismiss()
+                                                when(response.code()){
+                                                    200 ->{
+                                                        Toast.makeText(parentView.title?.context, "Trip cancelled successfully", Toast.LENGTH_SHORT)
+                                                                .show()
+                                                    }else->{Timber.e(response.message())}
+                                                }
+                                            }
+
+                                        })
                                     }
 
                                     R.id.enterChat->{

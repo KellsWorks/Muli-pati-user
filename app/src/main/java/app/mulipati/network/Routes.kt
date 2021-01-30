@@ -85,4 +85,10 @@ interface Routes {
             @Field("booker_id")booker_id: Int?,
             @Field("trip_id")trip_id: Int?
     ): Call<BookingResponse>
+
+    @POST("v1/trips/cancel-trip")
+    @FormUrlEncoded
+    fun cancelTrip(
+            @Field("id")id: Int?
+    ): Call<BookingResponse>
 }

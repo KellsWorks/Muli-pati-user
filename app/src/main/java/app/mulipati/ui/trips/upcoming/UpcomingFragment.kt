@@ -11,13 +11,10 @@ import app.mulipati.epoxy.upcoming.UpcomingEpoxyController
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.trips.UpcomingResponse
-import app.mulipati.network.responses.trips.UserTripX
-import app.mulipati.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 
 @AndroidEntryPoint
 class UpcomingFragment : Fragment() {
@@ -43,7 +40,6 @@ class UpcomingFragment : Fragment() {
 
         controller = UpcomingEpoxyController()
 
-
     }
 
 
@@ -53,17 +49,12 @@ class UpcomingFragment : Fragment() {
         upcomingBinding.upcomingRecycler.setController(
                 controller
         )
-
         val userId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
         if (userId != null) {
             setUpRecycler(userId)
         }
-        upcomingBinding.refreshUpcoming.setOnClickListener {
-            if (userId != null) {
-                setUpRecycler(userId)
-            }else{
-                upcomingBinding.refreshUpcoming.isRefreshing = false
-            }
+        upcomingBinding.refreshUpcoming.setOnRefreshListener {
+            setUpRecycler(userId!!)
         }
     }
 
@@ -90,7 +81,6 @@ class UpcomingFragment : Fragment() {
                 when(response.code()){
                     200 ->{
                         successLayout()
-                        Timber.e(response.body().toString())
                         controller.setData(false, response.body()?.userTrips)
                     }else ->{
                     upcomingBinding.errorLayout.visibility = View.VISIBLE

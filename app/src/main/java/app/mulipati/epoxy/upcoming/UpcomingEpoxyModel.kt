@@ -33,6 +33,7 @@ abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.Upco
         holder.datetime!!.text = data!!.start_time
 
         holder.menu!!.setOnClickListener(click)
+        holder.id = data!!.id
 
     }
 
@@ -45,6 +46,8 @@ abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.Upco
         var title: TextView? = null
         var datetime: TextView? = null
         var menu: ImageView? = null
+
+        var id: Int? = null
 
         override fun bindView(itemView: View) {
 
