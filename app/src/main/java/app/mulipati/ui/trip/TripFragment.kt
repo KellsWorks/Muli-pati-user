@@ -69,14 +69,13 @@ class TripFragment : Fragment() {
         val tripId = context?.getSharedPreferences("trip_details", Context.MODE_PRIVATE)!!.getInt("id", 0)
         val userId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)!!.getInt("id", 0)
 
-
         tripBinding.tripBack.setOnClickListener {
             findNavController().navigate(R.id.action_tripFragment_to_dashboardFragment)
         }
-
+        
         tripBinding.bookTrip.setOnClickListener {
             bookTrip(
-                    tripId, userId
+                    userId, tripId
             )
         }
     }
@@ -101,30 +100,40 @@ class TripFragment : Fragment() {
             }
 
             override fun onResponse(call: Call<BookingResponse?>, response: Response<BookingResponse?>) {
-                dialog.dismiss()
-                when (response.code()){
-                    200 -> {
-                        findNavController().navigate(R.id.action_tripFragment_to_bookingSuccess)
-                    }
-                    202 -> {
-                        val dialogClickListener = DialogInterface.OnClickListener { _, which ->
-                            when (which) {
-                                DialogInterface.BUTTON_NEGATIVE -> {
+
+                if (response.isSuccessful) {
+                    when(response.code()){
+                        200 -> {
+                            findNavController().navigate(R.id.action_tripFragment_to_bookingSuccess)
+                            dialog.dismiss()
+
+                        }
+                        202 -> {
+                            dialog.dismiss()
+                            val dialogClickListener = DialogInterface.OnClickListener { _, which ->
+                                when (which) {
+                                    DialogInterface.BUTTON_NEGATIVE -> {
+
+                                    }
 
                                 }
-
                             }
+
+                            val alertDialog = AlertDialog.Builder(requireContext())
+                                    .setTitle("Disclaimer")
+                                    .setMessage(response.body()?.message)
+                                    .setIcon(R.drawable.ic_warning)
+                                    .setNegativeButton("Dismiss", dialogClickListener)
+                            alertDialog.show()
+
                         }
-
-                        val alertDialog = AlertDialog.Builder(requireContext())
-                                .setTitle("Disclaimer")
-                                .setMessage(response.body()?.message)
-                                .setIcon(R.drawable.ic_warning)
-                                .setNegativeButton("Dismiss", dialogClickListener)
-                                alertDialog.show()
-
                     }
+                }else {
+                    Timber.e(response.code().toString())
+                    Timber.e(response.errorBody()?.string())
+
                 }
+
             }
 
         })
