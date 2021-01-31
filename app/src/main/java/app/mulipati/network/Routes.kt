@@ -7,6 +7,7 @@ import app.mulipati.firebase.receiver.SendToken
 import app.mulipati.network.responses.account.AccountUpdateResponse
 import app.mulipati.network.responses.account.Delete
 import app.mulipati.network.responses.trips.BookingResponse
+import app.mulipati.network.responses.trips.Bookings
 import app.mulipati.network.responses.trips.UpcomingResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -77,6 +78,12 @@ interface Routes {
     fun userTrips(
             @Field("id") id: Int?
     ): Call<UpcomingResponse?>?
+
+    @POST("v1/trips/user-bookings")
+    @FormUrlEncoded
+    fun userBookings(
+            @Field("user_id") user_id: Int?
+    ): Call<Bookings?>?
 
     //Book trip
     @POST("v1/trips/book-trip")
