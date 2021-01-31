@@ -123,8 +123,6 @@ class TripFragment : Fragment() {
                                 .setNegativeButton("Dismiss", dialogClickListener)
                                 alertDialog.show()
 
-                    }else-> { Toast.makeText(requireContext(),"You might have already booked this trip", Toast.LENGTH_SHORT)
-                        .show()
                     }
                 }
             }

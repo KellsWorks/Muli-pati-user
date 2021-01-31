@@ -31,8 +31,10 @@ class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>(
                             val popupMenu = PopupMenu(parentView.menu!!.context, parentView.menu)
 
                             val userId = parentView.title?.context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
-                            ForegroundServices().userBooking(parentView.id!!, userId!!)
+                            ForegroundServices(parentView.title?.context!!).userBooking(parentView.id!!, userId!!)
                             val parsedID = parentView.title?.context?.getSharedPreferences("parsedID", Context.MODE_PRIVATE)?.getInt("id", 0)
+
+                            Timber.e("the id $parsedID")
 
                             popupMenu.menuInflater.inflate(R.menu.upcoming, popupMenu.menu)
                             popupMenu.setOnMenuItemClickListener { item ->
@@ -46,8 +48,6 @@ class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>(
 
                                         val api = ApiClient.client!!.create(Routes::class.java)
                                         val action = api.cancelTrip(parsedID)
-
-                                        Timber.e(parsedID.toString())
 
                                         action.enqueue(object : Callback<BookingResponse>{
                                             override fun onFailure(call: Call<BookingResponse>, t: Throwable) {
