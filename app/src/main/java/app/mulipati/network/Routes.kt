@@ -6,6 +6,7 @@ import app.mulipati.data.auth.RegisterResponse
 import app.mulipati.firebase.receiver.SendToken
 import app.mulipati.network.responses.account.AccountUpdateResponse
 import app.mulipati.network.responses.account.Delete
+import app.mulipati.network.responses.chats.MessagesResponse
 import app.mulipati.network.responses.trips.BookingResponse
 import app.mulipati.network.responses.trips.Bookings
 import app.mulipati.network.responses.trips.CancelResponse
@@ -106,4 +107,11 @@ interface Routes {
     fun cancelledTrips(
             @Field("id")id: Int?
     ): Call<UpcomingResponse>
+
+    @POST("v1/message/get-messages")
+    @FormUrlEncoded
+    fun tripMessages(
+        @Field("toId")toId: Int?,
+        @Field("fromId")fromId: Int?
+    ): Call<MessagesResponse>
 }

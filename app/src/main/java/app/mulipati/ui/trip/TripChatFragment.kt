@@ -5,12 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView.OnEditorActionListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.mulipati.R
 import app.mulipati.adapters.TripChatAdapter
 import app.mulipati.data.chat.Messages
 import app.mulipati.databinding.FragmentTripChatBinding
+import app.mulipati.network.ApiClient
+import app.mulipati.network.Routes
+import app.mulipati.network.responses.chats.MessagesResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TripChatFragment : Fragment() {
@@ -32,30 +41,54 @@ class TripChatFragment : Fragment() {
 
         val arrayList = ArrayList<Messages>()
 
-        val unicode = 0x1F60A
-        val emoji = getEmojiByUnicode(unicode)
+        val apiClient = ApiClient.client!!.create(Routes::class.java)
+        val getMessages = apiClient.tripMessages(1,2)
 
-        arrayList.add(Messages(27, "Hello there", "12:00PM", 12, "What's up", "12:03PM"))
-        arrayList.add(Messages(12, "hello", "12:00PM", 27, "What's up", "12:03PM"))
-        arrayList.add(Messages(27, "Where will you take me?$emoji", "12:00PM", 27, "What's up", "12:03PM"))
-        arrayList.add(Messages(12, "Shoprite bwa?", "12:00PM", 12, "What's up", "12:03PM"))
-        arrayList.add(Messages(27, "That's okay then, time yanji?", "12:00PM", 27, "What's up", "12:03PM"))
+        getMessages.enqueue(object: Callback<MessagesResponse>{
+            override fun onFailure(call: Call<MessagesResponse>, t: Throwable) {
+                Timber.e(t)
+            }
 
+            override fun onResponse(
+                call: Call<MessagesResponse>,
+                response: Response<MessagesResponse>
+            ) {
+                when(response.code()){
+                    200->{
+                        val messages = response.body()?.messages
+                        if (messages != null) {
+                            for(message in messages){
+                                arrayList.add(Messages(message.from, message.message, message.created_at, message.to  ))
+                            }
+                        }
+                    }
+                }
+            }
+
+        })
         val adpater = TripChatAdapter(arrayList, requireContext(), 27, 12)
         tripsChatBinding.tripChatRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = adpater
         }
 
+        val lastPosition = adpater.itemCount - 1
+
         fun sendMessage(message: String){
-            arrayList.add(Messages(27, message, "12:00PM", 27, "What's up", "12:03PM"))
+            arrayList.add(Messages(1, message, getCurrentTime(), 2))
             adpater.notifyDataSetChanged()
             tripsChatBinding.senderMessage.setText("")
+            tripsChatBinding.tripChatRecycler.scrollToPosition(lastPosition)
+        }
+
+        if (tripsChatBinding.senderMessage.text.toString().isNotEmpty()){
+            tripsChatBinding.sendTripMessage.setImageResource(R.drawable.ic_close)
+        }else{
+            tripsChatBinding.sendTripMessage.setImageResource(R.drawable.ic_send)
         }
 
         tripsChatBinding.sendTripMessage.setOnClickListener {
-            tripsChatBinding.tripChatRecycler.scrollToPosition(0)
-
+            tripsChatBinding.tripChatRecycler.scrollToPosition(lastPosition)
             val message = tripsChatBinding.senderMessage.text
             sendMessage(message.toString())
         }
@@ -71,5 +104,14 @@ class TripChatFragment : Fragment() {
 
     private fun getEmojiByUnicode(unicode: Int): String? {
         return String(Character.toChars(unicode))
+    }
+
+    private fun getCurrentTime(): String{
+
+        val calendarInstance = Calendar.getInstance()
+        val hour = calendarInstance.get(Calendar.HOUR_OF_DAY)
+        val minutes = calendarInstance.get(Calendar.MINUTE)
+
+        return "$hour:$minutes"
     }
 }
