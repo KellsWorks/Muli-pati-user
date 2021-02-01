@@ -243,4 +243,5 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         date?.apply()
 
         }
+
     }

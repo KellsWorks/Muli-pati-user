@@ -8,6 +8,7 @@ import app.mulipati.network.responses.account.AccountUpdateResponse
 import app.mulipati.network.responses.account.Delete
 import app.mulipati.network.responses.trips.BookingResponse
 import app.mulipati.network.responses.trips.Bookings
+import app.mulipati.network.responses.trips.CancelResponse
 import app.mulipati.network.responses.trips.UpcomingResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -96,6 +97,13 @@ interface Routes {
     @POST("v1/trips/cancel-trip")
     @FormUrlEncoded
     fun cancelTrip(
+            @Field("id")id: Int?,
+            @Field("trip_id")trip_id: Int?
+    ): Call<CancelResponse>
+
+    @POST("v1/trips/user-cancelled-trips")
+    @FormUrlEncoded
+    fun cancelledTrips(
             @Field("id")id: Int?
-    ): Call<BookingResponse>
+    ): Call<UpcomingResponse>
 }

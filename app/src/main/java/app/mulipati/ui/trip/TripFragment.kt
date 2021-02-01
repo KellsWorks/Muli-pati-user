@@ -72,7 +72,7 @@ class TripFragment : Fragment() {
         tripBinding.tripBack.setOnClickListener {
             findNavController().navigate(R.id.action_tripFragment_to_dashboardFragment)
         }
-        
+
         tripBinding.bookTrip.setOnClickListener {
             bookTrip(
                     userId, tripId

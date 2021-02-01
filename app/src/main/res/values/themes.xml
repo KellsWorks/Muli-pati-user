@@ -22,6 +22,10 @@
 
     </style>
 
+    <style name="SearchView" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="fontFamily">>@font/poppins_regular</item>
+    </style>
+
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">#FB8C00</item>
         <item name="colorControlActivated">#F4511E</item>

@@ -12,6 +12,7 @@ import app.mulipati.network.ApiClient
 import app.mulipati.network.ForegroundServices
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.trips.BookingResponse
+import app.mulipati.network.responses.trips.CancelResponse
 import app.mulipati.network.responses.trips.UserTripX
 import com.airbnb.epoxy.Typed2EpoxyController
 import retrofit2.Call
@@ -31,7 +32,7 @@ class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>(
                             val popupMenu = PopupMenu(parentView.menu!!.context, parentView.menu)
 
                             val userId = parentView.title?.context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
-                            ForegroundServices(parentView.title?.context!!).userBooking(parentView.id!!, userId!!)
+                            ForegroundServices(parentView.title?.context!!).userBooking(userId!!, parentView.id!!)
                             val parsedID = parentView.title?.context?.getSharedPreferences("parsedID", Context.MODE_PRIVATE)?.getInt("id", 0)
 
                             Timber.e("the id $parsedID")
@@ -47,15 +48,15 @@ class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>(
                                         dialog.show()
 
                                         val api = ApiClient.client!!.create(Routes::class.java)
-                                        val action = api.cancelTrip(parsedID)
+                                        val action = api.cancelTrip(userId, parsedID)
 
-                                        action.enqueue(object : Callback<BookingResponse>{
-                                            override fun onFailure(call: Call<BookingResponse>, t: Throwable) {
+                                        action.enqueue(object : Callback<CancelResponse>{
+                                            override fun onFailure(call: Call<CancelResponse>, t: Throwable) {
                                                 Timber.e(t)
                                                 dialog.dismiss()
                                             }
 
-                                            override fun onResponse(call: Call<BookingResponse>, response: Response<BookingResponse>) {
+                                            override fun onResponse(call: Call<CancelResponse>, response: Response<CancelResponse>) {
                                                 dialog.dismiss()
                                                 when(response.code()){
                                                     200 ->{

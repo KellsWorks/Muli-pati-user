@@ -2,14 +2,19 @@ package app.mulipati.ui.trips.cancelled
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import app.mulipati.R
-import app.mulipati.data.Cancelled
+import androidx.fragment.app.Fragment
 import app.mulipati.databinding.FragmentCancelledBinding
 import app.mulipati.epoxy.cancelled.CancelledEpoxyController
+import app.mulipati.network.ApiClient
+import app.mulipati.network.Routes
+import app.mulipati.network.responses.trips.UpcomingResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
 
 class CancelledFragment : Fragment() {
@@ -28,23 +33,71 @@ class CancelledFragment : Fragment() {
        return cancelledBinding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        controller = CancelledEpoxyController()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val cancelled = ArrayList<Cancelled>()
-        cancelled.add(Cancelled("Blantyre - Zomba", "11 Feb, 2021 - 12:50 PM"))
-        cancelled.add(Cancelled("Limbe - Ndata", "12 Feb, 2021 - 6:20 AM"))
-        cancelled.add(Cancelled("Kanjedza - CFAO, Mandala", "15 Feb, 2021 - 8:11 AM"))
-
-        controller = CancelledEpoxyController()
-        controller.setData(true, cancelled)
-
         cancelledBinding.cancelledRecycler.setController(controller)
 
-        val cancelledCount = cancelled.count()
-        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
+        val userId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
+        if (userId != null) {
+            setUpRecycler(userId)
+        }
+        cancelledBinding.refreshCancelled.setOnRefreshListener {
+            setUpRecycler(userId!!)
+        }
 
-        tripsPreferences?.putString("cancelledCount", cancelledCount.toString())
-        tripsPreferences?.apply()
+    }
+
+    private fun setUpRecycler(userId: Int){
+
+        cancelledBinding.refreshCancelled.isRefreshing = true
+
+        val apiClient = ApiClient.client!!.create(Routes::class.java)
+        val getUserTrips: Call<UpcomingResponse> = apiClient.cancelledTrips(userId)
+
+        getUserTrips.enqueue(object : Callback<UpcomingResponse?> {
+            override fun onFailure(call: Call<UpcomingResponse?>, t: Throwable) {
+
+                cancelledBinding.errorLayout.visibility = View.VISIBLE
+                cancelledBinding.cancelledRecycler.visibility = View.GONE
+                cancelledBinding.refreshCancelled.isRefreshing = false
+
+            }
+
+            override fun onResponse(call: Call<UpcomingResponse?>, response: Response<UpcomingResponse?>) {
+
+                cancelledBinding.refreshCancelled.isRefreshing = false
+
+                when(response.code()){
+                    200 ->{
+
+                        successLayout()
+                        controller.setData(false, response.body()?.userTrips)
+
+                        val cancelledCount = response.body()?.userTrips?.count()
+                        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
+
+                        tripsPreferences?.putString("cancelledCount", cancelledCount.toString())
+                        tripsPreferences?.apply()
+
+                    }else ->{
+                    cancelledBinding.errorLayout.visibility = View.VISIBLE
+                    cancelledBinding.cancelledRecycler.visibility = View.GONE
+                    Timber.e(response.errorBody()?.string())
+                }
+                }
+            }
+
+        })
+    }
+    private fun successLayout(){
+        cancelledBinding.errorLayout.visibility = View.GONE
+        cancelledBinding.cancelledRecycler.visibility = View.VISIBLE
     }
 }

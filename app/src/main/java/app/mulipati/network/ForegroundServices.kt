@@ -1,9 +1,7 @@
 package app.mulipati.network
 
-import android.app.Application
 import android.content.Context
 import app.mulipati.network.responses.trips.Bookings
-import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,14 +22,16 @@ class ForegroundServices(val context: Context){
             override fun onResponse(call: Call<Bookings?>, response: Response<Bookings?>) {
                 when(response.code()){
                     200 ->{
-                        if (response.body()!!.userBookings[0].trip_id == tripId){
-                            val id = response.body()!!.userBookings[0].id
-                            val parsedID = context.getSharedPreferences("parsedID", Context.MODE_PRIVATE).edit()
-                            parsedID.putInt("id", id)
-                            parsedID.apply()
-                        }else{
-                            Timber.e("non-correspondent id")
+                       val bookings = response.body()!!.userBookings
+                        for(book in bookings){
+                            if (book.id == tripId){
+                                val parsedID = context.getSharedPreferences("parsedID", Context.MODE_PRIVATE).edit()
+                                parsedID.putInt("id", book.id)
+                                parsedID.apply()
+
+                            }
                         }
+
                     }
                 }
             }

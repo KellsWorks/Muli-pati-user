@@ -167,16 +167,18 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
             android:background="#ECECEC"
             android:layout_marginStart="5dp" />
-        <EditText
+        <SearchView
             android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?colorSurface"
-            android:hint="@string/search_for_trips"
-            android:layout_marginLeft="10dp"
+            android:id="@+id/searchView"
+            android:queryHint="@string/search_for_trips"
+            android:theme="@style/SearchView"
+            android:iconifiedByDefault="false"
+            android:searchIcon="@null"
             android:layout_marginStart="10dp" />
     </LinearLayout>
 
