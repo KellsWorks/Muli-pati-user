@@ -82,9 +82,16 @@ class UpcomingFragment : Fragment() {
                     200 ->{
                         successLayout()
                         controller.setData(false, response.body()?.userTrips)
+
+                        val upcomingCount = response.body()?.userTrips?.count()
+                        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
+
+                        tripsPreferences?.putString("upcomingCount", upcomingCount.toString())
+                        tripsPreferences?.apply()
+
                     }else ->{
-                    upcomingBinding.errorLayout.visibility = View.VISIBLE
-                    upcomingBinding.upcomingRecycler.visibility = View.GONE
+                        upcomingBinding.errorLayout.visibility = View.VISIBLE
+                        upcomingBinding.upcomingRecycler.visibility = View.GONE
                 }
                 }
             }
