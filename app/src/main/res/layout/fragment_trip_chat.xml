@@ -18,17 +18,84 @@
             android:src="@drawable/ic_arrow_back"
             android:contentDescription="@string/icon" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="28dp"
+            android:id="@+id/chatMenu"
+            android:src="@drawable/ic_more_vert"
+            android:contentDescription="@string/icon" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="28dp"
+            android:id="@+id/userAvatar"
+            android:src="@drawable/avatar04"
+            android:contentDescription="@string/icon" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="67dp"
-            android:layout_marginTop="18dp"
-            android:text="@string/trip_chat"
-            android:textSize="30sp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="28dp"
+            android:text="Zomba - Blantyre"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="165dp"
+            android:layout_marginTop="72dp"
+            android:text="Yesterday"
+            android:textSize="12sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tripChatRecycler"
+            android:layout_marginBottom="80dp"
+            tools:listitem="@layout/model_right_chat"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="107dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_alignParentBottom="true"
+            android:background="?colorPrimaryVariant"
+            >
+            <androidx.emoji.widget.EmojiEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
+                android:hint="Start typing..."
+                android:id="@+id/senderMessage"
+                android:background="?colorPrimaryVariant"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textColorLink="@color/teal_200"
+                android:paddingStart="20dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_send"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="10dp"
+                    android:id="@+id/sendTripMessage"
+                    />
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>
