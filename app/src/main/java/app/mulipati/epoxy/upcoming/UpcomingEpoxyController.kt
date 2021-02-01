@@ -28,12 +28,17 @@ class UpcomingEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>(
                 UpcomingEpoxyModel_()
                         .id(cancel.id)
                         .data(cancel)
-                        .click { _, parentView, _, _ ->
+                        .click { model, parentView, _, _ ->
                             val popupMenu = PopupMenu(parentView.menu!!.context, parentView.menu)
 
                             val userId = parentView.title?.context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
                             ForegroundServices(parentView.title?.context!!).userBooking(userId!!, parentView.id!!)
                             val parsedID = parentView.title?.context?.getSharedPreferences("parsedID", Context.MODE_PRIVATE)?.getInt("id", 0)
+
+                            val chatID = parentView.title?.context?.getSharedPreferences("chatID", Context.MODE_PRIVATE)?.edit()
+                            chatID?.putString("title", parentView.title!!.text.toString())
+                            chatID?.putInt("id", model.data!!.user_id)?.apply()
+
 
                             Timber.e("the id $parsedID")
 

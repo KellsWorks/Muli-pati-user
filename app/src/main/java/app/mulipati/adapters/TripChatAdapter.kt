@@ -1,6 +1,5 @@
 package app.mulipati.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import app.mulipati.R
 import app.mulipati.data.chat.Messages
 
-class TripChatAdapter(var arrayList: ArrayList<Messages>, context: Context, toId: Int, fromId: Int) : RecyclerView.Adapter<TripChatAdapter.ViewHolder>() {
+class TripChatAdapter(var arrayList: List<Messages>, toId: Int, fromId: Int, userId: Int) : RecyclerView.Adapter<TripChatAdapter.ViewHolder>() {
 
     private var messageRight = 1
     private var messageLeft = 0
+    private var id = 0
 
     init {
         messageRight = toId
         messageLeft = fromId
+        id = userId
     }
 
-    val user = context.getSharedPreferences("user", Context.MODE_PRIVATE).getInt("id", 0)
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -40,7 +40,7 @@ class TripChatAdapter(var arrayList: ArrayList<Messages>, context: Context, toId
 
     override fun getItemViewType(position: Int): Int {
 
-        return if (arrayList[position].toId == user){
+        return if (arrayList[position].toId == id){
             messageRight
         }else{
             messageLeft

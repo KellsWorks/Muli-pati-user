@@ -47,7 +47,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="96dp"
             android:layout_marginTop="28dp"
-            android:text="Zomba - Blantyre"
+            android:id="@+id/chatTitle"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -58,17 +58,26 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="165dp"
             android:layout_marginTop="72dp"
-            android:text="Yesterday"
+            android:textStyle="bold"
+            android:text="@string/recent"
             android:textSize="12sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tripChatRecycler"
-            android:layout_marginBottom="80dp"
-            tools:listitem="@layout/model_right_chat"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="107dp" />
+            android:id="@+id/refreshChat"
+            android:layout_marginTop="107dp" >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tripChatRecycler"
+                tools:listitem="@layout/model_right_chat"
+                />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

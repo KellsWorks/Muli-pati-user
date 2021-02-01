@@ -7,6 +7,7 @@ data class Message(
     val is_read: Int,
     val message: String,
     val to: Int,
+    var time: String,
     val trip_id: Int,
     val updated_at: String
 )

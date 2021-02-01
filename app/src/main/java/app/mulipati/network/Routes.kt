@@ -6,6 +6,7 @@ import app.mulipati.data.auth.RegisterResponse
 import app.mulipati.firebase.receiver.SendToken
 import app.mulipati.network.responses.account.AccountUpdateResponse
 import app.mulipati.network.responses.account.Delete
+import app.mulipati.network.responses.chats.MessageSent
 import app.mulipati.network.responses.chats.MessagesResponse
 import app.mulipati.network.responses.trips.BookingResponse
 import app.mulipati.network.responses.trips.Bookings
@@ -108,10 +109,20 @@ interface Routes {
             @Field("id")id: Int?
     ): Call<UpcomingResponse>
 
+    //Messages
     @POST("v1/message/get-messages")
     @FormUrlEncoded
     fun tripMessages(
         @Field("toId")toId: Int?,
         @Field("fromId")fromId: Int?
     ): Call<MessagesResponse>
+
+    @POST("v1/message/create")
+    @FormUrlEncoded
+    fun sendMessage(
+            @Field("to") to: Int?,
+            @Field("from") from: Int?,
+            @Field("message") message: String?,
+            @Field("time") time: String?
+    ): Call<MessageSent>
 }
