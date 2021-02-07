@@ -4,6 +4,7 @@ import app.mulipati.data.LocationResponse
 import app.mulipati.data.User
 import app.mulipati.data.auth.RegisterResponse
 import app.mulipati.firebase.receiver.SendToken
+import app.mulipati.network.responses.Basic
 import app.mulipati.network.responses.account.AccountUpdateResponse
 import app.mulipati.network.responses.account.Delete
 import app.mulipati.network.responses.chats.MessageSent
@@ -125,4 +126,17 @@ interface Routes {
             @Field("message") message: String?,
             @Field("time") time: String?
     ): Call<MessageSent>
+
+    //Notifications routes
+    @POST("v1/notifications/user-mark-notification")
+    @FormUrlEncoded
+    fun markAsRead(
+        @Field("id") id: Int?
+    ): Call<Basic?>?
+
+    @POST("v1/notifications/user-notification-delete")
+    @FormUrlEncoded
+    fun deleteNotification(
+        @Field("id") id: Int?
+    ): Call<Basic?>?
 }

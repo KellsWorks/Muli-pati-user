@@ -6,23 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import app.mulipati.data.chat.Upcoming
 import app.mulipati.databinding.FragmentUpcomingBinding
 import app.mulipati.epoxy.upcoming.UpcomingEpoxyController
-import app.mulipati.network.ApiClient
-import app.mulipati.network.Routes
-import app.mulipati.network.responses.trips.UpcomingResponse
+import app.mulipati.ui.dashboard.TripsViewModel
+import app.mulipati.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import timber.log.Timber
 
 @AndroidEntryPoint
 class UpcomingFragment : Fragment() {
 
     private lateinit var upcomingBinding: FragmentUpcomingBinding
 
+    private val upcomingViewModel: UpcomingViewModel by viewModels()
+
+    private lateinit var upcomingList: ArrayList<Upcoming>
+
     private lateinit var controller: UpcomingEpoxyController
 
+    private val viewModel: TripsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,70 +44,103 @@ class UpcomingFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         controller = UpcomingEpoxyController()
-
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        upcomingBinding.upcomingRecycler.setController(
-                controller
-        )
-        val userId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
-        if (userId != null) {
-            setUpRecycler(userId)
-        }
+        setUpObservers()
+
         upcomingBinding.refreshUpcoming.setOnRefreshListener {
-            setUpRecycler(userId!!)
+            setUpObservers()
         }
     }
 
-    private fun setUpRecycler(userId: Int){
-
-        upcomingBinding.refreshUpcoming.isRefreshing = true
-
-        val apiClient = ApiClient.client!!.create(Routes::class.java)
-        val getUserTrips: Call<UpcomingResponse?>? = apiClient.userTrips(userId)
-
-        getUserTrips?.enqueue(object : Callback<UpcomingResponse?>{
-            override fun onFailure(call: Call<UpcomingResponse?>, t: Throwable) {
-
-                upcomingBinding.errorLayout.visibility = View.VISIBLE
-                upcomingBinding.upcomingRecycler.visibility = View.GONE
-                upcomingBinding.refreshUpcoming.isRefreshing = false
-
-            }
-
-            override fun onResponse(call: Call<UpcomingResponse?>, response: Response<UpcomingResponse?>) {
-
-                upcomingBinding.refreshUpcoming.isRefreshing = false
-
-                when(response.code()){
-                    200 ->{
-                        successLayout()
-                        controller.setData(false, response.body()?.userTrips)
-
-                        val upcomingCount = response.body()?.userTrips?.count()
-                        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
-
-                        tripsPreferences?.putString("upcomingCount", upcomingCount.toString())
-                        tripsPreferences?.apply()
-
-                    }else ->{
-                        upcomingBinding.errorLayout.visibility = View.VISIBLE
-                        upcomingBinding.upcomingRecycler.visibility = View.GONE
+    private fun setUpObservers(){
+        val getId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
+        upcomingViewModel.bookings.observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+                    upcomingBinding.refreshUpcoming.isRefreshing = true
                 }
+                Resource.Status.SUCCESS ->{
+                    upcomingBinding.refreshUpcoming.isRefreshing = false
+                    try {
+                        if (it.data!!.isNotEmpty()){
+                            upcomingList = ArrayList()
+                            for (book in it.data){
+                                if (book.user_id == getId && book.status == "booked"){
+                                    upcomingList.add(Upcoming(book.trip_id,getTripTitle(book.id)!!, book.created_at))
+                                }
+                            }
+                            setUpRecycler(upcomingList)
+                        }
+                    }catch (e: Exception){
+                        Timber.e(e)
+                    }
+                }
+                Resource.Status.ERROR ->{
+                    upcomingBinding.refreshUpcoming.isRefreshing = false
                 }
             }
-
         })
     }
 
+    private fun setUpRecycler(data: List<Upcoming>) {
+
+        controller.setData(true, data)
+
+        if (data.isNotEmpty()){
+            successLayout()
+        }else{
+            errorLayout()
+        }
+
+        upcomingBinding.upcomingRecycler
+                .setController(controller)
+
+    }
 
     private fun successLayout(){
         upcomingBinding.errorLayout.visibility = View.GONE
         upcomingBinding.upcomingRecycler.visibility = View.VISIBLE
+    }
+
+    private fun errorLayout(){
+        upcomingBinding.errorLayout.visibility = View.VISIBLE
+        upcomingBinding.upcomingRecycler.visibility = View.GONE
+    }
+
+    private fun getTripTitle(id: Int) : String? {
+
+        var title: String? = null
+
+        viewModel.trips.observe(viewLifecycleOwner, Observer {
+
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    try {
+                        for (trips in it.data!!){
+                            if (trips.id == id) {
+                               title = trips.start + " - " + trips.destination
+                            }
+
+                        }
+                    }catch (e: IndexOutOfBoundsException){
+                        Timber.e(e)
+                    }
+                }
+
+                Resource.Status.ERROR ->
+                    Timber.e("Error")
+
+                Resource.Status.LOADING -> {
+
+                }
+            }
+        })
+        return title
     }
 
 }

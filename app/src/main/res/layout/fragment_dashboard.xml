@@ -12,10 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         android:text="@string/dashboard"
         android:textSize="30sp"
@@ -26,13 +24,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/button"
-            >
+            tools:ignore="RelativeOverlap">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textColor="#039BE5"
+                android:textColor="@color/red"
                 android:text="@string/_0"
                 android:gravity="center"
                 android:padding="3dp"
@@ -56,10 +52,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="75dp"
-        android:layout_marginLeft="20dp"
         android:id="@+id/tabLike"
         android:layout_alignParentStart="true"
         android:layout_marginStart="20dp">
@@ -73,7 +67,6 @@
         <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:layout_marginLeft="5dp"
             android:background="@drawable/circle_primary"
             android:contentDescription="@string/dots"
             android:layout_marginStart="5dp" />
@@ -85,7 +78,6 @@
         android:layout_height="100dp"
         android:layout_below="@+id/tabLike"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginEnd="20dp"
@@ -98,7 +90,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:textSize="17sp"
@@ -115,7 +106,6 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_office_building_marker"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:contentDescription="@string/icon" />
             <Spinner
@@ -147,9 +137,7 @@
         android:layout_below="@+id/dashboardBanner"
         android:background="@drawable/rectangle_stroked"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
@@ -161,7 +149,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_clipboard_text_search_outline"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
             android:contentDescription="@string/icon"
             android:layout_marginStart="10dp" />
         <View
@@ -179,7 +166,8 @@
             android:theme="@style/SearchView"
             android:iconifiedByDefault="false"
             android:searchIcon="@null"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"
+            tools:targetApi="lollipop" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -188,10 +176,8 @@
         app:iconTint="@color/white"
         app:icon="@drawable/ic_map_plus"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
         android:layout_marginBottom="54dp"
         android:contentDescription="@string/image" />
 
@@ -207,20 +193,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/trips_near_you"
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp" />
+            android:layout_marginStart="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trips_near_you"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all_2"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:id="@+id/tripsMore"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
 
         <com.airbnb.epoxy.EpoxyRecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/rectangle_stroked"
             android:padding="3dp"
             android:layout_marginTop="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -236,19 +234,7 @@
                 android:id="@+id/noTrips"
                 android:layout_marginTop="40dp"
                 android:visibility="gone"
-                />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/view_more"
-            android:textSize="13sp"
-            android:id="@+id/tripsMore"
-            android:textColor="@color/white"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/button"
-            android:padding="3dp"
-            android:layout_marginStart="20dp" />
+                android:contentDescription="@string/illustration" />
         </LinearLayout>
     </ScrollView>
     </RelativeLayout>

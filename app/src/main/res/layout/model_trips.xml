@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:id="@+id/tripMain"
+    android:background="@drawable/rounded_white"
     android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
 
@@ -11,7 +13,7 @@
         android:layout_height="150dp"
         android:src="@drawable/mazda_demio"
         android:id="@+id/tripImage"
-        />
+        android:contentDescription="@string/image" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,27 +22,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kelvin's trip"
+            android:text=""
             android:id="@+id/tripTitle"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UseCompoundDrawables">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_map_marker_distance"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                />
+                android:contentDescription="@string/icon" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LL - MW"
+                android:text=""
                 android:id="@+id/tripRoute"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
@@ -50,18 +53,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            >
+            tools:ignore="UseCompoundDrawables">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_calendar_clock"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                />
+                android:contentDescription="@string/icon" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 February - 10:00AM"
+                android:text=""
                 android:id="@+id/tripDateTime"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"

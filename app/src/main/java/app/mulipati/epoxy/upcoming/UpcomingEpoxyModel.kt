@@ -5,7 +5,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import app.mulipati.R
-import app.mulipati.network.responses.trips.UserTripX
+import app.mulipati.data.chat.Upcoming
+import app.mulipati.util.getDisplayDateTime
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
@@ -13,41 +14,40 @@ import com.airbnb.epoxy.EpoxyModelWithHolder
 
 
 @EpoxyModelClass(layout = R.layout.model_upcoming)
-abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.UpcomingEpoxyModelViewHolder>() {
+abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.CancelledEpoxyModelViewHolder>() {
 
     @EpoxyAttribute
-    var data: UserTripX? = null
+    var data: Upcoming? = null
 
     @EpoxyAttribute
     var click: View.OnClickListener? = null
 
-    override fun createNewHolder(): UpcomingEpoxyModelViewHolder {
-        return UpcomingEpoxyModelViewHolder()
+    override fun createNewHolder(): CancelledEpoxyModelViewHolder {
+        return CancelledEpoxyModelViewHolder()
     }
 
     @SuppressLint("SetTextI18n")
-    override fun bind(holder: UpcomingEpoxyModelViewHolder) {
+    override fun bind(holder: CancelledEpoxyModelViewHolder) {
         super.bind(holder)
 
-        holder.title!!.text = data!!.start + " - " + data!!.destination
-        holder.datetime!!.text = data!!.start_time
+        holder.title!!.text = data!!.title
+        holder.datetime!!.text = getDisplayDateTime(data!!.datetime)
 
         holder.menu!!.setOnClickListener(click)
         holder.id = data!!.id
-
     }
 
     override fun getDefaultLayout(): Int {
         return R.layout.model_upcoming
     }
 
-    class UpcomingEpoxyModelViewHolder : EpoxyHolder() {
+    class CancelledEpoxyModelViewHolder : EpoxyHolder() {
 
         var title: TextView? = null
         var datetime: TextView? = null
-        var menu: ImageView? = null
 
         var id: Int? = null
+        var menu: ImageView? = null
 
         override fun bindView(itemView: View) {
 

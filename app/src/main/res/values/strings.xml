@@ -104,6 +104,11 @@
     <string name="illustration">illustration</string>
     <string name="yesterday">Yesterday</string>
     <string name="start_typing">Start typing...</string>
+    <string name="see_all_2">See All (2)</string>
+    <string name="no_records_found">No records found</string>
+    <string name="write_your_message_here">Write your message here</string>
+    <string name="contact_amp_support"><![CDATA[Contact & support]]></string>
+    <string name="clear_chat">Clear chat</string>
 
 
     <string-array name="districts">

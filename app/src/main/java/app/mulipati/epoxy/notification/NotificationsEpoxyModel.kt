@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import app.mulipati.R
 import app.mulipati.data.Notifications
+import app.mulipati.util.getDisplayDateTime
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
@@ -30,7 +31,8 @@ abstract class NotificationsEpoxyModel : EpoxyModelWithHolder<NotificationsEpoxy
         holder.image!!.setImageResource(data!!.icon)
         holder.title!!.text = data!!.title
         holder.content!!.text = data!!.content
-        holder.datetime!!.text = data!!.time
+        holder.datetime!!.text = getDisplayDateTime(data!!.time)
+        holder.id = data!!.id
 
         holder.menu!!.setOnClickListener(click)
     }
@@ -45,6 +47,8 @@ abstract class NotificationsEpoxyModel : EpoxyModelWithHolder<NotificationsEpoxy
         var title: TextView? = null
         var content: TextView? = null
         var datetime: TextView? = null
+
+        var id: Int? = null
 
         var menu: ImageView? = null
 

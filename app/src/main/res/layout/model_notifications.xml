@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -11,7 +12,7 @@
         android:padding="5dp"
         android:id="@+id/notificationIcon"
         android:layout_margin="10dp"
-        />
+        android:contentDescription="@string/icon" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,39 +25,48 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Booking approved!"
+                android:text=""
                 android:id="@+id/notificationTitle"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_more_vert"
-            android:layout_marginRight="10dp"
-            android:id="@+id/notificationMenu"
-            android:layout_alignParentRight="true"
-            />
+                tools:ignore="RelativeOverlap" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_more_vert"
+                android:id="@+id/notificationMenu"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="@string/icon" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:layout_marginRight="10dp"
             android:id="@+id/notificationContent"
-            android:text="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat sit sunt maxime reprehenderit natus non soluta, dolorem cumque, dolorum incidunt corrupti quidem rerum repudiandae delectus quos aut! In, harum? Praesentium?"
+            android:text=""
             android:layout_marginTop="10dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_marginEnd="10dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wed, Feb 10, 10:50 AM"
-            android:id="@+id/notificationTime"
-            android:background="@drawable/rectangle_rounded"
-            android:padding="4dp"
-            android:textSize="13sp"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginBottom="5dp"
+            tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar_clock"
+                android:layout_gravity="center"
+                android:contentDescription="@string/icon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/notificationTime"
+                android:layout_gravity="center"
+                android:textSize="13sp"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
     </LinearLayout>
 
 

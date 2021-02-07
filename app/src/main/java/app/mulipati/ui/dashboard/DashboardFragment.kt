@@ -21,9 +21,7 @@ import app.mulipati.epoxy.trips.RecentTripsEpoxyController
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.Trip
-import app.mulipati.util.Resource
-import app.mulipati.util.autoCleared
-import app.mulipati.util.convertDate
+import app.mulipati.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
@@ -99,42 +97,32 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
 
     private fun setupObservers() {
-        val locationPrefs = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
+        val location = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("location", "")
+
         viewModel.trips.observe(viewLifecycleOwner, Observer {
 
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                    try {
-                       if (it.data?.get(0)?.user_id ==  2){
                            tripsList = ArrayList()
-                           for (trips in it.data){
-                               if (trips.location == locationPrefs?.getString("location", "")?.toLowerCase(
-                                               Locale.ROOT
-                                       )?.capitalize()
-                               ) {
+                           for (trips in it.data!!){
+                               if (location != null) {
+                                   if (trips.location.toUpperCase(Locale.ROOT) == location
+                                   ) {
 
-                                   tripsList.add(
+                                       tripsList.add(
                                            Trip(
-                                                   trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
-                                                   trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, trips.start_time, trips.status,
-                                                   trips.updated_at, trips.user_id
+                                               trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
+                                               trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, getDisplayDateTimeX(trips.start_time), trips.status,
+                                               getDisplayDateTime(trips.updated_at), trips.user_id
                                            )
-                                   )
+                                       )
 
-                                   dashboardBinding.recentTripsRecycler.visibility = View.VISIBLE
-                                   dashboardBinding.noTrips.visibility = View.GONE
-                                   dashboardBinding.tripsMore.visibility = View.VISIBLE
+                                   }
+                               }
 
-                               }
-                               else{
-                                   dashboardBinding.recentTripsRecycler.visibility = View.GONE
-                                   dashboardBinding.noTrips.visibility = View.VISIBLE
-                                   dashboardBinding.tripsMore.visibility = View.GONE
-                               }
                            }
-
                            setUpRecycler(tripsList)
-                       }
                    }catch (e: IndexOutOfBoundsException){
                        Timber.e(e)
                    }
@@ -189,6 +177,17 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun setUpRecycler(data: List<Trip>) {
+
+        if (data.count() == 0){
+            dashboardBinding.recentTripsRecycler.visibility = View.GONE
+            dashboardBinding.noTrips.visibility = View.VISIBLE
+            dashboardBinding.tripsMore.visibility = View.GONE
+        }
+        else{
+            dashboardBinding.recentTripsRecycler.visibility = View.VISIBLE
+            dashboardBinding.noTrips.visibility = View.GONE
+            dashboardBinding.tripsMore.visibility = View.VISIBLE
+        }
 
         controller = RecentTripsEpoxyController()
         controller.setData(true, data)

@@ -1,6 +1,8 @@
 package app.mulipati.util
 
+import timber.log.Timber
 import java.text.SimpleDateFormat
+import java.util.*
 
 fun convertDate(month: Int): String{
     var monthName = ""
@@ -43,3 +45,54 @@ fun convertDate(month: Int): String{
     }
     return monthName
 }
+
+fun getDisplayDateTime(timeStamp: String): String{
+    return try {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val date = simpleDateFormat.parse(timeStamp)
+        val convertDateFormat = SimpleDateFormat("dd MMMM yyyy hh:mm a", Locale.getDefault())
+        convertDateFormat.format(date!!)
+    }catch (e: Exception){
+        Timber.e(e)
+        ""
+    }
+}
+
+fun getDisplayDateTimeX(dateTime: String): String{
+    return try {
+        val simpleDateFormat = SimpleDateFormat("d-MM-yy hh:mm", Locale.getDefault())
+        val date = simpleDateFormat.parse(dateTime)
+        val convertDateFormat = SimpleDateFormat("dd MMMM yyyy hh:mm a", Locale.getDefault())
+        convertDateFormat.format(date!!)
+    }catch (e: Exception){
+        Timber.e(e)
+        ""
+    }
+}
+
+fun getDay(timeStamp: String): String{
+    return try {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val date = simpleDateFormat.parse(timeStamp)
+        val convertDateFormat = SimpleDateFormat("d", Locale.getDefault())
+        convertDateFormat.format(date!!)
+    }catch (e: Exception){
+        Timber.e(e)
+        ""
+    }
+}
+
+fun getDayExt(timeStamp: String): String{
+    return try {
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val date = simpleDateFormat.parse(timeStamp)
+        val convertDateFormat = SimpleDateFormat("EE", Locale.getDefault())
+        convertDateFormat.format(date!!)
+    }catch (e: Exception){
+        Timber.e(e)
+        ""
+    }
+}
+
+
+
