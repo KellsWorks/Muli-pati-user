@@ -2,10 +2,10 @@
 
 package app.mulipati.epoxy.upcoming
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.navigation.findNavController
 import app.mulipati.R
 import app.mulipati.data.chat.Upcoming
@@ -13,12 +13,15 @@ import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.trips.CancelResponse
 import com.airbnb.epoxy.Typed2EpoxyController
+import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 import java.lang.reflect.Method
 
+
+@SuppressLint("ResourceAsColor")
 class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>() {
     override fun buildModels(status: Boolean?, bookings: List<Upcoming>?) {
         if (bookings != null) {
@@ -53,7 +56,10 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
 
                                         action.enqueue(object : Callback<CancelResponse> {
                                             override fun onFailure(call: Call<CancelResponse>, t: Throwable) {
-                                                Timber.e(t)
+                                                Snackbar.make(parentView.title!!.rootView, "$t", Snackbar.LENGTH_SHORT)
+                                                        .setBackgroundTint(R.color.red)
+                                                        .setTextColor(R.color.white)
+                                                        .show()
                                                 dialog.dismiss()
                                             }
 
@@ -61,7 +67,9 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
                                                 dialog.dismiss()
                                                 when(response.code()){
                                                     200 ->{
-                                                        Toast.makeText(parentView.title?.context, "Trip cancelled successfully", Toast.LENGTH_SHORT)
+                                                        Snackbar.make(parentView.title!!.rootView, "Trip cancelled successfully", Snackbar.LENGTH_SHORT)
+                                                                .setBackgroundTint(R.color.red)
+                                                                .setTextColor(R.color.white)
                                                                 .show()
                                                     }else->{
                                                     Timber.e(response.message())}

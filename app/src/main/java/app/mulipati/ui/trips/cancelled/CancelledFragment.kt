@@ -6,21 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import app.mulipati.data.Cancelled
 import app.mulipati.databinding.FragmentCancelledBinding
 import app.mulipati.epoxy.cancelled.CancelledEpoxyController
-import app.mulipati.network.ApiClient
-import app.mulipati.network.Routes
-import app.mulipati.network.responses.trips.UpcomingResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import app.mulipati.ui.trips.upcoming.UpcomingViewModel
+import app.mulipati.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-
+@AndroidEntryPoint
 class CancelledFragment : Fragment() {
 
     private lateinit var cancelledBinding: FragmentCancelledBinding
+
     private lateinit var controller: CancelledEpoxyController
+
+    private val upcomingViewModel: UpcomingViewModel by viewModels()
+
+    private lateinit var upcomingList: ArrayList<Cancelled>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,60 +47,66 @@ class CancelledFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        cancelledBinding.cancelledRecycler.setController(controller)
+        setUpObservers()
 
-        val userId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
-        if (userId != null) {
-            setUpRecycler(userId)
-        }
         cancelledBinding.refreshCancelled.setOnRefreshListener {
-            setUpRecycler(userId!!)
+            setUpObservers()
         }
 
     }
 
-    private fun setUpRecycler(userId: Int){
-
-        cancelledBinding.refreshCancelled.isRefreshing = true
-
-        val apiClient = ApiClient.client!!.create(Routes::class.java)
-        val getUserTrips: Call<UpcomingResponse> = apiClient.cancelledTrips(userId)
-
-        getUserTrips.enqueue(object : Callback<UpcomingResponse?> {
-            override fun onFailure(call: Call<UpcomingResponse?>, t: Throwable) {
-
-                cancelledBinding.errorLayout.visibility = View.VISIBLE
-                cancelledBinding.cancelledRecycler.visibility = View.GONE
-                cancelledBinding.refreshCancelled.isRefreshing = false
-
-            }
-
-            override fun onResponse(call: Call<UpcomingResponse?>, response: Response<UpcomingResponse?>) {
-
-                cancelledBinding.refreshCancelled.isRefreshing = false
-
-                when(response.code()){
-                    200 ->{
-
-                        successLayout()
-                        controller.setData(false, response.body()?.userTrips)
-
-                        val cancelledCount = response.body()?.userTrips?.count()
-                        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
-
-                        tripsPreferences?.putString("cancelledCount", cancelledCount.toString())
-                        tripsPreferences?.apply()
-
-                    }else ->{
-                    cancelledBinding.errorLayout.visibility = View.VISIBLE
-                    cancelledBinding.cancelledRecycler.visibility = View.GONE
-                    Timber.e(response.errorBody()?.string())
+    private fun setUpObservers(){
+        val getId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
+        upcomingViewModel.bookings.observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Resource.Status.LOADING ->{
+                    cancelledBinding.refreshCancelled.isRefreshing = true
                 }
+                Resource.Status.SUCCESS ->{
+                    cancelledBinding.refreshCancelled.isRefreshing = false
+                    try {
+                        if (it.data!!.isNotEmpty()){
+                            upcomingList = ArrayList()
+                            for (book in it.data){
+                                if (book.user_id == getId && book.status == "cancelled"){
+                                    upcomingList.add(Cancelled(book.id, book.start + " - " + book.destination, book.created_at))
+                                }
+                            }
+                            setUpRecycler(upcomingList)
+                        }else{
+                            errorLayout()
+                        }
+                    }catch (e: Exception){
+                        Timber.e(e)
+                    }
+                }
+                Resource.Status.ERROR ->{
+                    cancelledBinding.refreshCancelled.isRefreshing = false
                 }
             }
-
         })
     }
+
+    private fun setUpRecycler(data: List<Cancelled>) {
+
+        controller.setData(true, data)
+
+        if (data.isNotEmpty()){
+            successLayout()
+        }else{
+            errorLayout()
+        }
+
+        cancelledBinding.cancelledRecycler
+                .setController(controller)
+
+    }
+
+    private fun errorLayout(){
+        cancelledBinding.errorLayout.visibility = View.VISIBLE
+        cancelledBinding.cancelledRecycler.visibility = View.GONE
+    }
+
     private fun successLayout(){
         cancelledBinding.errorLayout.visibility = View.GONE
         cancelledBinding.cancelledRecycler.visibility = View.VISIBLE

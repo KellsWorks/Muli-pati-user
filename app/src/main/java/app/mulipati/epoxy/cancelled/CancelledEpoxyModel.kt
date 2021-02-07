@@ -5,18 +5,20 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import app.mulipati.R
-import app.mulipati.network.responses.trips.UserTripX
+import app.mulipati.data.Cancelled
+import app.mulipati.util.getDisplayDateTime
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
 
+@SuppressLint("NonConstantResourceId")
 @EpoxyModelClass(layout = R.layout.model_cancelled)
 abstract class CancelledEpoxyModel : EpoxyModelWithHolder<CancelledEpoxyModel.CancelledEpoxyModelViewHolder>() {
 
     @EpoxyAttribute
-    var data: UserTripX? = null
+    var data: Cancelled? = null
 
     @EpoxyAttribute
     var click: View.OnClickListener? = null
@@ -29,8 +31,8 @@ abstract class CancelledEpoxyModel : EpoxyModelWithHolder<CancelledEpoxyModel.Ca
     override fun bind(holder: CancelledEpoxyModelViewHolder) {
         super.bind(holder)
 
-        holder.title!!.text = data!!.start + " - " + data!!.destination
-        holder.datetime!!.text = data!!.start_time
+        holder.title!!.text = data!!.title
+        holder.datetime!!.text = getDisplayDateTime(data!!.datetime)
 
         holder.menu!!.setOnClickListener(click)
         holder.id = data!!.id

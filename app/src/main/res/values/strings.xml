@@ -109,6 +109,7 @@
     <string name="write_your_message_here">Write your message here</string>
     <string name="contact_amp_support"><![CDATA[Contact & support]]></string>
     <string name="clear_chat">Clear chat</string>
+    <string name="cancel">Cancel</string>
 
 
     <string-array name="districts">

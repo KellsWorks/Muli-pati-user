@@ -7,8 +7,8 @@
         android:title="@string/enter_chat"
         />
     <item
-        android:title="@string/delete"
-        android:icon="@drawable/ic_delete"
+        android:title="@string/cancel"
+        android:icon="@drawable/ic_baseline_cancel"
         android:id="@+id/delete"
         />
 </menu>

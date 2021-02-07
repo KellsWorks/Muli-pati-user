@@ -104,6 +104,12 @@ interface Routes {
             @Field("trip_id")trip_id: Int?
     ): Call<CancelResponse>
 
+    @POST("v1/trips/cancel-trip")
+    @FormUrlEncoded
+    fun deleteTrip(
+            @Field("id")id: Int
+    ): Call<Basic>
+
     @POST("v1/trips/user-cancelled-trips")
     @FormUrlEncoded
     fun cancelledTrips(

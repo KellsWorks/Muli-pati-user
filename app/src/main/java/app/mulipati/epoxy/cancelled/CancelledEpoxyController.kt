@@ -1,14 +1,27 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.epoxy.cancelled
 
+import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.widget.PopupMenu
-import android.widget.Toast
 import app.mulipati.R
-import app.mulipati.network.responses.trips.UserTripX
+import app.mulipati.data.Cancelled
+import app.mulipati.network.ApiClient
+import app.mulipati.network.Routes
+import app.mulipati.network.responses.Basic
 import com.airbnb.epoxy.Typed2EpoxyController
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 import java.lang.reflect.Method
 
-class CancelledEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>() {
-    override fun buildModels(status: Boolean?, cancelled: List<UserTripX>?) {
+
+@SuppressLint("ResourceAsColor")
+class CancelledEpoxyController: Typed2EpoxyController<Boolean?, List<Cancelled>>() {
+    override fun buildModels(status: Boolean?, cancelled: List<Cancelled>?) {
         if (cancelled != null) {
             for (cancel in cancelled){
                 CancelledEpoxyModel_()
@@ -22,8 +35,38 @@ class CancelledEpoxyController: Typed2EpoxyController<Boolean?, List<UserTripX>>
                             when(item.itemId) {
 
                                 R.id.delete -> {
-                                    Toast.makeText(parentView.datetime!!.context, "Deleted!", Toast.LENGTH_SHORT)
-                                        .show()
+                                    val dialog = ProgressDialog(parentView.title?.context)
+                                    dialog.setCancelable(false)
+                                    dialog.setMessage("Cancelling trip...")
+                                    dialog.show()
+
+                                    val api = ApiClient.client!!.create(Routes::class.java)
+                                    val action = api.deleteTrip(parentView.id!!)
+
+                                    action.enqueue(object : Callback<Basic> {
+                                        override fun onFailure(call: Call<Basic>, t: Throwable) {
+                                            Snackbar.make(parentView.title!!.rootView, "T$t", Snackbar.LENGTH_SHORT)
+                                                    .setBackgroundTint(R.color.red)
+                                                    .setTextColor(R.color.white)
+                                                    .show()
+                                            dialog.dismiss()
+                                        }
+
+
+                                        override fun onResponse(call: Call<Basic>, response: Response<Basic>) {
+                                            dialog.dismiss()
+                                            when(response.code()){
+                                                200 ->{
+                                                    Snackbar.make(parentView.title!!.rootView, "Trip deleted successfully", Snackbar.LENGTH_SHORT)
+                                                            .setBackgroundTint(R.color.red)
+                                                            .setTextColor(R.color.white)
+                                                            .show()
+                                                }else->{
+                                                Timber.e(response.message())}
+                                            }
+                                        }
+
+                                    })
                                 }
                             }
                             true

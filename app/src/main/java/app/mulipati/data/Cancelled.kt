@@ -1,3 +1,3 @@
 package app.mulipati.data
 
-data class Cancelled(var title: String, var datetime: String)
+data class Cancelled(var id: Int, var title: String, var datetime: String)
