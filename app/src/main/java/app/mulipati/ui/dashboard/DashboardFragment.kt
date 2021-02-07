@@ -41,6 +41,11 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
 
     private lateinit var tripsList: ArrayList<Trip>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        controller = RecentTripsEpoxyController()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         dashboardBinding = FragmentDashboardBinding.inflate(inflater, container, false)

@@ -13,23 +13,33 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
 import app.mulipati.databinding.FragmentTripBinding
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.trips.BookingResponse
+import app.mulipati.ui.trips.upcoming.UpcomingViewModel
 import app.mulipati.util.Constants
+import app.mulipati.util.Resource
+import app.mulipati.view_models.UsersViewModel
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
-
+@AndroidEntryPoint
 class TripFragment : Fragment() {
 
     private lateinit var tripBinding: FragmentTripBinding
+
+    private val upcomingViewModel: UpcomingViewModel by viewModels()
+
+    private val usersViewModel : UsersViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,18 +57,32 @@ class TripFragment : Fragment() {
 
         val details = context?.getSharedPreferences("trip_details", Context.MODE_PRIVATE)
 
-            Glide
+        val id = details?.getInt("id", 0)
+        val userId = details?.getInt("trip_user", 0)
+        val start = details?.getString("start", "")
+        val destination = details?.getString("destination", "")
+        val pickUpPlace = details?.getString("pick_up_place", "")
+        val fare = details?.getString("passenger_fare", "")
+        val startTime = details?.getString("start_time", "")
+        val passengers = details?.getString("number_of_passengers", "")?.toInt()
+        val carPhoto = details?.getString("car_photo", "")
+
+        Glide
                 .with(tripBinding.tripCarPhoto)
-                .load(Constants.CARS_URL + details?.getString("car_photo", ""))
+                .load(Constants.CARS_URL + carPhoto)
                 .centerCrop()
                 .into(tripBinding.tripCarPhoto)
 
-            tripBinding.tripSeats.text = "Total seats: " + details?.getString("number_of_passengers", "") + " |" + details?.getString("number_of_passengers", "") + " Available"
-            tripBinding.tripStartTime.text = details?.getString("start_time", "")
-            tripBinding.tripFare.text = "MK" + details?.getString("passenger_fare", "")
-            tripBinding.pickUpPlace.text  = details?.getString("pick_up_place", "")
-            tripBinding.tripSummary.text = "This trip is from Blantyre to Zomba. It will start at... to..."
-            tripBinding.tripTitleText.text = details?.getString("start", "") + " - " + details?.getString("destination", "") + " trip"
+            tripBinding.tripStartTime.text = startTime
+            tripBinding.tripFare.text = "MK$fare"
+            tripBinding.pickUpPlace.text  = pickUpPlace
+
+            tripBinding.tripTitleText.text = "$start - $destination trip"
+
+            getTripBookings(id!!, passengers!!)
+            getTripDriver(userId!!)
+
+            tripBinding.tripSummary.text = "This trip is from $start to $destination. Trip duration will vary depending on the driver. The driver will pick you at $pickUpPlace but it's subject to changes thereby you may talk directly to the driver in the trip chat room."
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,6 +102,49 @@ class TripFragment : Fragment() {
                     userId, tripId
             )
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun getTripBookings(id: Int, passengers: Int){
+        val bookingsList = ArrayList<String>()
+        upcomingViewModel.bookings.observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Resource.Status.SUCCESS ->{
+                    if (it.data!!.isNotEmpty()){
+                        for (bookings in it.data){
+                            if (bookings.trip_id == id){
+                                bookingsList.add(bookings.id.toString())
+                            }
+                            val bookingsCount = passengers.minus(bookingsList.count())
+
+                            tripBinding.tripSeats.text = "Total seats: $passengers | $bookingsCount Available"
+                        }
+                    }
+                }
+                Resource.Status.ERROR->{}
+                Resource.Status.LOADING->{}
+            }
+        })
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun getTripDriver(id: Int){
+
+        usersViewModel.users.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    if (it.data!!.isNotEmpty()) {
+                        for (users in it.data) {
+                            if (users.id == id) {
+                                tripBinding.driver.text = users.name
+                            }
+                        }
+                    }
+                }
+                Resource.Status.ERROR->{}
+                Resource.Status.LOADING->{}
+            }
+        })
     }
 
     private fun bookTrip(bookId: Int, tripId: Int){

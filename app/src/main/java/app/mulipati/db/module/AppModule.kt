@@ -5,14 +5,9 @@ import app.mulipati.db.AppDatabase
 import app.mulipati.db.daos.MessagesDao
 import app.mulipati.db.daos.NotificationsDao
 import app.mulipati.db.daos.TripsDao
-import app.mulipati.db.remote.BookingsRemoteDataSource
-import app.mulipati.db.remote.MessagesRemoteDataSource
-import app.mulipati.db.remote.NotificationsRemoteDataSource
-import app.mulipati.db.remote.TripRemoteDataSource
-import app.mulipati.db.repositories.BookingsRepository
-import app.mulipati.db.repositories.MessagesRepository
-import app.mulipati.db.repositories.NotificationsRepository
-import app.mulipati.db.repositories.TripsRepository
+import app.mulipati.db.daos.UsersDao
+import app.mulipati.db.remote.*
+import app.mulipati.db.repositories.*
 import app.mulipati.network.services.MessagesService
 import app.mulipati.network.services.RemoteServices
 import app.mulipati.network.services.TripsService
@@ -128,4 +123,19 @@ object AppModule {
                                        localDataSource: NotificationsDao
     ) =
         NotificationsRepository(remoteDataSource, localDataSource)
+
+    //users
+
+    @Singleton
+    @Provides
+    fun provideUserDao(db: AppDatabase) = db.usersDao()
+
+    @Singleton
+    @Provides
+    fun provideUsersRepository(remoteDataSource: UsersRemoteDataSource,
+                               localDataSource: UsersDao
+    ) =
+            UsersRepository(remoteDataSource, localDataSource)
+
+
 }
