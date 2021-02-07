@@ -6,6 +6,7 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.navigation.findNavController
 import app.mulipati.R
 import app.mulipati.data.chat.Upcoming
@@ -13,7 +14,6 @@ import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.trips.CancelResponse
 import com.airbnb.epoxy.Typed2EpoxyController
-import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,7 +46,7 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
 
                                     R.id.delete -> {
 
-                                        val dialog = ProgressDialog(parentView.title?.context)
+                                        val dialog = ProgressDialog(parentView.title?.context, R.style.CustomAlertDialog)
                                         dialog.setCancelable(false)
                                         dialog.setMessage("Cancelling trip...")
                                         dialog.show()
@@ -56,9 +56,7 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
 
                                         action.enqueue(object : Callback<CancelResponse> {
                                             override fun onFailure(call: Call<CancelResponse>, t: Throwable) {
-                                                Snackbar.make(parentView.title!!.rootView, "$t", Snackbar.LENGTH_SHORT)
-                                                        .setBackgroundTint(R.color.red)
-                                                        .setTextColor(R.color.white)
+                                                Toast.makeText(parentView.title!!.context, "$t", Toast.LENGTH_SHORT)
                                                         .show()
                                                 dialog.dismiss()
                                             }
@@ -67,9 +65,7 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
                                                 dialog.dismiss()
                                                 when(response.code()){
                                                     200 ->{
-                                                        Snackbar.make(parentView.title!!.rootView, "Trip cancelled successfully", Snackbar.LENGTH_SHORT)
-                                                                .setBackgroundTint(R.color.red)
-                                                                .setTextColor(R.color.white)
+                                                        Toast.makeText(parentView.title!!.context, "Trip cancelled successfully", Toast.LENGTH_SHORT)
                                                                 .show()
                                                     }else->{
                                                     Timber.e(response.message())}

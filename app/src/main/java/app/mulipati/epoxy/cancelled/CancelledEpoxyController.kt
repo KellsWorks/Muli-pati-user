@@ -5,6 +5,7 @@ package app.mulipati.epoxy.cancelled
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.widget.PopupMenu
+import android.widget.Toast
 import app.mulipati.R
 import app.mulipati.data.Cancelled
 import app.mulipati.network.ApiClient
@@ -35,7 +36,8 @@ class CancelledEpoxyController: Typed2EpoxyController<Boolean?, List<Cancelled>>
                             when(item.itemId) {
 
                                 R.id.delete -> {
-                                    val dialog = ProgressDialog(parentView.title?.context)
+
+                                    val dialog = ProgressDialog(parentView.title?.context, R.style.CustomAlertDialog)
                                     dialog.setCancelable(false)
                                     dialog.setMessage("Cancelling trip...")
                                     dialog.show()
@@ -45,9 +47,7 @@ class CancelledEpoxyController: Typed2EpoxyController<Boolean?, List<Cancelled>>
 
                                     action.enqueue(object : Callback<Basic> {
                                         override fun onFailure(call: Call<Basic>, t: Throwable) {
-                                            Snackbar.make(parentView.title!!.rootView, "T$t", Snackbar.LENGTH_SHORT)
-                                                    .setBackgroundTint(R.color.red)
-                                                    .setTextColor(R.color.white)
+                                            Toast.makeText(parentView.title!!.context, "$t", Toast.LENGTH_SHORT)
                                                     .show()
                                             dialog.dismiss()
                                         }
@@ -57,9 +57,7 @@ class CancelledEpoxyController: Typed2EpoxyController<Boolean?, List<Cancelled>>
                                             dialog.dismiss()
                                             when(response.code()){
                                                 200 ->{
-                                                    Snackbar.make(parentView.title!!.rootView, "Trip deleted successfully", Snackbar.LENGTH_SHORT)
-                                                            .setBackgroundTint(R.color.red)
-                                                            .setTextColor(R.color.white)
+                                                    Toast.makeText(parentView.title!!.context, "Trip deleted successfully", Toast.LENGTH_SHORT)
                                                             .show()
                                                 }else->{
                                                 Timber.e(response.message())}

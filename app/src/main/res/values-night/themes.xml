@@ -36,6 +36,8 @@
     </style>
 
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">#D81B60</item>
+        <item name="android:windowBackground">@color/black</item>
     </style>
+
 </resources>

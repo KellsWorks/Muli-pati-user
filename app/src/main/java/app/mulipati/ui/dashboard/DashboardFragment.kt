@@ -26,13 +26,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import timber.log.Timber
-import java.lang.IndexOutOfBoundsException
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
-class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, android.widget.SearchView.OnQueryTextListener {
 
     private var dashboardBinding: FragmentDashboardBinding by autoCleared()
 
@@ -73,6 +72,8 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         }else{
             dashboardBinding.pickDate.text = formattedDate
         }
+
+        dashboardBinding.searchView.setOnQueryTextListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -241,4 +242,35 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         }
 
+    private fun filter(models: List<Trip>, query: String): List<Trip> {
+        val lowerCaseQuery = query.toLowerCase(Locale.ROOT)
+        val filteredModelList: MutableList<Trip> = ArrayList()
+        for (model in models) {
+            val text: String = model.destination.toLowerCase(Locale.ROOT)
+            val rank: String = java.lang.String.valueOf(model.id)
+            if (text.contains(lowerCaseQuery) || rank.contains(lowerCaseQuery)) {
+                filteredModelList.add(model)
+            }
+        }
+        return filteredModelList
     }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+
+        val filterModelList: List<Trip> = filter(tripsList, query!!)
+
+        controller.setData(true, filterModelList)
+
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+
+        if (newText == ""){
+            controller.setData(true, tripsList)
+        }
+
+        return true
+    }
+
+}
