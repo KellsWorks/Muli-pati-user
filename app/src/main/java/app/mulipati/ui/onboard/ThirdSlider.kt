@@ -1,6 +1,5 @@
 package app.mulipati.ui.onboard
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import app.mulipati.MainActivity
 import app.mulipati.R
 import app.mulipati.activities.AuthenticationActivity
 import app.mulipati.databinding.FragmentThirdSliderBinding

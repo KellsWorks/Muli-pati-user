@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.mulipati.R
 import app.mulipati.data.chat.Messages
 
-class TripChatAdapter(var arrayList: List<Messages>, toId: Int, fromId: Int, userId: Int) : RecyclerView.Adapter<TripChatAdapter.ViewHolder>() {
+class TripChatAdapter(private var arrayList: List<Messages>, toId: Int, fromId: Int, userId: Int) : RecyclerView.Adapter<TripChatAdapter.ViewHolder>() {
 
     private var messageRight = 1
     private var messageLeft = 0

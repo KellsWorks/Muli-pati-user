@@ -77,18 +77,6 @@ interface Routes {
             @Field("token") token: String?
     ): Call<SendToken?>?
 
-    @POST("v1/trips/user-trips")
-    @FormUrlEncoded
-    fun userTrips(
-            @Field("id") id: Int?
-    ): Call<UpcomingResponse?>?
-
-    @POST("v1/trips/user-bookings")
-    @FormUrlEncoded
-    fun userBookings(
-            @Field("user_id") user_id: Int?
-    ): Call<Bookings?>?
-
     //Book trip
     @POST("v1/trips/book-trip")
     @FormUrlEncoded
@@ -109,12 +97,6 @@ interface Routes {
     fun deleteTrip(
             @Field("id")id: Int
     ): Call<Basic>
-
-    @POST("v1/trips/user-cancelled-trips")
-    @FormUrlEncoded
-    fun cancelledTrips(
-            @Field("id")id: Int?
-    ): Call<UpcomingResponse>
 
     //Messages
     @POST("v1/message/get-messages")

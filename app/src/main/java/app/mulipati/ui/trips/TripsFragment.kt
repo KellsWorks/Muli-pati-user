@@ -1,12 +1,11 @@
 package app.mulipati.ui.trips
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import app.mulipati.R
 import app.mulipati.adapters.TabsAdapter
 import app.mulipati.databinding.FragmentTripsBinding
 

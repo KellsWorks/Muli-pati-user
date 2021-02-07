@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import app.mulipati.db.repositories.TripsRepository
 import app.mulipati.network.responses.Trip
-import app.mulipati.network.responses.trips.UserTrip
 import app.mulipati.util.Resource
 
 class TripsViewModel @ViewModelInject constructor(
@@ -13,8 +12,6 @@ class TripsViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
     val trips: LiveData<Resource<List<Trip>>> = repository.getTrips()
-
-    val userTrips: LiveData<Resource<List<UserTrip>>> = repository.getUserTrips()
 
 
 }

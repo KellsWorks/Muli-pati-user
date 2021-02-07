@@ -10,18 +10,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
-import app.mulipati.R
 import app.mulipati.databinding.FragmentSettingNotificationBinding
 
 
 class SettingNotificationFragment : Fragment() {
 
     private lateinit var settingNotificationBinding: FragmentSettingNotificationBinding
-    private val RECORD_REQUEST_CODE = 101
+    private val requestCode = 101
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,14 +69,14 @@ class SettingNotificationFragment : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_NOTIFICATION_POLICY),
-                RECORD_REQUEST_CODE)
+                requestCode)
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
-            RECORD_REQUEST_CODE -> {
+            this.requestCode -> {
 
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
 

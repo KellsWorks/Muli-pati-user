@@ -2,7 +2,6 @@
     <string name="app_name">Muli pati?</string>
     <string name="skip">Get started</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="find_your_way_around">Find your way around</string>
     <string name="book_rides_from_the_list_of_rides_here_find_your_way_around_town">Book rides from the list of rides here. Find your way around town</string>
     <string name="image">image</string>
@@ -14,16 +13,11 @@
     <string name="sign_in">Sign in</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="phone_number">Phone number</string>
-    <string name="muli_pati">Muli pati?</string>
     <string name="dashboard">Dashboard</string>
     <string name="profile">Profile</string>
-    <string name="no_upcoming_rides">No upcoming rides</string>
-    <string name="get_started">Get started</string>
     <string name="today_10_30_am">Today, 10:30 AM</string>
     <string name="kanjedza_limbe">Kanjedza - Limbe</string>
     <string name="jerome_msapha">Jerome Msapha</string>
-    <string name="price">Price</string>
-    <string name="mk5_000">MK5,000</string>
     <string name="blantyre_lilongwe">Blantyre - Lilongwe</string>
     <string name="_1_february_2020_11_21_am">1 February, 2020 - 11:21 AM</string>
     <string name="your_location_email_address_accounts">Your location, email address, accounts</string>
@@ -33,7 +27,6 @@
     <string name="where_would_you_want_to_go_today">Where would you want to go?</string>
     <string name="search_for_trips">Search for trips by destination...</string>
     <string name="trips_near_you">Trips near you</string>
-    <string name="view_more">View more</string>
     <string name="personal_info">Personal info</string>
     <string name="jerome_msampha">Jerome Msampha</string>
     <string name="upcoming_trips">Upcoming</string>
@@ -43,7 +36,6 @@
     <string name="completed">Completed</string>
     <string name="user_details">User details</string>
     <string name="email_address">Email address</string>
-    <string name="jmsapha_mulipati_com">jmsapha@mulipati.com</string>
     <string name="permanently_delete_this_account">Permanently delete this account</string>
     <string name="account_deactivation">Account deactivation</string>
     <string name="phone_no">+265 999 67 99 75</string>
@@ -53,7 +45,6 @@
     <string name="contact_and_support">Contact and support</string>
     <string name="log_out">Log out</string>
     <string name="app_settings">App settings</string>
-    <string name="contact_support"><![CDATA[Contact & support]]></string>
     <string name="terms_conditions"><![CDATA[Terms & conditions]]></string>
     <string name="recent">RECENT</string>
     <string name="notifications">Notifications</string>
@@ -63,13 +54,11 @@
     <string name="theme">Theme</string>
     <string name="toggle_dark_theme">Toggle dark theme</string>
     <string name="hello_can_we_help_you">Hello can we help you?</string>
-    <string name="well_you_see_l_was_supposed_to">well, you see, l was supposed to...</string>
     <string name="update_your_user_avatar">Update your user avatar</string>
     <string name="reset_password">Reset password</string>
     <string name="enter_your_phone_number_below_we_will_send_you_an_sms_with_a_pin_code_to_confirm_your_identity">Enter your phone number below. We will send you an SMS with a pin code to confirm your identity.</string>
     <string name="re_enter_password">Re-enter Password</string>
     <string name="_12_32_pm">12:32 PM</string>
-    <string name="enter_your_message_here">Enter your message here</string>
     <string name="access_your_location">ACCESS YOUR LOCATION</string>
     <string name="the_golden_rule_of_super_ants_is_location_please_enable_location_to_get_your_services">The golden rule of super ants is location. Please enable location to get your services.</string>
     <string name="do_not_allow">Do not allow</string>
@@ -88,14 +77,11 @@
     <string name="not_registered_yet">Not registered yet?</string>
     <string name="skipper">Skip</string>
     <string name="dummy_date">23 January, 2021</string>
-    <string name="banda_s_trip">Banda\'s trip</string>
     <string name="summary">Summary</string>
     <string name="per_passenger">Per passenger</string>
     <string name="trip_date">TRIP DATE</string>
     <string name="pick_up_place">PICK UP PLACE</string>
     <string name="book_this_trip">Book this trip</string>
-    <string name="trip_chat">Trip chat</string>
-    <string name="delete">Delete</string>
     <string name="enter_chat">Enter chat</string>
     <string name="update_your_personal_details">Update your personal details</string>
     <string name="finish">Finish</string>
@@ -103,7 +89,6 @@
     <string name="records_not_present">Records not present</string>
     <string name="illustration">illustration</string>
     <string name="yesterday">Yesterday</string>
-    <string name="start_typing">Start typing...</string>
     <string name="see_all_2">See All (2)</string>
     <string name="no_records_found">No records found</string>
     <string name="write_your_message_here">Write your message here</string>
@@ -118,18 +103,4 @@
         <item>MZUZU</item>
     </string-array>
 
-    <string-array name="month_names">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
 </resources>

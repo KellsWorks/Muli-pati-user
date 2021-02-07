@@ -10,12 +10,6 @@ class TripsRepository @Inject constructor(
     private val localDataSource: TripsDao
 ) {
 
-    fun getTripsByLocation(location: String) = performGetOperation(
-        databaseQuery = { localDataSource.getTrip(location) },
-        networkCall = { remoteDataSource.getTripsByLocation(location) },
-        saveCallResult = { localDataSource.insertAll(it.trips) }
-    )
-
     fun getTrips() = performGetOperation(
         databaseQuery = { localDataSource.getAllTrips() },
         networkCall = { remoteDataSource.getTrips() },

@@ -3,18 +3,15 @@ package app.mulipati.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import app.mulipati.MainActivity
 import app.mulipati.R
 import app.mulipati.adapters.PagerAdapter
 import app.mulipati.databinding.ActivityOnBoardingBinding
 import app.mulipati.ui.onboard.FirstSlider
 import app.mulipati.ui.onboard.SecondSlider
 import app.mulipati.ui.onboard.ThirdSlider
-import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 
 
 class OnBoarding : AppCompatActivity() {
