@@ -44,6 +44,7 @@
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">#D81B60</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColor">@color/grayish</item>
     </style>
 
 </resources>
