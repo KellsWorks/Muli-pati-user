@@ -67,6 +67,7 @@ class NotificationsFragment : Fragment() {
                             for (notify in it.data){
                                 if (notify.user_id == getId && notify.status == "unmarked"
                                 ) {
+                                    notificationsList.clear()
                                     notificationsList.add(
                                         Notifications(
                                             notify.id, R.drawable.ic_bell_ring, notify.title, notify.content, notify.created_at
@@ -75,6 +76,7 @@ class NotificationsFragment : Fragment() {
 
                                 }
                                 else if(notify.user_id == getId && notify.status == "marked"){
+                                    viewedNotificationsList.clear()
                                     viewedNotificationsList.add(
                                         Notifications(
                                             notify.id, R.drawable.ic_bell_sleep, notify.title, notify.content, notify.created_at
