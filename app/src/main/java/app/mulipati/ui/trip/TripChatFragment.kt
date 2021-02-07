@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.mulipati.R
 import app.mulipati.adapters.TripChatAdapter
@@ -39,6 +40,15 @@ class TripChatFragment : Fragment() {
 
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        tripsChatBinding.tripChatBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,27 +61,31 @@ class TripChatFragment : Fragment() {
         tripsChatBinding.chatTitle.text = chatTitle
 
 
-        val adpater = TripChatAdapter(arrayList, userId!!, chatID!!, userId)
+        val chatAdapter = TripChatAdapter(arrayList, userId!!, chatID!!, userId)
         tripsChatBinding.tripChatRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = adpater
+            adapter = chatAdapter
         }
 
-        loadMessage(arrayList, adpater, userId, chatID)
+        loadMessage(arrayList, chatAdapter, userId, chatID)
 
         tripsChatBinding.refreshChat.setOnRefreshListener {
-            loadMessage(arrayList, adpater, userId, chatID)
+            loadMessage(arrayList, chatAdapter, userId, chatID)
         }
 
-        val lastPosition = adpater.itemCount - 1
+        val lastPosition = chatAdapter.itemCount - 1
 
         fun sendMessage(message: String){
             if (message.isNotEmpty()){
+
                 sendAMessage(userId, message, getCurrentTime(),chatID )
                 arrayList.add(Messages(chatID, message, getCurrentTime(), userId))
-                adpater.notifyDataSetChanged()
+
+                chatAdapter.notifyDataSetChanged()
+
                 tripsChatBinding.senderMessage.setText("")
                 tripsChatBinding.tripChatRecycler.scrollToPosition(lastPosition)
+
             }
         }
 
@@ -142,6 +156,7 @@ class TripChatFragment : Fragment() {
     }
 
     private fun sendAMessage(fromId: Int, message: String, time: String, toId: Int){
+
         val apiClient = ApiClient.client!!.create(Routes::class.java)
         val sendMessage = apiClient.sendMessage(toId, fromId, message, time)
 

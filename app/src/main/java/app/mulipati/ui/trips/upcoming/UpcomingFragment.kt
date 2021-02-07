@@ -11,15 +11,15 @@ import androidx.lifecycle.Observer
 import app.mulipati.data.chat.Upcoming
 import app.mulipati.databinding.FragmentUpcomingBinding
 import app.mulipati.epoxy.upcoming.UpcomingEpoxyController
-import app.mulipati.ui.dashboard.TripsViewModel
 import app.mulipati.util.Resource
+import app.mulipati.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
 class UpcomingFragment : Fragment() {
 
-    private lateinit var upcomingBinding: FragmentUpcomingBinding
+    private var upcomingBinding: FragmentUpcomingBinding by autoCleared()
 
     private val upcomingViewModel: UpcomingViewModel by viewModels()
 
@@ -27,25 +27,19 @@ class UpcomingFragment : Fragment() {
 
     private lateinit var controller: UpcomingEpoxyController
 
-    private val viewModel: TripsViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        upcomingBinding = FragmentUpcomingBinding.inflate(inflater, container, false)
-        upcomingBinding.lifecycleOwner = this
-
-        return upcomingBinding.root
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         controller = UpcomingEpoxyController()
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        upcomingBinding = FragmentUpcomingBinding.inflate(inflater, container, false)
+        upcomingBinding.lifecycleOwner = this
+
+        return upcomingBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,10 +65,12 @@ class UpcomingFragment : Fragment() {
                             upcomingList = ArrayList()
                             for (book in it.data){
                                 if (book.user_id == getId && book.status == "booked"){
-                                    upcomingList.add(Upcoming(book.trip_id,getTripTitle(book.id)!!, book.created_at))
+                                    upcomingList.add(Upcoming(book.trip_id, book.start + " - " + book.destination, book.created_at))
                                 }
                             }
                             setUpRecycler(upcomingList)
+                        }else{
+                            errorLayout()
                         }
                     }catch (e: Exception){
                         Timber.e(e)
@@ -112,35 +108,5 @@ class UpcomingFragment : Fragment() {
         upcomingBinding.upcomingRecycler.visibility = View.GONE
     }
 
-    private fun getTripTitle(id: Int) : String? {
-
-        var title: String? = null
-
-        viewModel.trips.observe(viewLifecycleOwner, Observer {
-
-            when (it.status) {
-                Resource.Status.SUCCESS -> {
-                    try {
-                        for (trips in it.data!!){
-                            if (trips.id == id) {
-                               title = trips.start + " - " + trips.destination
-                            }
-
-                        }
-                    }catch (e: IndexOutOfBoundsException){
-                        Timber.e(e)
-                    }
-                }
-
-                Resource.Status.ERROR ->
-                    Timber.e("Error")
-
-                Resource.Status.LOADING -> {
-
-                }
-            }
-        })
-        return title
-    }
 
 }

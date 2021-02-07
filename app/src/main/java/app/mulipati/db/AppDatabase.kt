@@ -16,7 +16,7 @@ import app.mulipati.network.responses.trips.UserBooking
 import app.mulipati.network.responses.trips.UserTrip
 import app.mulipati.util.Constants
 
-@Database(entities = [Trip::class, UserTrip::class, Messages::class, Notification::class, UserBooking::class], version = 2, exportSchema = true)
+@Database(entities = [Trip::class, UserTrip::class, Messages::class, Notification::class, UserBooking::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

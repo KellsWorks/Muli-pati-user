@@ -42,10 +42,7 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var tripsList: ArrayList<Trip>
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         dashboardBinding = FragmentDashboardBinding.inflate(inflater, container, false)
         dashboardBinding.lifecycleOwner = this
@@ -95,7 +92,7 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         datePickerDialog.show()
     }
 
-
+    @SuppressLint("SetTextI18n")
     private fun setupObservers() {
         val location = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("location", "")
 
@@ -122,6 +119,8 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                                }
 
                            }
+                           val tripsCount = tripsList.count()
+                           dashboardBinding.tripsMore.text = "($tripsCount)"
                            setUpRecycler(tripsList)
                    }catch (e: IndexOutOfBoundsException){
                        Timber.e(e)
@@ -137,7 +136,6 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
         })
     }
-
 
     private fun bindLocation() {
 

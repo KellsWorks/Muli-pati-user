@@ -13,6 +13,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
 
+@SuppressLint("NonConstantResourceId")
 @EpoxyModelClass(layout = R.layout.model_upcoming)
 abstract class UpcomingEpoxyModel : EpoxyModelWithHolder<UpcomingEpoxyModel.CancelledEpoxyModelViewHolder>() {
 

@@ -43,8 +43,6 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
 
                                     R.id.delete -> {
 
-
-
                                         val dialog = ProgressDialog(parentView.title?.context)
                                         dialog.setCancelable(false)
                                         dialog.setMessage("Cancelling trip...")
