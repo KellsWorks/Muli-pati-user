@@ -163,7 +163,7 @@
             android:queryBackground="@android:color/transparent"
             android:id="@+id/searchView"
             android:queryHint="@string/search_for_trips"
-            android:theme="@style/SearchView"
+            android:theme="@style/Theme.MuliPati"
             android:iconifiedByDefault="false"
             android:searchIcon="@null"
             android:layout_marginStart="10dp"

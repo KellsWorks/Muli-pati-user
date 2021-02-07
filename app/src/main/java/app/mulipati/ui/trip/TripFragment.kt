@@ -112,7 +112,7 @@ class TripFragment : Fragment() {
                 Resource.Status.SUCCESS ->{
                     if (it.data!!.isNotEmpty()){
                         for (bookings in it.data){
-                            if (bookings.trip_id == id){
+                            if (bookings.trip_id == id && bookings.status == "booked"){
                                 bookingsList.add(bookings.id.toString())
                             }
                             val bookingsCount = passengers.minus(bookingsList.count())

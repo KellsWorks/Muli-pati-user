@@ -28,7 +28,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.OnBoarding" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

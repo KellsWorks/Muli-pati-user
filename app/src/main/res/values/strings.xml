@@ -31,7 +31,7 @@
     <string name="_0">0</string>
     <string name="dots">dots</string>
     <string name="where_would_you_want_to_go_today">Where would you want to go?</string>
-    <string name="search_for_trips">Search for trips...</string>
+    <string name="search_for_trips">Search for trips by destination...</string>
     <string name="trips_near_you">Trips near you</string>
     <string name="view_more">View more</string>
     <string name="personal_info">Personal info</string>

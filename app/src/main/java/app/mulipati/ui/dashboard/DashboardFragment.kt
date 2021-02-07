@@ -44,7 +44,9 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         controller = RecentTripsEpoxyController()
+        tripsList = ArrayList()
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -107,12 +109,11 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                    try {
-                           tripsList = ArrayList()
                            for (trips in it.data!!){
                                if (location != null) {
                                    if (trips.location.toUpperCase(Locale.ROOT) == location
                                    ) {
-
+                                       tripsList.clear()
                                        tripsList.add(
                                            Trip(
                                                trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
@@ -162,22 +163,26 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
 
 
         dashboardBinding.districtSelect.setSelection(location)
-        dashboardBinding.districtSelect.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
+        try {
+            dashboardBinding.districtSelect.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
 
-                override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View,
-                    position: Int,
-                    id: Long
-                ) {
-                    updateLocation(dashboardBinding.districtSelect.selectedItem as String)
-                }
+                        override fun onItemSelected(
+                                parent: AdapterView<*>,
+                                view: View,
+                                position: Int,
+                                id: Long
+                        ) {
+                            updateLocation(dashboardBinding.districtSelect.selectedItem as String)
+                        }
 
-                override fun onNothingSelected(parent: AdapterView<*>) {
+                        override fun onNothingSelected(parent: AdapterView<*>) {
 
-                }
-            }
+                        }
+                    }
+        }catch (e: IllegalArgumentException){
+            Timber.e(e)
+        }
     }
 
     private fun setUpRecycler(data: List<Trip>) {
