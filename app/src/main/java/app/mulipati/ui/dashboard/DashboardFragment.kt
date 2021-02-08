@@ -105,30 +105,32 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
         val location = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("location", "")
 
         viewModel.trips.observe(viewLifecycleOwner, Observer {
-
+            tripsList.clear()
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                    try {
-                           for (trips in it.data!!){
-                               if (location != null) {
-                                   if (trips.location.toUpperCase(Locale.ROOT) == location
-                                   ) {
-                                       tripsList.clear()
-                                       tripsList.add(
-                                           Trip(
-                                               trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
-                                               trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, getDisplayDateTimeX(trips.start_time), trips.status,
-                                               getDisplayDateTime(trips.updated_at), trips.user_id
+                           if(it.data!!.isNotEmpty()){
+                               for (trips in it.data){
+                                   if (location != null) {
+                                       if (trips.location.toUpperCase(Locale.ROOT) == location
+                                       ) {
+                                           tripsList.add(
+                                                   Trip(
+                                                           trips.car_photo, trips.car_type, trips.created_at, trips.destination, trips.end_time, trips.id, trips.location,
+                                                           trips.number_of_passengers, trips.passenger_fare, trips.pick_up_place, trips.start, getDisplayDateTimeX(trips.start_time), trips.status,
+                                                           getDisplayDateTime(trips.updated_at), trips.user_id
+                                                   )
                                            )
-                                       )
-
+                                       }
                                    }
-                               }
 
+                               }
+                               setUpRecycler(tripsList)
+                               val tripsCount = tripsList.count()
+                               dashboardBinding.tripsMore.text = "($tripsCount)"
                            }
-                           val tripsCount = tripsList.count()
-                           dashboardBinding.tripsMore.text = "($tripsCount)"
-                           setUpRecycler(tripsList)
+
+
                    }catch (e: IndexOutOfBoundsException){
                        Timber.e(e)
                    }
@@ -201,8 +203,7 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
         controller = RecentTripsEpoxyController()
         controller.setData(true, data)
 
-        dashboardBinding.recentTripsRecycler
-            .setController(controller)
+        dashboardBinding.recentTripsRecycler.setController(controller)
 
     }
 

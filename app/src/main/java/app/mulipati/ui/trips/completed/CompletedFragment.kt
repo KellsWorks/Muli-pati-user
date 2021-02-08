@@ -60,6 +60,7 @@ class CompletedFragment : Fragment() {
     private fun setUpObservers(){
         val getId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
         upcomingViewModel.bookings.observe(viewLifecycleOwner, Observer {
+            completedList.clear()
             when(it.status){
                 Resource.Status.LOADING ->{
                     completedBinding.refreshCancelled.isRefreshing = true

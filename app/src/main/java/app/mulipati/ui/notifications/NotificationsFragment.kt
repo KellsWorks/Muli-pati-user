@@ -2,19 +2,19 @@ package app.mulipati.ui.notifications
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.mulipati.R
+import app.mulipati.data.Notifications
 import app.mulipati.databinding.FragmentNotificationsBinding
 import app.mulipati.epoxy.notification.NotificationsEpoxyController
 import app.mulipati.util.Resource
 import app.mulipati.util.autoCleared
-import app.mulipati.data.Notifications
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -31,8 +31,13 @@ class NotificationsFragment : Fragment() {
 
     private lateinit var viewedNotificationsList: ArrayList<Notifications>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        notificationsList = ArrayList()
+        viewedNotificationsList = ArrayList()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         notificationsBinding = FragmentNotificationsBinding.inflate(inflater, container, false)
         notificationsBinding.lifecycleOwner = this
@@ -54,20 +59,18 @@ class NotificationsFragment : Fragment() {
         setupObservers()
     }
 
-
     private fun setupObservers() {
         val getId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
         notificationsViewModel.notications.observe(viewLifecycleOwner, Observer {
+            notificationsList.clear()
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     try {
                         if (it.data!!.isNotEmpty() ){
-                            notificationsList = ArrayList()
-                            viewedNotificationsList = ArrayList()
+
                             for (notify in it.data){
                                 if (notify.user_id == getId && notify.status == "unmarked"
                                 ) {
-                                    notificationsList.clear()
                                     notificationsList.add(
                                         Notifications(
                                             notify.id, R.drawable.ic_bell_ring, notify.title, notify.content, notify.created_at

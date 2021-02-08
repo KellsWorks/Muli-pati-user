@@ -21,6 +21,10 @@ interface TripsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(trips: List<Trip>)
 
+    @Query("DELETE FROM trips")
+    suspend fun deleteTrips()
+
+
     @Query("SELECT * FROM user_trips")
     fun getUserTrips() : LiveData<List<UserTrip>>
 

@@ -42,6 +42,8 @@ class CancelledFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         controller = CancelledEpoxyController()
+        upcomingList = ArrayList()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,6 +60,7 @@ class CancelledFragment : Fragment() {
     private fun setUpObservers(){
         val getId = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
         upcomingViewModel.bookings.observe(viewLifecycleOwner, Observer {
+            upcomingList.clear()
             when(it.status){
                 Resource.Status.LOADING ->{
                     cancelledBinding.refreshCancelled.isRefreshing = true
@@ -66,7 +69,6 @@ class CancelledFragment : Fragment() {
                     cancelledBinding.refreshCancelled.isRefreshing = false
                     try {
                         if (it.data!!.isNotEmpty()){
-                            upcomingList = ArrayList()
                             for (book in it.data){
                                 if (book.user_id == getId && book.status == "cancelled"){
                                     upcomingList.add(Cancelled(book.id, book.start + " - " + book.destination, book.created_at))

@@ -13,13 +13,19 @@ class TripsRepository @Inject constructor(
     fun getTrips() = performGetOperation(
         databaseQuery = { localDataSource.getAllTrips() },
         networkCall = { remoteDataSource.getTrips() },
-        saveCallResult = { localDataSource.insertAll(it.trips) }
+        saveCallResult = {
+            localDataSource.deleteTrips()
+            localDataSource.insertAll(it.trips)
+        }
     )
 
     fun getUserTrips() = performGetOperation(
 
             databaseQuery = { localDataSource.getUserTrips() },
             networkCall = { remoteDataSource.getUserTrips()},
-            saveCallResult = { localDataSource.insertUserTrips(it.userTrips) }
+            saveCallResult = {
+
+                localDataSource.insertUserTrips(it.userTrips)
+            }
     )
 }
