@@ -10,9 +10,7 @@ import app.mulipati.network.responses.account.Delete
 import app.mulipati.network.responses.chats.MessageSent
 import app.mulipati.network.responses.chats.MessagesResponse
 import app.mulipati.network.responses.trips.BookingResponse
-import app.mulipati.network.responses.trips.Bookings
 import app.mulipati.network.responses.trips.CancelResponse
-import app.mulipati.network.responses.trips.UpcomingResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

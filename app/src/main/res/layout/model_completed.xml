@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:padding="5dp"
@@ -35,21 +36,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_more_vert"
-                    android:layout_alignParentRight="true"
                     android:layout_margin="3dp"
                     android:id="@+id/completedMenu"
                     android:layout_alignParentEnd="true"
                     android:contentDescription="@string/image" />
             </RelativeLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@drawable/mazda_demio"
-                android:background="@drawable/rectangle_stroked"
-                android:layout_margin="3dp"
-                android:padding="2dp"
-                android:id="@+id/completedImage"
-                android:contentDescription="@string/image" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,9 +49,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
                     android:orientation="vertical"
-                    android:layout_alignParentStart="true">
+                    android:layout_alignParentStart="true"
+                    tools:ignore="RelativeOverlap">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -72,7 +64,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
                         android:layout_marginBottom="3dp"
                         android:layout_marginStart="3dp">
 
@@ -80,6 +71,8 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:src="@drawable/avatar04"
+                            app:civ_border_color="@color/red"
+                            app:civ_border_width="1dp"
                             android:id="@+id/completedDriverIcon"
                             />
                         <TextView
@@ -89,14 +82,12 @@
                             android:textSize="12sp"
                             android:layout_gravity="center"
                             android:id="@+id/completedDriverName"
-                            android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp" />
                     </LinearLayout>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_margin="10dp"
                     android:src="@drawable/ic_checkbox_multiple_marked_circle"
                     android:layout_alignParentEnd="true"

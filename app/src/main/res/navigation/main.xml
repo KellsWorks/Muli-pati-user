@@ -40,9 +40,6 @@
             android:id="@+id/action_profileFragment_to_termsFragment"
             app:destination="@id/termsFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_editFragment"
-            app:destination="@id/editFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_editImageFragment2"
             app:destination="@id/editImageFragment2" />
     </fragment>
@@ -92,10 +89,6 @@
         android:id="@+id/termsFragment"
         android:name="app.mulipati.ui.terms.TermsFragment"
         android:label="TermsFragment" />
-    <fragment
-        android:id="@+id/editFragment"
-        android:name="app.mulipati.ui.profile.edit.EditFragment"
-        android:label="EditFragment" />
     <fragment
         android:id="@+id/editImageFragment2"
         android:name="app.mulipati.ui.profile.edit.EditImageFragment"

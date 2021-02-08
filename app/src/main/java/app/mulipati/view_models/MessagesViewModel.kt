@@ -1,4 +1,4 @@
-package app.mulipati
+package app.mulipati.view_models
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel

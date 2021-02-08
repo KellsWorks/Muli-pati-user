@@ -31,20 +31,5 @@ class CompletedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val completed = ArrayList<Completed>()
-
-        completed.add(Completed("Today, 10:20 AM", R.drawable.mazda_demio, "Blantyre - Zomba", R.drawable.avatar04, "Jerome Msapha"))
-        completed.add(Completed("Yesterday, 19:10 AM", R.drawable.mazda_demio, "Blantyre - Kanjedza", R.drawable.avatar04, "Jerome Msapha"))
-
-        controller = CompletedEpoxyController()
-        controller.setData(true, completed)
-
-        completedBinding.completedRecycler.setController(controller)
-
-        val completedCount = completed.count()
-        val tripsPreferences = context?.getSharedPreferences("trips_count", Context.MODE_PRIVATE)?.edit()
-
-        tripsPreferences?.putString("completedCount", completedCount.toString())
-        tripsPreferences?.apply()
     }
 }

@@ -1,16 +1,19 @@
 package app.mulipati.epoxy.completed
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import app.mulipati.R
 import app.mulipati.data.Completed
+import app.mulipati.util.getDisplayDateTime
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 
 
+@SuppressLint("NonConstantResourceId")
 @EpoxyModelClass(layout = R.layout.model_completed)
 abstract class CompletedEpoxyModel : EpoxyModelWithHolder<CompletedEpoxyModel.CompletedEpoxyModelViewHolder>() {
 
@@ -27,11 +30,9 @@ abstract class CompletedEpoxyModel : EpoxyModelWithHolder<CompletedEpoxyModel.Co
     override fun bind(holder: CompletedEpoxyModelViewHolder) {
         super.bind(holder)
 
-        holder.datetime!!.text = data!!.datetime
-        holder.image!!.setImageResource(data!!.image)
-        holder.route!!.text = data!!.route
-        holder.driverIcon!!.setImageResource(data!!.drivericon)
-        holder.driverName!!.text = data!!.drivername
+        holder.datetime!!.text = getDisplayDateTime(data!!.datetime)
+        holder.route!!.text = data!!.title
+        holder.driverName!!.text = data!!.driverName
 
         holder.menu!!.setOnClickListener(click)
     }
@@ -43,9 +44,7 @@ abstract class CompletedEpoxyModel : EpoxyModelWithHolder<CompletedEpoxyModel.Co
     class CompletedEpoxyModelViewHolder : EpoxyHolder() {
 
         var datetime: TextView? = null
-        var image: ImageView? = null
         var route: TextView? = null
-        var driverIcon: de.hdodenhof.circleimageview.CircleImageView? = null
         var driverName: TextView? = null
 
 
@@ -54,9 +53,7 @@ abstract class CompletedEpoxyModel : EpoxyModelWithHolder<CompletedEpoxyModel.Co
         override fun bindView(itemView: View) {
 
             datetime = itemView.findViewById(R.id.completedTime)
-            image = itemView.findViewById(R.id.completedImage)
             route = itemView.findViewById(R.id.completedRoute)
-            driverIcon = itemView.findViewById(R.id.completedDriverIcon)
             driverName = itemView.findViewById(R.id.completedDriverName)
 
             menu = itemView.findViewById(R.id.completedMenu)
