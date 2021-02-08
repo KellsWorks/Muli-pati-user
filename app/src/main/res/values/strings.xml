@@ -95,6 +95,7 @@
     <string name="contact_amp_support"><![CDATA[Contact & support]]></string>
     <string name="clear_chat">Clear chat</string>
     <string name="cancel">Cancel</string>
+    <string name="allow_app_to_use_your_location">Allow app to use your location</string>
 
 
     <string-array name="districts">

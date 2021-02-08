@@ -12,10 +12,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="28dp"
             android:id="@+id/settingsBack"
             android:src="@drawable/ic_arrow_back"
@@ -25,10 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="67dp"
-            android:layout_marginLeft="67dp"
             android:layout_marginTop="18dp"
             android:text="@string/app_settings"
             android:textSize="30sp"
@@ -69,6 +65,7 @@
                 android:text="@string/allow_phone_to_receive_notifications"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:checked="true"
                 android:id="@+id/toggleNotifications"
                 />
 
@@ -101,6 +98,37 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/toggleTheme"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_map_marker"
+                    android:layout_margin="10dp"
+                    app:tint="#969696"
+                    android:contentDescription="@string/icon" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/allow_app_to_use_your_location"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/toggleLocation"
                 />
         </LinearLayout>
     </RelativeLayout>

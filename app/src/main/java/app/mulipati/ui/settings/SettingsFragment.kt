@@ -41,7 +41,7 @@ class SettingsFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        settingsBinding.toggleNotifications.setOnClickListener {
+        settingsBinding.toggleLocation.setOnClickListener {
             findNavController().navigate(R.id.action_settingsFragment_to_settingNotificationFragment)
         }
     }
@@ -53,6 +53,9 @@ class SettingsFragment : Fragment() {
         val permission = ContextCompat.checkSelfPermission(requireActivity(),
             Manifest.permission.ACCESS_NOTIFICATION_POLICY)
 
+        val location = ContextCompat.checkSelfPermission(requireActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+
         if (permission == PackageManager.PERMISSION_GRANTED) {
             settingsBinding.toggleNotifications.isActivated = true
             settingsBinding.toggleNotifications.isChecked = true
@@ -62,6 +65,11 @@ class SettingsFragment : Fragment() {
                 settingsBinding.toggleNotifications.isActivated = true
                 settingsBinding.toggleNotifications.isChecked = true
             }
+        }
+
+        if(location == PackageManager.PERMISSION_GRANTED){
+            settingsBinding.toggleLocation.isActivated = true
+            settingsBinding.toggleLocation.isChecked = true
         }
 
         val nightModeFlags = requireContext().resources.configuration.uiMode and

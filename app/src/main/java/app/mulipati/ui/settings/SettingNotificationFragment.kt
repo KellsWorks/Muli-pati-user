@@ -4,16 +4,16 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.mulipati.databinding.FragmentSettingNotificationBinding
+import timber.log.Timber
 
 
 class SettingNotificationFragment : Fragment() {
@@ -45,7 +45,7 @@ class SettingNotificationFragment : Fragment() {
 
         val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ContextCompat.checkSelfPermission(requireActivity(),
-                Manifest.permission.ACCESS_NOTIFICATION_POLICY)
+                Manifest.permission.ACCESS_FINE_LOCATION)
         } else {
             TODO("VERSION.SDK_INT < M")
         }
@@ -55,6 +55,7 @@ class SettingNotificationFragment : Fragment() {
             if (permission != PackageManager.PERMISSION_GRANTED) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestNotificationsPermissions()
+                    findNavController().navigateUp()
                 }
             }
             else{
@@ -68,21 +69,20 @@ class SettingNotificationFragment : Fragment() {
     private fun requestNotificationsPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_NOTIFICATION_POLICY),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 requestCode)
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             this.requestCode -> {
 
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
 
-                    Log.i("TAG", "Permission has been denied by user")
+                    Timber.i("Permission has been denied by user")
                 } else {
-                    Log.i("TAG", "Permission has been granted by user")
+                    Timber.i("Permission has been granted by user")
                 }
             }
         }
