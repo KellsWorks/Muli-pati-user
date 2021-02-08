@@ -43,10 +43,7 @@ class TripFragment : Fragment() {
 
     private val bookingsList = ArrayList<String>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         tripBinding = FragmentTripBinding.inflate(inflater, container, false)
         tripBinding.lifecycleOwner = this

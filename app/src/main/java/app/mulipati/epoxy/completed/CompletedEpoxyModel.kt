@@ -34,6 +34,8 @@ abstract class CompletedEpoxyModel : EpoxyModelWithHolder<CompletedEpoxyModel.Co
         holder.route!!.text = data!!.title
         holder.driverName!!.text = data!!.driverName
 
+        holder.id = data!!.id
+
         holder.menu!!.setOnClickListener(click)
     }
 
@@ -47,6 +49,7 @@ abstract class CompletedEpoxyModel : EpoxyModelWithHolder<CompletedEpoxyModel.Co
         var route: TextView? = null
         var driverName: TextView? = null
 
+        var id: Int? = null
 
         var menu: ImageView? = null
 
