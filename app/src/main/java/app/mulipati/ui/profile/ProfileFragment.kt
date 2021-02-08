@@ -2,17 +2,21 @@
 
 package app.mulipati.ui.profile
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.telephony.PhoneNumberUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -27,10 +31,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var profileBinding: FragmentProfileBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         profileBinding = FragmentProfileBinding.inflate(inflater
             , container, false)
@@ -39,24 +40,35 @@ class ProfileFragment : Fragment() {
         return profileBinding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         bindUser()
     }
 
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun bindUser(){
 
         val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
 
         profileBinding.username.text = userPreferences?.getString("name", "")
-        profileBinding.userNumber.text = userPreferences?.getString("phone", "")
+
+        val phoneUtil = PhoneNumberUtils.formatNumber(userPreferences?.getString("phone", ""), "MW")
+        val phone =removeFirstChar(phoneUtil)
+
+        profileBinding.userNumber.text = "+265 $phone"
 
         Glide
             .with(requireContext())
             .load(Constants.PROFILE_URL+userPreferences?.getString("photo", ""))
             .centerCrop()
             .into(profileBinding.userAvatar)
+    }
+
+    private fun removeFirstChar(s: String): String? {
+        return s.substring(1)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -9,6 +9,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -86,11 +87,11 @@ class PersonalFragment : Fragment() {
             personalBinding.personalEmail.text = userPreferences.getString("email", "")
         }
 
-//        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-//        val date = LocalDate.parse("31-12-2018", formatter)
-//
+        val phoneUtil = PhoneNumberUtils.formatNumber(userPreferences.getString("phone", ""), "MW")
+        val phone =removeFirstChar(phoneUtil)
 
-        personalBinding.personalPhone.text = userPreferences.getString("phone", "")
+        personalBinding.personalPhone.text = "+265 $phone"
+
         personalBinding.membership.text = "Member since: " + userPreferences.getString("membership", "")
         personalBinding.personalLocation.text = userPreferences.getString("location", "") + ", Malawi"
 
@@ -99,6 +100,10 @@ class PersonalFragment : Fragment() {
                 .load(Constants.PROFILE_URL+ userPreferences.getString("photo", ""))
                 .centerCrop()
                 .into(personalBinding.personalIcon)
+    }
+
+    private fun removeFirstChar(s: String): String? {
+        return s.substring(1)
     }
 
     private fun bindCounts(){
