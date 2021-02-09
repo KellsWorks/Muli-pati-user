@@ -114,13 +114,13 @@
     <string name="user_app">User app</string>
     <string name="google_playstore">Google PlayStore</string>
     <string name="driver_app">Driver app</string>
-    <string name="google_playstore">Google PlayStore</string>
 
 
     <string-array name="districts">
         <item>BLANTYRE</item>
         <item>LILONGWE</item>
         <item>MZUZU</item>
+        <item>ZOMBA</item>
     </string-array>
 
 </resources>
