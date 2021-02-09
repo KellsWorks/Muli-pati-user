@@ -3,6 +3,7 @@
 package app.mulipati
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
             BackgroundServices().sendTokenToServer(instanceIdResult.token, 1)
         }
+
+        Toast.makeText(this, "This is a beta build, bugs may occur", Toast.LENGTH_SHORT).show()
 
     }
 
