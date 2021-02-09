@@ -21,7 +21,6 @@ import app.mulipati.databinding.FragmentTripBinding
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.trips.BookingResponse
-import app.mulipati.ui.trips.upcoming.UpcomingViewModel
 import app.mulipati.util.Constants
 import app.mulipati.util.Resource
 import app.mulipati.view_models.UsersViewModel
@@ -37,11 +36,7 @@ class TripFragment : Fragment() {
 
     private lateinit var tripBinding: FragmentTripBinding
 
-    private val upcomingViewModel: UpcomingViewModel by viewModels()
-
     private val usersViewModel : UsersViewModel by viewModels()
-
-    private val bookingsList = ArrayList<String>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -78,9 +73,14 @@ class TripFragment : Fragment() {
 
             tripBinding.tripTitleText.text = "$start - $destination trip"
 
-            getTripBookings(id!!, passengers!!)
+
             getTripDriver(userId!!)
 
+            tripBinding.bookTrip.setOnClickListener{
+                bookTrip(userId, id!!)
+            }
+
+           tripBinding.tripSeats.text = "Total seats: $passengers"
 
             tripBinding.tripSummary.text = "This trip is from $start to $destination. Trip duration will vary depending on the driver. The driver will pick you at $pickUpPlace but it's subject to changes thereby you may talk directly to the driver in the trip chat room."
     }
@@ -88,55 +88,24 @@ class TripFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindTripDetails()
-
-
         tripBinding.tripBack.setOnClickListener {
             findNavController().navigate(R.id.action_tripFragment_to_dashboardFragment)
         }
 
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun getTripBookings(id: Int, passengers: Int){
-
-        upcomingViewModel.bookings.observe(viewLifecycleOwner, Observer {
-            when(it.status){
-                Resource.Status.SUCCESS ->{
-                    if (it.data!!.isNotEmpty()){
-                        for (bookings in it.data){
-                            if (bookings.trip_id == id && bookings.status == "booked"){
-                                bookingsList.clear()
-                                bookingsList.add(bookings.id.toString())
-                            }
-                            val bookingsCount = passengers.minus(bookingsList.count())
-
-                            if (bookingsCount.toString().isEmpty()){
-                                tripBinding.tripSeats.text = "Total seats: $passengers | $passengers Available"
-                            }else{
-                                tripBinding.tripSeats.text = "Total seats: $passengers | $bookingsCount Available"
-                            }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
 
-                            val tripId = context?.getSharedPreferences("trip_details", Context.MODE_PRIVATE)!!.getInt("id", 0)
-                            val userIdX = context?.getSharedPreferences("user", Context.MODE_PRIVATE)!!.getInt("id", 0)
+        bindTripDetails()
 
-                            tripBinding.bookTrip.setOnClickListener {
-                                if (passengers == bookingsList.count()){
-                                    Toast.makeText(requireContext(), "Maximum number of passengers for this trip has been reached", Toast.LENGTH_SHORT)
-                                            .show()
-                                }else{
-                                    bookTrip(userIdX, tripId)
-                                }
-                            }
-                        }
-                    }
-                }
-                Resource.Status.ERROR->{}
-                Resource.Status.LOADING->{}
-            }
-        })
+
+
+
     }
+
+
 
     @SuppressLint("SetTextI18n")
     private fun getTripDriver(id: Int){

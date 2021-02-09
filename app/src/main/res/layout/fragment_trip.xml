@@ -11,275 +11,275 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:src="@drawable/mazda_demio"
-            android:id="@+id/tripCarPhoto"
-            />
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/mazda_demio"
+                android:id="@+id/tripCarPhoto"
+                />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="20dp"
-            android:id="@+id/tripBack"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="@string/icon" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="20dp"
+                android:id="@+id/tripBack"
+                android:src="@drawable/ic_arrow_back"
+                android:contentDescription="@string/icon" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:textColor="#969696"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="14dp"
-            android:id="@+id/tripTitleText"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textColor="#969696"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="14dp"
+                android:id="@+id/tripTitleText"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="250dp"
-            >
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="250dp"
                 >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/jerome_msampha"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:id="@+id/driver"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="5dp"
+                            >
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                />
+                            <RatingBar
+                                android:id="@+id/rating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="?android:attr/ratingBarStyleSmall"
+                                android:numStars="5"
+                                android:layout_marginStart="5dp"
+                                android:stepSize="0.1"
+                                android:layout_gravity="center"
+                                android:isIndicator="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="vertical"
+                        tools:ignore="RelativeOverlap">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_marginTop="10dp"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:id="@+id/tripFare"
+                            android:layout_marginEnd="5dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/per_passenger"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#ececec"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    />
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/jerome_msampha"
+                        android:text="@string/trip_date"
+                        android:layout_marginStart="10dp"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:id="@+id/driver"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
                         />
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="5dp"
-                        >
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="UseCompoundDrawables">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_calendar_clock"
+                            android:layout_marginTop="5dp"
+                            android:contentDescription="@string/icon" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            />
-                        <RatingBar
-                            android:id="@+id/rating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="?android:attr/ratingBarStyleSmall"
-                            android:numStars="5"
-                            android:layout_marginStart="5dp"
-                            android:stepSize="0.1"
                             android:layout_gravity="center"
-                            android:isIndicator="true" />
+                            android:layout_marginStart="10dp"
+                            android:id="@+id/tripStartTime"
+                            />
                     </LinearLayout>
+
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#ececec"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    />
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:orientation="vertical"
-                    tools:ignore="RelativeOverlap">
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
-                        android:layout_marginTop="10dp"
+                        android:text="@string/pick_up_place"
+                        android:layout_marginStart="10dp"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:id="@+id/tripFare"
-                        android:layout_marginEnd="5dp"
                         />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="UseCompoundDrawables">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_map_marker"
+                            android:layout_marginTop="5dp"
+                            android:contentDescription="@string/icon" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/pickUpPlace"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables,UselessParent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_seatbelt"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+
+                            android:contentDescription="@string/icon" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/tripSeats"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginBottom="10dp"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/per_passenger"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:textSize="13sp"
+                        android:text="@string/summary"
+                        android:layout_marginStart="10dp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         />
-                </LinearLayout>
-            </RelativeLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ececec"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/trip_date"
-                    android:layout_marginStart="10dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    tools:ignore="UseCompoundDrawables">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_calendar_clock"
-                        android:layout_marginTop="5dp"
-                        android:contentDescription="@string/icon" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:text=""
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:id="@+id/tripStartTime"
+                        android:id="@+id/tripSummary"
                         />
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ececec"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pick_up_place"
-                    android:layout_marginStart="10dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
-                <LinearLayout
+                <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    tools:ignore="UseCompoundDrawables">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_map_marker"
-                        android:layout_marginTop="5dp"
-                        android:contentDescription="@string/icon" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:id="@+id/pickUpPlace"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables,UselessParent">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_seatbelt"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-
-                        android:contentDescription="@string/icon" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:id="@+id/tripSeats"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginBottom="10dp"
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/summary"
-                    android:layout_marginStart="10dp"
-                    android:textSize="18sp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button"
+                    android:text="@string/book_this_trip"
+                    android:id="@+id/bookTrip"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
                     android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text=""
-                    android:id="@+id/tripSummary"
+                    android:textSize="18sp"
                     />
             </LinearLayout>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/button"
-                android:text="@string/book_this_trip"
-                android:id="@+id/bookTrip"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="40dp"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                />
-        </LinearLayout>
 
         </RelativeLayout>
     </ScrollView>

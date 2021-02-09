@@ -5,8 +5,13 @@ package app.mulipati.ui.auth
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.os.*
-import android.view.*
+import android.os.Build
+import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
@@ -17,7 +22,10 @@ import app.mulipati.data.User
 import app.mulipati.databinding.FragmentLoginBinding
 import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
 class LoginFragment : Fragment() {
 
@@ -134,6 +142,9 @@ class LoginFragment : Fragment() {
                             )
 
                     dialog.dismiss()
+                }else{
+                    dialog.dismiss()
+                    Timber.e(response.errorBody()?.string())
                 }
 
 
