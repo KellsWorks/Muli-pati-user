@@ -73,102 +73,161 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/tabLike"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/dashboardBanner"
-        android:background="@drawable/rounded_primary"
-        android:orientation="vertical"
-        android:layout_marginRight="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:text="@string/where_would_you_want_to_go_today"
-            android:layout_marginStart="10dp" />
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/tabLike"
+            android:layout_alignParentStart="true"
             >
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_office_building_marker"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/icon" />
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/districtSelect"
-                android:textAllCaps="true"
-                android:backgroundTint="@color/white"
-                android:layout_margin="10dp"
-                style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
-                tools:targetApi="lollipop" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy_date"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:id="@+id/pickDate"
-                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="20dp"
 
-        </LinearLayout>
-    </LinearLayout>
+                    android:id="@+id/dashboardBanner"
+                    android:background="@drawable/rounded_primary"
+                    android:orientation="vertical"
+                    android:layout_marginRight="20dp">
 
-    <LinearLayout
-        android:id="@+id/searchBanner"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_below="@+id/dashboardBanner"
-        android:background="@drawable/rectangle_stroked"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:text="@string/where_would_you_want_to_go_today"
+                        android:layout_marginStart="10dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_clipboard_text_search_outline"
-            android:layout_gravity="center"
-            android:contentDescription="@string/icon"
-            android:layout_marginStart="10dp" />
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#ECECEC"
-            android:layout_marginStart="5dp" />
-        <SearchView
-            android:layout_margin="3dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:queryBackground="@android:color/transparent"
-            android:id="@+id/searchView"
-            android:queryHint="@string/search_for_trips"
-            android:theme="@style/Theme.MuliPati"
-            android:iconifiedByDefault="false"
-            android:searchIcon="@null"
-            android:layout_marginStart="10dp"
-            tools:targetApi="lollipop" />
-    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_office_building_marker"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:contentDescription="@string/icon" />
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/districtSelect"
+                            android:textAllCaps="true"
+                            android:backgroundTint="@color/white"
+                            android:layout_margin="10dp"
+                            style="@style/TextAppearance.AppCompat.Widget.TextView.SpinnerItem"
+                            tools:targetApi="lollipop" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dummy_date"
+                            android:layout_gravity="center"
+                            android:textColor="@color/white"
+                            android:id="@+id/pickDate"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/searchBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:background="@drawable/rectangle_stroked"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_clipboard_text_search_outline"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/icon"
+                        android:layout_marginStart="10dp" />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#ECECEC"
+                        android:layout_marginStart="5dp" />
+                    <SearchView
+                        android:layout_margin="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:queryBackground="@android:color/transparent"
+                        android:id="@+id/searchView"
+                        android:queryHint="@string/search_for_trips"
+                        android:theme="@style/Theme.MuliPati"
+                        android:iconifiedByDefault="false"
+                        android:searchIcon="@null"
+                        android:layout_marginStart="10dp"
+                        tools:targetApi="lollipop" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/trips_near_you"
+                            android:textStyle="bold"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/see_all_2"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp"
+                            android:id="@+id/tripsMore"
+                            tools:ignore="RelativeOverlap" />
+                    </RelativeLayout>
+
+                    <com.airbnb.epoxy.EpoxyRecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:padding="3dp"
+                        android:layout_marginTop="10dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:id="@+id/recentTripsRecycler"
+
+                        />
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/no_trips"
+                        android:id="@+id/noTrips"
+                        android:layout_marginTop="40dp"
+                        android:visibility="gone"
+                        android:contentDescription="@string/illustration" />
+                </LinearLayout>
+
+            </LinearLayout></ScrollView>
+
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="70dp"
@@ -181,61 +240,5 @@
         android:layout_marginBottom="54dp"
         android:contentDescription="@string/image" />
 
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchBanner"
-        android:layout_marginTop="10dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/trips_near_you"
-                android:textStyle="bold"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/see_all_2"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:id="@+id/tripsMore"
-                tools:ignore="RelativeOverlap" />
-        </RelativeLayout>
-
-        <com.airbnb.epoxy.EpoxyRecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="3dp"
-            android:layout_marginTop="10dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:id="@+id/recentTripsRecycler"
-
-            />
-
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:src="@drawable/no_trips"
-                android:id="@+id/noTrips"
-                android:layout_marginTop="40dp"
-                android:visibility="gone"
-                android:contentDescription="@string/illustration" />
-        </LinearLayout>
-    </ScrollView>
     </RelativeLayout>
 </layout>

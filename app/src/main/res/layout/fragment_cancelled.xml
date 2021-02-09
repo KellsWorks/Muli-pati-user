@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-    <RelativeLayout
+    <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.trips.cancelled.CancelledFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
@@ -46,6 +50,7 @@
                 android:textStyle="bold"
                 />
         </LinearLayout>
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </layout>

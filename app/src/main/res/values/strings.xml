@@ -3,11 +3,11 @@
     <string name="skip">Get started</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="find_your_way_around">Find your way around</string>
-    <string name="book_rides_from_the_list_of_rides_here_find_your_way_around_town">Book rides from the list of rides here. Find your way around town</string>
+    <string name="book_rides_from_the_list_of_rides_here_find_your_way_around_town">Book a trip from the list of rides near you.</string>
     <string name="image">image</string>
     <string name="icon">icon</string>
     <string name="connect_to_your_ride">Connect to your ride</string>
-    <string name="fast_transportation_using_your_mobile_phone_in_malawi">Fast transportation using your mobile phone in malawi</string>
+    <string name="fast_transportation_using_your_mobile_phone_in_malawi">Your trip is just few clicks away</string>
     <string name="we_will_take_you_there">We will take you there</string>
     <string name="book_transportation_ahead_of_your_journey">Book transportation ahead of your journey</string>
     <string name="sign_in">Sign in</string>
@@ -56,7 +56,6 @@
     <string name="hello_can_we_help_you">Hello can we help you?</string>
     <string name="update_your_user_avatar">Update your user avatar</string>
     <string name="reset_password">Reset password</string>
-    <string name="enter_your_phone_number_below_we_will_send_you_an_sms_with_a_pin_code_to_confirm_your_identity">Enter your phone number below. We will send you an SMS with a pin code to confirm your identity.</string>
     <string name="re_enter_password">Re-enter Password</string>
     <string name="_12_32_pm">12:32 PM</string>
     <string name="access_your_location">ACCESS YOUR LOCATION</string>
@@ -66,7 +65,7 @@
     <string name="_3_february_2021_12_05_pm">3 February 2021 - 12:05 PM</string>
     <string name="blantyre_zomba">Blantyre - Zomba</string>
     <string name="you_have_successfully_booked_this_trip">You have successfully booked this trip!</string>
-    <string name="create_account">Create Account</string>
+    <string name="create_account">Create</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="current_avatar">Current avatar</string>
@@ -98,6 +97,24 @@
     <string name="allow_app_to_use_your_location">Allow app to use your location</string>
     <string name="start_typing">Start typing...</string>
     <string name="muli_pati_user">Muli pati user</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="enter_your_phone_number_below_we_will_send_you_an_sms_with_a_pin_code_to_confirm_your_identity">Enter your phone number below. We will send you an SMS with a pin code to confirm your identity.</string>
+    <string name="confirm">Confirm</string>
+    <string name="enter_the_pin_code_sent_to_your_mobile_phone">Enter the pin code sent to your mobile phone.</string>
+    <string name="aster">*</string>
+    <string name="already_registered">Already Registered?</string>
+    <string name="new_password">New password</string>
+    <string name="muli_pati">Muli pati?</string>
+    <string name="version_1_0_0">Version 1.0.0</string>
+    <string name="about">About</string>
+    <string name="muli_pati_mobile_transport_service_is_a_malawian_transportation_system_it_offers_users_transport_from_trips_going_on_around_their_area_of_proximity">Muli pati mobile transport service is a malawian transportation system. It offers users transport from trips going on around their area of proximity.</string>
+    <string name="terms_of_service">Terms of service</string>
+    <string name="by_creating_an_account_you_agree_to_all_the_terms_and_conditions_of_muli_pati_mobile_transportation_service_drivers_should_register_to_our_service_using_the_muli_pati_driver_app">By creating an account, you agree to all the terms and conditions of Muli pati mobile transportation service. Drivers should register to our service using the Muli pati driver app.</string>
+    <string name="store">Store</string>
+    <string name="user_app">User app</string>
+    <string name="google_playstore">Google PlayStore</string>
+    <string name="driver_app">Driver app</string>
+    <string name="google_playstore">Google PlayStore</string>
 
 
     <string-array name="districts">

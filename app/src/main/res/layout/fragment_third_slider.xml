@@ -2,40 +2,41 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         tools:context=".ui.onboard.ThirdSlider">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
             <TextView
-                android:background="@drawable/button"
-                android:textColor="@color/white"
+                android:textColor="@color/red"
                 android:id="@+id/skip"
                 android:padding="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/skip"
                 android:textStyle="bold"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/ic_asset_three"
-            android:layout_marginTop="200dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/three"
+            android:layout_marginTop="170dp"
             android:layout_gravity="center"
             android:id="@+id/sliderImage"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="70dp"
             android:contentDescription="@string/image" />
         <TextView
             android:layout_width="wrap_content"
@@ -55,6 +56,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             />
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </layout>

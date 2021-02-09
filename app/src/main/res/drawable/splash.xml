@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     >
-    <item
-        android:drawable="@drawable/ic_icon"
-        android:gravity="center"
-        android:height="39dp"
-        android:width="100dp"
-        tools:targetApi="m" />
+
+    <item android:drawable="?colorOnPrimary" />
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_icon" />
+    </item>
 
 </layer-list>

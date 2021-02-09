@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.auth.LoginFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
         <LinearLayout
@@ -118,65 +122,68 @@
                 android:layout_marginTop="10dp"
                 />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            >
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/button"
-                android:layout_marginLeft="28dp"
-                android:layout_marginRight="28dp"
-                android:text="@string/continue_to_sign_in"
-                android:id="@+id/SignInButton"
-                android:textSize="17sp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                />
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_marginTop="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 >
-                <LinearLayout
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/button"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginRight="28dp"
+                    android:text="@string/continue_to_sign_in"
+                    android:id="@+id/SignInButton"
+                    android:textSize="17sp"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    />
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="130dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
-                    tools:ignore="UselessParent">
-                    <TextView
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/not_registered_yet"
-                        />
-                    <TextView
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/create_account"
-                        android:id="@+id/createAccount"
-                        android:textStyle="bold"
-                        android:textColor="?subtitleTextColor"
-                        />
-                </LinearLayout>
-            </RelativeLayout>
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="130dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        tools:ignore="UselessParent">
+                        <TextView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/not_registered_yet"
+                            />
+                        <TextView
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/create_account"
+                            android:id="@+id/createAccount"
+                            android:textStyle="bold"
+                            android:textColor="?subtitleTextColor"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

@@ -11,44 +11,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="28dp"
             android:id="@+id/termsBack"
-            android:src="@drawable/ic_arrow_back" />
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="@string/icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="67dp"
-            android:layout_marginLeft="67dp"
             android:layout_marginTop="18dp"
             android:text="@string/terms_conditions"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="75dp"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@drawable/ic_icon"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                />
+                android:contentDescription="@string/image" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Muli pati?"
+                android:text="@string/muli_pati"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
@@ -57,22 +57,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Version 1.0.0"
+                android:text="@string/version_1_0_0"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="About"
+                android:text="@string/about"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Muli pati mobile transport service is a malawian transportation system. It offers users transport from trips going on around their area of proximity."
+                android:text="@string/muli_pati_mobile_transport_service_is_a_malawian_transportation_system_it_offers_users_transport_from_trips_going_on_around_their_area_of_proximity"
                 android:textSize="13sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -82,16 +82,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Terms of service"
+                android:text="@string/terms_of_service"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="By creating an account, you agree to all the terms and conditions of Muli pati mobile transportation service.
-                 Drivers should register to our service using the Muli pati driver app."
+                android:text="@string/by_creating_an_account_you_agree_to_all_the_terms_and_conditions_of_muli_pati_mobile_transportation_service_drivers_should_register_to_our_service_using_the_muli_pati_driver_app"
                 android:textSize="13sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -102,19 +101,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                >
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_store"
                     android:layout_gravity="center"
-                    />
+                    android:contentDescription="@string/icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Store"
+                    android:text="@string/store"
                     android:textSize="18sp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_gravity="center"
                     android:textStyle="bold"
                     />
@@ -123,27 +122,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User app"
-                android:layout_marginLeft="20dp"
+                android:text="@string/user_app"
+                android:layout_marginStart="20dp"
                 android:layout_marginBottom="5dp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                >
+                android:layout_marginStart="20dp"
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_playstore"
-                    />
+                    android:contentDescription="@string/image" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Google PlayStore"
+                    android:text="@string/google_playstore"
                     android:textSize="22sp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:textStyle="bold"
                     android:textColor="#039BE5"
                     />
@@ -153,32 +152,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Driver app"
-                android:layout_marginLeft="20dp"
+                android:text="@string/driver_app"
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="20dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp">
+                android:layout_marginStart="20dp"
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/ic_playstore"
-                    />
+                    android:contentDescription="@string/image" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Google PlayStore"
+                    android:text="@string/google_playstore"
                     android:textSize="22sp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:textStyle="bold"
                     android:textColor="#039BE5"
                     />
             </LinearLayout>
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </RelativeLayout>
 
