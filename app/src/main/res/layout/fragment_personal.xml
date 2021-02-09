@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/jerome_msampha"
+                android:text="@string/muli_pati_user"
                 android:textSize="18sp"
                 android:id="@+id/personalName"
                 android:textStyle="bold"
@@ -114,7 +114,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/_0"
+                                android:text=""
                                 android:textSize="25sp"
                                 android:textStyle="bold"
                                 android:id="@+id/upcomingCount"
@@ -158,7 +158,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/_3"
+                                android:text=""
                                 android:id="@+id/completedCount"
                                 android:textSize="25sp"
                                 android:textStyle="bold"
@@ -200,7 +200,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/_15"
                                 android:textSize="25sp"
                                 android:textStyle="bold"
                                 android:id="@+id/cancelledCount"
@@ -278,7 +277,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_265_999_67_99_75"
                         android:textSize="14sp"
                         android:id="@+id/personalPhone"
                         android:layout_marginTop="3dp"

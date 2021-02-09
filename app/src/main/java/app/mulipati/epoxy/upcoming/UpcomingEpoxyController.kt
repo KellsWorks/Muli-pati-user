@@ -34,10 +34,11 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
                             val popupMenu = PopupMenu(parentView.menu!!.context, parentView.menu)
                             val userId = parentView.title?.context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)
 
-
                             val tripId = parentView.id
 
-                            Timber.e("User id: $userId Trip id: $tripId")
+                            val chatPrefs = parentView.title?.context?.getSharedPreferences("chatPrefs", Context.MODE_PRIVATE)?.edit()
+                            chatPrefs?.putInt("tripId", tripId!!)
+                            chatPrefs?.apply()
 
 
                             popupMenu.menuInflater.inflate(R.menu.upcoming, popupMenu.menu)

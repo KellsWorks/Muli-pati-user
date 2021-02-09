@@ -18,6 +18,7 @@
             android:id="@+id/toMsg"
             android:background="@drawable/rounded_chat_user"
             android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
             android:textColor="@color/white"
             android:padding="7dp"
             />

@@ -2,22 +2,22 @@
     <!-- Base application theme. -->
     <style name="Theme.MuliPati" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#D81B60</item>
-        <item name="colorPrimaryVariant">#CF2765</item>
+        <item name="colorPrimary">#edb22d</item>
+        <item name="colorPrimaryVariant">#edb22d</item>
         <item name="colorOnPrimary">@color/grey</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#D81B60</item>
-        <item name="colorSecondaryVariant">#D81B60</item>
+        <item name="colorSecondary">#edb22d</item>
+        <item name="colorSecondaryVariant">#edb22d</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="buttonTint">#D81B60</item>
-        <item name="colorAccent">#D81B60</item>
+        <item name="buttonTint">#edb22d</item>
+        <item name="colorAccent">#edb22d</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="boxBackgroundColor">@color/white</item>
         <item name="fontFamily">@font/poppins_regular</item>
-        <item name="subtitleTextColor">#D81B60</item>
-        <item name="tabIndicatorColor">#D81B60</item>
+        <item name="subtitleTextColor">#edb22d</item>
+        <item name="tabIndicatorColor">#edb22d</item>
         <item name="buttonStyle">@color/white</item>
 
     </style>
@@ -25,15 +25,18 @@
 
     <style name="SplashScreenTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
-        <item name="colorPrimary">#D81B60</item>
-        <item name="colorPrimaryVariant">#CF2765</item>
+        <item name="colorPrimary">#edb22d</item>
+        <item name="colorPrimaryVariant">#edb22d</item>
         <item name="colorOnPrimary">@color/grey</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnPrimarySurface">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
 
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">#D81B60</item>
+        <item name="colorAccent">#edb22d</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/grayish</item>
     </style>

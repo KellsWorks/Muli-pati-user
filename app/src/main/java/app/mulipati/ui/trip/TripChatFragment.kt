@@ -1,3 +1,4 @@
+
 package app.mulipati.ui.trip
 
 import android.content.Context
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.mulipati.R
@@ -18,6 +20,9 @@ import app.mulipati.network.ApiClient
 import app.mulipati.network.Routes
 import app.mulipati.network.responses.chats.MessageSent
 import app.mulipati.network.responses.chats.MessagesResponse
+import app.mulipati.ui.dashboard.TripsViewModel
+import app.mulipati.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,10 +30,12 @@ import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
 
-
+@AndroidEntryPoint
 class TripChatFragment : Fragment() {
 
     private lateinit var tripsChatBinding: FragmentTripChatBinding
+
+    private val tripsViewModel: TripsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -53,6 +60,28 @@ class TripChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val arrayList = ArrayList<Messages>()
+
+        val tripId = context?.getSharedPreferences("chatPrefs", Context.MODE_PRIVATE)?.getInt("tripId", 0)
+
+        Timber.e(tripId.toString())
+
+        tripsViewModel.trips.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            when(it.status){
+                Resource.Status.SUCCESS->{
+                    if (it.data!!.isNotEmpty()){
+                        for (i in it.data){
+                            if (i.id == tripId){
+                                context?.getSharedPreferences("chatID", Context.MODE_PRIVATE)?.edit()
+                                        ?.putString("title", i.start + " - " + i.destination)
+                                        ?.putInt("id", i.user_id)?.apply()
+                            }
+                        }
+                    }
+                }
+                Resource.Status.LOADING->{}
+                Resource.Status.ERROR->{}
+            }
+        })
 
         val chatID = context?.getSharedPreferences("chatID", Context.MODE_PRIVATE)?.getInt("id", 0)
         val chatTitle = context?.getSharedPreferences("chatID", Context.MODE_PRIVATE)?.getString("title", "")

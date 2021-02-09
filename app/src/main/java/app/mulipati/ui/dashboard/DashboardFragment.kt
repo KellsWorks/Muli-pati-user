@@ -56,8 +56,9 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
         return dashboardBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         bindLocation()
 
@@ -70,7 +71,7 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        val month = c.get(Calendar.MONTH)
+        val month = c.get(Calendar.MONTH) - 1
 
         val todayDate = "$day " + convertDate(month) + ", $year"
 
@@ -81,10 +82,6 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
         }
 
         dashboardBinding.searchView.setOnQueryTextListener(this)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
         setupObservers()
     }

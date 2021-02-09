@@ -16,6 +16,7 @@
             android:text="@string/hello_can_we_help_you"
             android:background="@drawable/rounded_chat"
             android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
             android:id="@+id/toMsg"
             android:textColor="@color/white"
             android:padding="7dp"

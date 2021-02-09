@@ -2,21 +2,21 @@
     <!-- Base application theme. -->
     <style name="Theme.MuliPati" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#D81B60</item>
+        <item name="colorPrimary">#edb22d</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#D81B60</item>
+        <item name="colorSecondary">#edb22d</item>
         <item name="colorSecondaryVariant">#F4511E</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="colorAccent">#D81B60</item>
+        <item name="colorAccent">#edb22d</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/poppins_regular</item>
-        <item name="boxBackgroundColor">#121212</item>
-        <item name="buttonTint">#59172F</item>
-        <item name="subtitleTextColor">#D81B60</item>
+        <item name="boxBackgroundColor">@color/black</item>
+        <item name="buttonTint">#edb22d</item>
+        <item name="subtitleTextColor">#edb22d</item>
         <item name="tabIndicatorColor">@color/white</item>
         <item name="buttonStyle">@color/red</item>
 
@@ -31,7 +31,7 @@
     </style>
 
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorAccent">#D81B60</item>
+        <item name="colorAccent">#edb22d</item>
         <item name="android:windowBackground">@color/black</item>
         <item name="android:textColor">@color/grayish</item>
     </style>

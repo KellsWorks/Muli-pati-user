@@ -46,7 +46,7 @@
     <string name="log_out">Log out</string>
     <string name="app_settings">App settings</string>
     <string name="terms_conditions"><![CDATA[Terms & conditions]]></string>
-    <string name="recent">RECENT</string>
+    <string name="recent">Recent</string>
     <string name="notifications">Notifications</string>
     <string name="viewed">VIEWED</string>
     <string name="trips_catalogue">Trips catalogue</string>
@@ -96,6 +96,8 @@
     <string name="clear_chat">Clear chat</string>
     <string name="cancel">Cancel</string>
     <string name="allow_app_to_use_your_location">Allow app to use your location</string>
+    <string name="start_typing">Start typing...</string>
+    <string name="muli_pati_user">Muli pati user</string>
 
 
     <string-array name="districts">

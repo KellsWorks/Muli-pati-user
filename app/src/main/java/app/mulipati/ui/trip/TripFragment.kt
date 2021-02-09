@@ -110,7 +110,13 @@ class TripFragment : Fragment() {
                                 bookingsList.add(bookings.id.toString())
                             }
                             val bookingsCount = passengers.minus(bookingsList.count())
-                            tripBinding.tripSeats.text = "Total seats: $passengers | $bookingsCount Available"
+
+                            if (bookingsCount.toString().isEmpty()){
+                                tripBinding.tripSeats.text = "Total seats: $passengers | $passengers Available"
+                            }else{
+                                tripBinding.tripSeats.text = "Total seats: $passengers | $bookingsCount Available"
+                            }
+
 
                             val tripId = context?.getSharedPreferences("trip_details", Context.MODE_PRIVATE)!!.getInt("id", 0)
                             val userIdX = context?.getSharedPreferences("user", Context.MODE_PRIVATE)!!.getInt("id", 0)

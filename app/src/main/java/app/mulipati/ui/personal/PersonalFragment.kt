@@ -2,7 +2,6 @@
 
 package app.mulipati.ui.personal
 
-import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -14,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -49,9 +47,7 @@ class PersonalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            bindUser()
-        }
+        bindUser()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -68,8 +64,6 @@ class PersonalFragment : Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
     private fun bindUser(){
 
         val userPreferences = context?.getSharedPreferences("user", Context.MODE_PRIVATE)
@@ -87,7 +81,11 @@ class PersonalFragment : Fragment() {
             personalBinding.personalEmail.text = userPreferences.getString("email", "")
         }
 
-        val phoneUtil = PhoneNumberUtils.formatNumber(userPreferences.getString("phone", ""), "MW")
+        val phoneUtil = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            PhoneNumberUtils.formatNumber(userPreferences.getString("phone", ""), "MW")
+        } else {
+            TODO("VERSION.SDK_INT < LOLLIPOP")
+        }
         val phone =removeFirstChar(phoneUtil)
 
         personalBinding.personalPhone.text = "+265 $phone"
