@@ -77,7 +77,7 @@ class TripFragment : Fragment() {
             getTripDriver(userId!!)
 
             tripBinding.bookTrip.setOnClickListener{
-                bookTrip(userId, id!!)
+                bookTrip(context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getInt("id", 0)!!, id!!)
             }
 
            tripBinding.tripSeats.text = "Total seats: $passengers"
@@ -97,11 +97,7 @@ class TripFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
         bindTripDetails()
-
-
-
 
     }
 

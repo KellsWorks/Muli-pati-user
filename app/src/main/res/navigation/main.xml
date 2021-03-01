@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_tripFragment"
             app:destination="@id/tripFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -42,6 +45,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editImageFragment2"
             app:destination="@id/editImageFragment2" />
+        <action
+            android:id="@+id/action_profileFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/tripFragment"

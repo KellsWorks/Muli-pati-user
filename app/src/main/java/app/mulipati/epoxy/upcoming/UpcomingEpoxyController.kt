@@ -77,7 +77,7 @@ class UpcomingEpoxyController : Typed2EpoxyController<Boolean, List<Upcoming>>()
                                     }
 
                                     R.id.enterChat->{
-                                        parentView.datetime!!.findNavController().navigate(R.id.action_tripsFragment_to_tripChatFragment)
+                                        parentView.title!!.findNavController().navigate(R.id.action_tripsFragment_to_tripChatFragment)
                                     }
                                 }
                                 true

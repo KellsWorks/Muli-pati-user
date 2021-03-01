@@ -2,11 +2,11 @@ package app.mulipati.util
 
 object Constants {
 
-    const val BASE_URL = "http://192.168.43.200:322/api/"
+    const val BASE_URL = "https://mulipati.com/api/"
 
-    const val PROFILE_URL = "http://192.168.43.200:322/storage/profile/"
+    const val PROFILE_URL = "https://mulipati.com/storage/profile/"
 
-    const val CARS_URL = "http://192.168.43.200:322/storage/cars/"
+    const val CARS_URL = "https://mulipati.com/storage/cars/"
 
     const val IMG_REQUEST = 1
 

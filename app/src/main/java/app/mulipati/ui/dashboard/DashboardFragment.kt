@@ -1,7 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package app.mulipati.ui.dashboard
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -53,6 +56,7 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         dashboardBinding = FragmentDashboardBinding.inflate(inflater, container, false)
+
         dashboardBinding.lifecycleOwner = this
 
         return dashboardBinding.root
@@ -112,12 +116,19 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
 
     @SuppressLint("SetTextI18n")
     private fun setupObservers() {
+
         val location = context?.getSharedPreferences("user", Context.MODE_PRIVATE)?.getString("location", "")
+
+        val dialog = ProgressDialog(requireContext(), R.style.CustomAlertDialog)
+        dialog.setCancelable(false)
+        dialog.setMessage("Loading trips... please wait")
+        dialog.show()
 
         viewModel.trips.observe(viewLifecycleOwner, Observer {
             tripsList.clear()
             when (it.status) {
                 Resource.Status.SUCCESS -> {
+                    dialog.dismiss()
                    try {
                            if(it.data!!.isNotEmpty()){
                                for (trips in it.data){
@@ -147,10 +158,12 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
                 }
 
                 Resource.Status.ERROR ->
-                    Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+                {
+                    dialog.dismiss()
+                }
 
                 Resource.Status.LOADING -> {
-
+                    dialog.show()
                 }
             }
         })
@@ -292,6 +305,16 @@ class DashboardFragment : Fragment(), DatePickerDialog.OnDateSetListener, androi
         }
 
         return true
+    }
+
+    override fun onDestroyView() {
+        viewModel.trips.removeObservers(this)
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        viewModel.trips.removeObservers(this)
+        super.onDestroy()
     }
 
 }

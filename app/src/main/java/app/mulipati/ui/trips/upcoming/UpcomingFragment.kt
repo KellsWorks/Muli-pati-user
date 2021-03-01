@@ -38,8 +38,6 @@ class UpcomingFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         upcomingBinding = FragmentUpcomingBinding.inflate(inflater, container, false)
-        upcomingBinding.lifecycleOwner = this
-
         return upcomingBinding.root
     }
 
@@ -48,9 +46,15 @@ class UpcomingFragment : Fragment() {
 
         setUpObservers()
 
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         upcomingBinding.refreshUpcoming.setOnRefreshListener {
             setUpObservers()
         }
+
     }
 
     private fun setUpObservers(){
@@ -64,8 +68,10 @@ class UpcomingFragment : Fragment() {
                 Resource.Status.SUCCESS ->{
                     upcomingBinding.refreshUpcoming.isRefreshing = false
                     try {
+
                         if (it.data!!.isNotEmpty()){
                             for (book in it.data){
+                                Timber.e(getId.toString())
                                 if (book.user_id == getId && book.status == "booked"){
                                     upcomingList.add(Upcoming(book.trip_id, book.start + " - " + book.destination, book.created_at))
                                 }
@@ -80,6 +86,7 @@ class UpcomingFragment : Fragment() {
                 }
                 Resource.Status.ERROR ->{
                     upcomingBinding.refreshUpcoming.isRefreshing = false
+                    Timber.e("Error loading upcoming")
                 }
             }
         })
