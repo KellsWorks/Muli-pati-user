@@ -10,5 +10,4 @@ class MessagesViewModel @ViewModelInject constructor(
 
     private val repo = repository
 
-
 }
